@@ -1,7 +1,3 @@
-<p align="right">
-  <a href="AGENTS.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
-
 # Repository Guidelines for AI Agents
 
 This file is the only mandatory entry point for AI-assisted work in this repository. It governs the whole checkout. Read the task-specific documents from the routing table below; do not load every README by default.
@@ -10,9 +6,9 @@ This file is the only mandatory entry point for AI-assisted work in this reposit
 
 This checkout is a downstream copy of [`FoloToy/ai-passport`](https://github.com/FoloToy/ai-passport), tracked as the `upstream` remote. Upstream provides the hardware contract, BSP, baseline demo firmware, engineering references, AI skills, and validation tooling. Treat that material as the foundation and as the source of hardware truth.
 
-Everything this fork develops — the launcher, plays, on-device tools, host-side tools, fork assets, and fork documentation — lives under [`jerryicat/`](jerryicat/AGENTS.md). Do not scatter first-party product code into `main/`, `components/`, `tools/`, or `tests/`.
+Everything this fork develops — the launcher, plays, on-device tools, host-side tools, fork assets, and fork documentation — lives under [`jerryiscat/`](jerryiscat/AGENTS.md). Do not scatter first-party product code into `main/`, `components/`, `tools/`, or `tests/`.
 
-Every folder under `jerryicat/` has its own `AGENTS.md` describing what belongs there and how to work in it. Read `jerryicat/AGENTS.md` and the `AGENTS.md` of every folder you touch. The nearest file governs its subtree and may add detail to, or override, broader guidance; it never overrides the root safety rules below.
+Every folder under `jerryiscat/` has its own `AGENTS.md` describing what belongs there and how to work in it. Read `jerryiscat/AGENTS.md` and the `AGENTS.md` of every folder you touch. The nearest file governs its subtree and may add detail to, or override, broader guidance; it never overrides the root safety rules below.
 
 ## Repository maintenance
 
@@ -22,7 +18,7 @@ Every folder under `jerryicat/` has its own `AGENTS.md` describing what belongs 
 - Run the applicable checks before committing. Do not push a known failure; fix it or report the blocker.
 - Use the Conventional Commit form from `docs/contribution/commit-and-pr.md`: English imperative subject, for example `docs(agents): record the fork workspace model`.
 - Push only to `origin`. Never push to `upstream`, force-push, rewrite published history, or move tags.
-- Automatic upstream synchronization is disabled. Fetch or merge from `upstream` only when the user asks; resolve conflicts in favor of this file and the `jerryicat/` rules, and never drop fork work to take an upstream version wholesale.
+- Automatic upstream synchronization is disabled. Fetch or merge from `upstream` only when the user asks; resolve conflicts in favor of this file and the `jerryiscat/` rules, and never drop fork work to take an upstream version wholesale.
 - Upstream guidance that keeps `main` synchronized or tells developers to work on `feature/*` branches is superseded by this section.
 
 ## Required AI skills
@@ -48,7 +44,7 @@ the maintenance rule above.
 
 These skills describe the upstream development workflow. Their setup, build,
 device-test, and debug stages still apply here; their application-placement
-defaults are overridden by the `jerryicat/` rules.
+defaults are overridden by the `jerryiscat/` rules.
 
 ## Project and safety baseline
 
@@ -60,37 +56,37 @@ defaults are overridden by the `jerryicat/` rules.
 - Preserve existing user changes. Start with `git status --short --branch`; never overwrite or clean unrelated files.
 - Flashing new firmware does not require backing up the firmware already on the device; do not make a Flash readback a prerequisite. This does not guarantee preservation of user data or authorize a full-chip erase. Follow the [flashing and data policy](docs/development/engineering/firmware-layout.md#flashing-and-stored-data).
 - Hardware facts follow this priority: product specifications and measured results → `components/bsp/include/bsp_pins.h` → BSP headers and implementation → hardware guide → README/demo code. If a task requires a hardware detail not defined by these sources, ask the user instead of guessing.
-- Reusable board logic belongs in `components/bsp`. The launcher, shared UI kit, plays, on-device tools, and their tasks belong under `jerryicat/`. `main/` remains the firmware entry and keeps the upstream demo sources as reference; the boot UI comes from the launcher, and product logic must not grow in `main/`.
+- Reusable board logic belongs in `components/bsp`. The launcher, shared UI kit, plays, on-device tools, and their tasks belong under `jerryiscat/`. `main/` remains the firmware entry and keeps the upstream demo sources as reference; the boot UI comes from the launcher, and product logic must not grow in `main/`.
 - Derivative applications must redesign and implement their own UI. Reusing the current demo test menu, screens, or visual shell is prohibited; renaming, recoloring, or adding a feature to that shell does not count as a redesign. BSP APIs and non-UI logic remain reusable. See the [mandatory UI redesign rule](docs/development/ai-guide.md#mandatory-ui-redesign-for-derivative-applications).
 - LVGL is not thread-safe. Code outside the LVGL task must hold `bsp_lvgl_lock()` while accessing LVGL objects.
 - Before adding Chinese UI text, follow the [font checklist](docs/development/engineering/coding-conventions.md#chinese-fonts-and-missing-glyphs). The default Montserrat fonts have no Chinese glyphs; UTF-8 and a successful build do not prove display support. Verify glyph coverage, widget font selection, and on-device rendering.
 - Button callbacks must stay non-blocking. Audio, storage, networking, and other slow operations belong in worker tasks.
 - Before deleting a screen, stop every task, timer, callback, and event handler that can access its UI. This applies to fork plays and on-device tools as well as the baseline demo.
-- Keep testable state machines, protocols, timing, and layout calculations independent from ESP-IDF/LVGL and cover them with host tests under `tests/` (upstream) or `jerryicat/tests/` (fork).
+- Keep testable state machines, protocols, timing, and layout calculations independent from ESP-IDF/LVGL and cover them with host tests under `tests/` (upstream) or `jerryiscat/tests/` (fork).
 - Never commit credentials, device QR secrets, private keys, personal data, or unsanitized logs.
-- Every maintained Markdown document uses English at its default `.md` path and Simplified Chinese in a paired `.zh_CN.md` file. Keep both versions aligned and retain reciprocal language links.
+- Every maintained Markdown document uses English at its default `.md` path and Simplified Chinese in a paired `.zh_CN.md` file. Keep both versions aligned and retain reciprocal language links. Exceptions: every `AGENTS.md` is English-only and has no translation; the repository-root `README.md` is the fork's Chinese-only human landing page and has no English pair.
 
-## Fork workspace: `jerryicat/`
+## Fork workspace: `jerryiscat/`
 
 - One firmware. The launcher, plays, and on-device tools compile into the single application, and the fork launcher is the default user interface. Do not create a separate ESP-IDF project per play or a second `app_main` without an explicit user decision.
-- `jerryicat/` is one ESP-IDF component. `include/` holds public APIs, `src/` the launcher and shared UI kit, `plays/` gameplay apps, `apps/` on-device utility apps, `tools/` host-side development scripts, `tests/` host tests, `assets/` fork binary assets, and `docs/` fork documentation.
+- `jerryiscat/` is one ESP-IDF component. `include/` holds public APIs, `src/` the launcher and shared UI kit, `plays/` gameplay apps, `apps/` on-device utility apps, `tools/` host-side development scripts, `tests/` host tests, `assets/` fork binary assets, and `docs/` fork documentation.
 - The launcher, plays, and on-device tools own every screen, layout, navigation, and button interaction they present. Never start from the baseline demo menu, `demo_*.c` screens, or the `ui_pixel` shell.
-- The component is registered through `EXTRA_COMPONENT_DIRS` in the root `CMakeLists.txt`, `main/CMakeLists.txt` lists `jerryicat` in `REQUIRES`, and `main.c` calls `jerryicat_launcher_start()` and forwards key events to `jerryicat_handle_key()`. Keep that seam minimal. Do not move the BSP or the baseline demo into `jerryicat/`.
-- The detailed workspace model, app lifecycle contract, and folder map are in [`jerryicat/AGENTS.md`](jerryicat/AGENTS.md).
+- The component is registered through `EXTRA_COMPONENT_DIRS` in the root `CMakeLists.txt`, `main/CMakeLists.txt` lists `jerryiscat` in `REQUIRES`, and `main.c` calls `jerryiscat_launcher_start()` and forwards key events to `jerryiscat_handle_key()`. Keep that seam minimal. Do not move the BSP or the baseline demo into `jerryiscat/`.
+- The detailed workspace model, app lifecycle contract, and folder map are in [`jerryiscat/AGENTS.md`](jerryiscat/AGENTS.md).
 
 ## Task-specific context routing
 
 | Task | Read before editing |
 | --- | --- |
 | Any code change | `docs/development/ai-guide.md`, relevant headers and neighboring implementation |
-| Fork workspace overview | `jerryicat/AGENTS.md`, `jerryicat/README.md` |
-| Fork play | `jerryicat/AGENTS.md`, `jerryicat/plays/AGENTS.md`, the play folder `AGENTS.md`, `jerryicat/include/AGENTS.md` |
-| Fork on-device tool | `jerryicat/AGENTS.md`, `jerryicat/apps/AGENTS.md`, the app folder `AGENTS.md`, `jerryicat/include/AGENTS.md` |
-| Launcher, registry, or shared UI kit | `jerryicat/AGENTS.md`, `jerryicat/src/AGENTS.md`, `jerryicat/include/AGENTS.md` |
-| Fork host tool | `jerryicat/AGENTS.md`, `jerryicat/tools/AGENTS.md` |
-| Fork host tests | `jerryicat/AGENTS.md`, `jerryicat/tests/AGENTS.md` |
-| Fork assets or documentation | `jerryicat/AGENTS.md`, `jerryicat/assets/AGENTS.md` or `jerryicat/docs/AGENTS.md` |
-| Launcher integration into firmware | `jerryicat/AGENTS.md`, `main/main.c`, `CMakeLists.txt`, `main/CMakeLists.txt` |
+| Fork workspace overview | `jerryiscat/AGENTS.md`, `jerryiscat/README.md` |
+| Fork play | `jerryiscat/AGENTS.md`, `jerryiscat/plays/AGENTS.md`, the play folder `AGENTS.md`, `jerryiscat/include/AGENTS.md` |
+| Fork on-device tool | `jerryiscat/AGENTS.md`, `jerryiscat/apps/AGENTS.md`, the app folder `AGENTS.md`, `jerryiscat/include/AGENTS.md` |
+| Launcher, registry, or shared UI kit | `jerryiscat/AGENTS.md`, `jerryiscat/src/AGENTS.md`, `jerryiscat/include/AGENTS.md` |
+| Fork host tool | `jerryiscat/AGENTS.md`, `jerryiscat/tools/AGENTS.md` |
+| Fork host tests | `jerryiscat/AGENTS.md`, `jerryiscat/tests/AGENTS.md` |
+| Fork assets or documentation | `jerryiscat/AGENTS.md`, `jerryiscat/assets/AGENTS.md` or `jerryiscat/docs/AGENTS.md` |
+| Launcher integration into firmware | `jerryiscat/AGENTS.md`, `main/main.c`, `CMakeLists.txt`, `main/CMakeLists.txt` |
 | Application workflow or core skill setup | `skills/README.md`; ensure the five required skills are available, then use only the matching skill |
 | Environment bootstrap or missing toolchain | `docs/development/engineering/environment-setup.md` |
 | BSP, pins, buses, display, audio, battery | `docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.md`, `components/bsp/include/bsp_pins.h` |
@@ -115,7 +111,7 @@ Run the smallest relevant check while iterating, then run the complete gate befo
 ./tools/validate.sh             # complete gate
 ```
 
-The complete gate requires an activated ESP-IDF 5.5.3 environment. The upstream gate does not discover fork tests: run `./jerryicat/tools/validate.sh` as well. Do not describe a successful build as hardware validation. Final delivery must report these fields separately:
+The complete gate requires an activated ESP-IDF 5.5.3 environment. The upstream gate does not discover fork tests: run `./jerryiscat/tools/validate.sh` as well. Do not describe a successful build as hardware validation. Final delivery must report these fields separately:
 
 ```text
 Build: PASS / FAIL / NOT RUN
@@ -131,6 +127,6 @@ connect it to a computer USB port with a data-capable cable. Follow the
 [on-device testing handoff](docs/development/ai-guide.md#offer-on-device-testing)
 and obtain approval before flashing; detection alone is not consent.
 
-Ordinary upstream feature, application, and documentation changes must not edit `docs/CHANGELOG.md` or `docs/CHANGELOG.zh_CN.md`; describe user-visible behavior, compatibility, and release-flow impact in the pull-request body and authoritative documentation instead. This fork's product documentation belongs in `jerryicat/docs/`; change both changelog files only during an explicit release preparation.
+Ordinary upstream feature, application, and documentation changes must not edit `docs/CHANGELOG.md` or `docs/CHANGELOG.zh_CN.md`; describe user-visible behavior, compatibility, and release-flow impact in the pull-request body and authoritative documentation instead. This fork's product documentation belongs in `jerryiscat/docs/`; change both changelog files only during an explicit release preparation.
 
 Community guidance is in `.github/CONTRIBUTING.md`, `.github/CODE_OF_CONDUCT.md`, `.github/SECURITY.md`, and `.github/SUPPORT.md`.

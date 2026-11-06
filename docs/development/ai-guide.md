@@ -12,7 +12,7 @@ This guide is for AI coding assistants. `AGENTS.md` is the only mandatory starti
 2. Run `git status --short --branch` and preserve existing changes. Ensure the five required skills are available as specified in [AGENTS.md](../../AGENTS.md#required-ai-skills); the AI chooses and performs any missing installation, rather than handing setup to the user.
 3. Read affected public headers, implementations, and neighboring code. Do not infer this board's behavior from a generic ESP32-C3 board.
 4. Search `origin/demo/*` for a relevant example and reuse only applicable design ideas.
-5. Decompose the request into inputs, outputs, state, tasks, persistence, memory budget, and failure behavior before choosing `jerryicat/`, `main`, or `components/bsp`.
+5. Decompose the request into inputs, outputs, state, tasks, persistence, memory budget, and failure behavior before choosing `jerryiscat/`, `main`, or `components/bsp`.
 6. Run focused checks while iterating and `./tools/validate.sh` before delivery. Keep hardware checks explicit.
 
 ## Source-of-truth priority
@@ -44,11 +44,11 @@ Only reusable hardware capabilities belong in the BSP. Document blocking behavio
 ### Fork workspace
 
 This checkout is a downstream fork. The launcher, plays, on-device tools, fork
-host tools, and their tests live under `jerryicat/`, not in `main/`. `main/`
+host tools, and their tests live under `jerryiscat/`, not in `main/`. `main/`
 remains the firmware entry and the upstream demo. The rest of this guide
 describes the upstream baseline and BSP rules; for placement, integration, and
 maintenance, follow [`AGENTS.md`](../../AGENTS.md) and
-[`jerryicat/AGENTS.md`](../../jerryicat/AGENTS.md).
+[`jerryiscat/AGENTS.md`](../../jerryiscat/AGENTS.md).
 
 ### Mandatory UI redesign for derivative applications
 

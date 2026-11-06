@@ -46,7 +46,7 @@
 | 我想要…… | 从这里开始 |
 | --- | --- |
 | 使用设备、体验官方玩法 | [快速上手](https://ai-passport.folotoy.cn/guides/getting-started/) · [官方玩法](https://ai-passport.folotoy.cn/plays/) |
-| 让 AI 开发自定义应用 | [Agent 规范](../AGENTS.zh_CN.md) · [AI 开发指南](development/ai-guide.zh_CN.md) · [必需技能](../skills/README.zh_CN.md) |
+| 让 AI 开发自定义应用 | [Agent 规范](../AGENTS.md) · [AI 开发指南](development/ai-guide.zh_CN.md) · [必需技能](../skills/README.zh_CN.md) |
 | 准备环境、编译固件 | [环境准备](/docs/development/engineering/environment-setup.zh_CN.md) · [构建与测试](development/engineering/build-and-test.zh_CN.md) |
 | 了解硬件、参与贡献 | [硬件指南](hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.zh_CN.md) · [贡献指南](../.github/CONTRIBUTING.zh_CN.md) |
 
@@ -69,7 +69,7 @@
 直接在 `main` 上开发，不创建 `feature/*` 分支。
 遵守 AGENTS.md 和 docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.md。
 先查找相关 demo 分支与 docs/reference/ 应用档案。
-硬件逻辑放在 components/bsp，fork 应用逻辑放在 jerryicat/。
+硬件逻辑放在 components/bsp，fork 应用逻辑放在 jerryiscat/。
 完成可运行实现与测试，分别报告构建结果、未执行的真机项目和逐项验收方法。
 必须重新设计应用 UI，禁止使用当前 demo 测试菜单和页面。
 ```
@@ -122,7 +122,7 @@ git diff main...origin/demo/tetris-game -- main components tests
 git show origin/demo/tetris-game:main/demo_tetris.c
 ```
 
-开始新应用。本 fork 把启动器、玩法和设备端工具编译进 `jerryicat/` 下的同一个固件，所有工作直接落在 `main` 上。除非用户明确要求，不创建 `feature/*` 分支或 worktree。
+开始新应用。本 fork 把启动器、玩法和设备端工具编译进 `jerryiscat/` 下的同一个固件，所有工作直接落在 `main` 上。除非用户明确要求，不创建 `feature/*` 分支或 worktree。
 
 示例分支之间可能改变了同一菜单、配置或驱动。应先理解差异，再提取状态模型、资源流水线或并发模式；不能因为代码曾出现在示例分支，就把它当成当前 `main` 的 BSP 保证。
 
@@ -164,7 +164,7 @@ git show origin/demo/tetris-game:main/demo_tetris.c
 
 ## 项目结构
 
-板级支持放在 `components/bsp`。上游基线 demo 放在 `main`；本 fork 的启动器、玩法、设备端工具、开发侧工具、素材与文档放在 `jerryicat/`。
+板级支持放在 `components/bsp`。上游基线 demo 放在 `main`；本 fork 的启动器、玩法、设备端工具、开发侧工具、素材与文档放在 `jerryiscat/`。
 开发自定义固件时继续保持这条边界。
 
 <details>
@@ -181,8 +181,9 @@ docs/                    项目说明、变更记录、工程/协作规范与设
 sdkconfig.defaults       ESP32-C3、USB console、Flash、LVGL 默认配置
 partitions.csv           最简默认分区：NVS、PHY data 和单个 factory 应用
 dependencies.lock        可复现的 ESP-IDF Managed Component 解析结果
-AGENTS.md                AI agent 必读入口（与 AGENTS.zh_CN.md 配对）
-jerryicat/               本 fork 启动器、玩法、设备端工具、开发侧工具与文档
+AGENTS.md                AI agent 必读入口（英文单语）
+README.md                本 fork 的中文落地页
+jerryiscat/               本 fork 启动器、玩法、设备端工具、开发侧工具与文档
 LICENSE                  仓库许可证
 ```
 
@@ -196,7 +197,7 @@ LICENSE                  仓库许可证
 | --- | --- |
 | [开发指南](development/README.zh_CN.md) | AI 工作流、工程规范、CI 与发布流程 |
 | [AI 技能](../skills/README.zh_CN.md) | 开发、环境准备、构建、真机测试与故障诊断 |
-| [Fork 工作区](../jerryicat/README.zh_CN.md) | 本 fork 的启动器、玩法、设备端工具、开发侧工具与工作规则 |
+| [Fork 工作区](../jerryiscat/README.zh_CN.md) | 本 fork 的启动器、玩法、设备端工具、开发侧工具与工作规则 |
 | [硬件资料](hardware-design/README.zh_CN.md) | 板卡事实、接口边界、验收清单与排障 |
 | [中文字体](development/engineering/lvgl-chinese-fonts.zh_CN.md) | 字形覆盖、控件字体选择，以及中文空白排查 |
 | [Wi-Fi 配网](development/engineering/wifi-provisioning.zh_CN.md) | 蓝牙配网实现参考与配套小程序 |

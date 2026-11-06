@@ -9,6 +9,8 @@ These rules apply equally to human contributors and AI agents. Documentation is 
 ## Language and file layout
 
 - English is mandatory at every maintained default Markdown path: `name.md`.
+- Exception: every `AGENTS.md` is English-only and has no translated peer.
+- Exception: the repository-root `README.md` is the fork's Chinese-only human landing page; it has no English pair and is excluded from the bilingual check.
 - Simplified Chinese is provided at the paired path `name.zh_CN.md`.
 - Both files begin with reciprocal language links. Keep their headings, facts, examples, safety warnings, and links aligned in the same change.
 - English default prose must not contain Chinese text. The `简体中文` switch label is the only allowed CJK text on an English page.
@@ -74,14 +76,14 @@ require rewriting or translating the original upstream documents.
 
 - Upstream baseline documents cover AI Passport hardware, BSP behavior, baseline demos, engineering constraints, and acceptance methods.
 - Shared contribution and engineering documents cover code style, testing, commits, CI, and AI workflows grounded in this repository's real tools.
-- Fork-only product requirements, business logic, assets, and documentation stay under `jerryicat/` (or an optional fork root README).
+- Fork-only product requirements, business logic, assets, and documentation stay under `jerryiscat/` (or an optional fork root README).
 
 ## Placement
 
 - Keep the tracked repository root limited to tool-discovery files (`AGENTS.md` and its translation), an optional fork README pair, license/build manifests, and ESP-IDF configuration.
 - Put project documentation and history in `docs/`, grouped by contribution, development, hardware, and software responsibility.
 - Put GitHub-recognized community files, templates, issue forms, and workflows in `.github/`.
-- Put fork-owned launcher, play, and tool documentation under `jerryicat/` following its `AGENTS.md`; put reusable binary/source assets in `assets/`, project skills in `skills/`, and automation in `tools/`.
+- Put fork-owned launcher, play, and tool documentation under `jerryiscat/` following its `AGENTS.md`; put reusable binary/source assets in `assets/`, project skills in `skills/`, and automation in `tools/`.
 - Repository checks reject additional root Markdown. Do not add a root document merely for visibility; link it from `docs/README.md` instead.
 
 Do not create empty document scaffolding without a concrete purpose. Register added documents in `docs/README.md` or their directory index and update links when moving or deleting files.

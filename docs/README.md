@@ -70,7 +70,7 @@ Use the three physical buttons and the 240×320 display, and preserve records ac
 Work directly on `main`; do not create a `feature/*` branch.
 Follow AGENTS.md and docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.md.
 Inspect relevant demo branches and docs/reference/ application archives first.
-Keep hardware logic in components/bsp and fork application logic under jerryicat/.
+Keep hardware logic in components/bsp and fork application logic under jerryiscat/.
 Deliver a runnable implementation with tests; report build results,
 unexecuted device checks, and on-device acceptance steps separately.
 Redesign the application's UI; do not use the current demo test menu or screens.
@@ -127,7 +127,7 @@ git show origin/demo/tetris-game:main/demo_tetris.c
 ```
 
 Start a new application. This fork compiles its launcher, plays, and on-device
-tools into one firmware under `jerryicat/`, and all work lands directly on
+tools into one firmware under `jerryiscat/`, and all work lands directly on
 `main`. Do not create `feature/*` branches or worktrees unless the user
 explicitly asks.
 
@@ -174,7 +174,7 @@ The public firmware contract is limited to the interfaces listed above. Do not i
 
 Board support lives in `components/bsp`. The upstream baseline demo lives in
 `main`; this fork's launcher, plays, on-device tools, host tools, assets, and
-documentation live in `jerryicat/`. Keep that boundary when building your own
+documentation live in `jerryiscat/`. Keep that boundary when building your own
 firmware.
 
 <details>
@@ -191,8 +191,9 @@ docs/                    Project docs, changelog, engineering/contribution rules
 sdkconfig.defaults       ESP32-C3, USB console, Flash, and LVGL defaults
 partitions.csv           Minimal default: NVS, PHY data, and one factory application
 dependencies.lock        Reproducible ESP-IDF Managed Component resolution
-AGENTS.md                AI-agent entry point (paired with AGENTS.zh_CN.md)
-jerryicat/               Fork launcher, plays, on-device tools, host tools, and docs
+AGENTS.md                AI-agent entry point (English-only)
+README.md                Fork-owned Chinese landing page
+jerryiscat/               Fork launcher, plays, on-device tools, host tools, and docs
 LICENSE                  Repository license
 ```
 
@@ -207,7 +208,7 @@ provide reference material. Choose the entry that matches your task.
 | --- | --- |
 | [Development](development/README.md) | AI workflow, engineering conventions, CI, and release guidance |
 | [AI skills](../skills/README.md) | Development, environment setup, builds, device testing, and debugging |
-| [Fork workspace](../jerryicat/README.md) | This fork's launcher, plays, on-device tools, host tools, and working rules |
+| [Fork workspace](../jerryiscat/README.md) | This fork's launcher, plays, on-device tools, host tools, and working rules |
 | [Hardware](hardware-design/README.md) | Board facts, interface boundaries, acceptance checklists, and troubleshooting |
 | [Chinese fonts](development/engineering/lvgl-chinese-fonts.md) | Glyph coverage, widget font selection, and blank-text troubleshooting |
 | [Wi-Fi provisioning](development/engineering/wifi-provisioning.md) | Bluetooth provisioning reference and companion mini program |

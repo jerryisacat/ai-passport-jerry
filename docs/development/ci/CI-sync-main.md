@@ -8,7 +8,7 @@
 
 The workflow checks out the target `main` without persisting credentials and uses the full-SHA-pinned upstream-sync Action. Its generated `GITHUB_TOKEN` has only `contents: write`; no manually configured token is required. If synchronization fails after an upstream workflow change, use GitHub's **Sync fork** once and inspect the Actions log.
 
-Run the sync by hand only after confirming the user wants it. Expect conflicts in `AGENTS.md`, `docs/`, and other fork-owned files; resolve them in favor of the fork rules and never drop `jerryicat/` work to take an upstream version wholesale. Fork owners must explicitly enable Actions after forking.
+Run the sync by hand only after confirming the user wants it. Expect conflicts in `AGENTS.md`, `docs/`, and other fork-owned files; resolve them in favor of the fork rules and never drop `jerryiscat/` work to take an upstream version wholesale. Fork owners must explicitly enable Actions after forking.
 
 The checkout explicitly sets `ref: main`, even when a manual dispatch selects
 another branch. The sync Action expects a local `main` branch before fetching;

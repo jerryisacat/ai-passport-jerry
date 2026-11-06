@@ -23,7 +23,7 @@
 ## 注意事项
 
 - 本 fork 直接开发 `main`，不要求 `main` 与上游逐字同步，因此自动同步已关闭；需要同步时，先确认用户意图再手动触发。
-- 同步可能修改 `AGENTS.md`、`docs/` 等 fork 自有文档；冲突以本 fork 规则为准解决，不得为采用上游版本整体丢弃 `jerryicat/` 工作。
+- 同步可能修改 `AGENTS.md`、`docs/` 等 fork 自有文档；冲突以本 fork 规则为准解决，不得为采用上游版本整体丢弃 `jerryiscat/` 工作。
 - 若同步失败，查看 Actions 日志确认是否为上游 workflow 文件变更所致；必要时按提示手动在 GitHub 页面 Sync Fork。
 - 升级 Action 时必须从官方仓库核对目标版本对应的完整 commit SHA，并同步更新 workflow 行尾的版本注释。
 

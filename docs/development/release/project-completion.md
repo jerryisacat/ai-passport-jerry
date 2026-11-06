@@ -15,7 +15,7 @@ action runs only after the developer confirms it.
 
 Branch note: this fork works directly on `main` and does not use `feature/*`
 branches or worktrees. Where this page describes branch-specific steps, apply
-them to `main` only, and keep fork-owned documentation under `jerryicat/`.
+them to `main` only, and keep fork-owned documentation under `jerryiscat/`.
 
 All six actions are **optional** — none is mandatory. The README update (action
 E) is one of the six; it runs when selected, and it also accompanies archiving

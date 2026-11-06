@@ -5,17 +5,17 @@
 # AI Agent 开发指南（AI Agent Development Guide）
 
 > 定位：面向 AI 编程助手（Claude Code / Codex / Cursor / Cline 等），人类开发者可忽略。
-> 本文档集中说明“AI 如何在本仓库工作”。所有任务只强制先读 `AGENTS.zh_CN.md`；涉及代码开发时再读本文档，并按路由加载相关硬件或工程说明。
+> 本文档集中说明“AI 如何在本仓库工作”。所有任务只强制先读 `AGENTS.md`；涉及代码开发时再读本文档，并按路由加载相关硬件或工程说明。
 
 ## 1. 开始开发前：建立上下文
 
 开始开发前，按以下顺序建立上下文：
 
-1. 阅读 `AGENTS.zh_CN.md`，根据其中的任务路由只加载当前修改所需文档；不要默认读取全部 README 或完整硬件指南。
-2. 执行 `git status --short --branch`，保留用户已有改动。按 [AGENTS.md](../../AGENTS.zh_CN.md#必需-ai-技能) 确认五个必需技能可用；缺少时由 AI 自行选择方式并完成安装，不把安装准备交给用户。
+1. 阅读 `AGENTS.md`，根据其中的任务路由只加载当前修改所需文档；不要默认读取全部 README 或完整硬件指南。
+2. 执行 `git status --short --branch`，保留用户已有改动。按 [AGENTS.md](../../AGENTS.md#required-ai-skills) 确认五个必需技能可用；缺少时由 AI 自行选择方式并完成安装，不把安装准备交给用户。
 3. 阅读需求会触及的 `components/bsp/include/*.h` 及其实现，不根据芯片或开发板的常见配置猜测本板行为。
 4. 用 `git branch -r --list 'origin/demo/*'` 查找接近需求的示例，只复用相关设计，不默认合并整个示例分支。
-5. 将需求拆成输入、输出、状态、并发任务、持久化、内存预算和失败降级，再决定放在 `jerryicat/`、修改 `main` 还是扩展 `components/bsp`。
+5. 将需求拆成输入、输出、状态、并发任务、持久化、内存预算和失败降级，再决定放在 `jerryiscat/`、修改 `main` 还是扩展 `components/bsp`。
 6. 迭代时运行最小相关测试，交付前运行 `./tools/validate.sh`；所有依赖屏幕、按键、音频、电池或时序的结论均保留真机验收项。
 
 ## 2. 事实来源优先级（Source-of-truth priority）
@@ -55,7 +55,7 @@ Natural-language requirement
 
 ### Fork 工作区
 
-本仓库是下游 fork。启动器、玩法、设备端工具、fork 开发侧工具及其测试放在 `jerryicat/`，而不是 `main/`。`main/` 保留为固件入口和上游 demo。本文其余部分描述上游基线与 BSP 规则；放置位置、接入方式和维护流程以 [`AGENTS.zh_CN.md`](../../AGENTS.zh_CN.md) 与 [`jerryicat/AGENTS.zh_CN.md`](../../jerryicat/AGENTS.zh_CN.md) 为准。
+本仓库是下游 fork。启动器、玩法、设备端工具、fork 开发侧工具及其测试放在 `jerryiscat/`，而不是 `main/`。`main/` 保留为固件入口和上游 demo。本文其余部分描述上游基线与 BSP 规则；放置位置、接入方式和维护流程以 [`AGENTS.md`](../../AGENTS.md) 与 [`jerryiscat/AGENTS.md`](../../jerryiscat/AGENTS.md) 为准。
 
 ### 二次开发 UI 强制重新设计
 

@@ -1,7 +1,7 @@
-// main/main.c —— 固件入口：BSP bring-up 与按键分发，界面交给 jerryicat 启动器。
+// main/main.c —— 固件入口：BSP bring-up 与按键分发，界面交给 jerryiscat 启动器。
 //
 // 上游 demo_*.c 仍保留在 main/ 中作为硬件与并发参考，但默认启动界面由
-// jerryicat/ 提供。按键守卫仍留在这一层，因为深睡唤醒后的"按住唤醒键"
+// jerryiscat/ 提供。按键守卫仍留在这一层，因为深睡唤醒后的"按住唤醒键"
 // 是板级安全契约，而不是某个玩法的逻辑。
 #include "bsp_battery.h"
 #include "bsp_button.h"
@@ -13,7 +13,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/task.h"
-#include "jerryicat.h"
+#include "jerryiscat.h"
 #include "key_guard.h"
 
 static const char *TAG = "main";
@@ -53,7 +53,7 @@ static void input_task(void *arg) {
     input_event_t input;
     for (;;) {
         if (xQueueReceive(s_input_queue, &input, portMAX_DELAY) == pdTRUE) {
-            jerryicat_handle_key(input.btn, input.event);
+            jerryiscat_handle_key(input.btn, input.event);
         }
     }
 }
@@ -82,7 +82,7 @@ static void input_dispatch_deinit(void) {
 }
 
 void app_main(void) {
-    ESP_LOGI(TAG, "jerryicat firmware boot");
+    ESP_LOGI(TAG, "jerryiscat firmware boot");
 
     const uint32_t wake_causes = esp_sleep_get_wakeup_causes();
     if (wake_causes & ~(1u << ESP_SLEEP_WAKEUP_UNDEFINED)) {
@@ -105,7 +105,7 @@ void app_main(void) {
         ESP_LOGW(TAG, "battery unavailable: %s", esp_err_to_name(battery));
     }
 
-    const esp_err_t launcher = jerryicat_launcher_start();
+    const esp_err_t launcher = jerryiscat_launcher_start();
     if (launcher != ESP_OK) {
         ESP_LOGE(TAG, "launcher start failed: %s", esp_err_to_name(launcher));
         return;
