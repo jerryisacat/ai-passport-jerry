@@ -18,8 +18,10 @@ second development; the fork conventions are in
 - Follow [`CODE_OF_CONDUCT.md`](/.github/CODE_OF_CONDUCT.md) when participating in the
   community. For ordinary usage questions, see [`SUPPORT.md`](/.github/SUPPORT.md).
 - Do not commit credentials, tokens, authorization files, or personal data.
-- The repository's `main` branch stays in sync with the upstream baseline; fork
-  users develop feature work in `feature/*` branches (see `docs/fork-guide.md`).
+- This fork works directly on `main`, commits each completed round, and does not
+  use `feature/*` branches or pull requests for its own work (see `AGENTS.md` and
+  `docs/fork-guide.md`). The pull-request workflow below applies only to an
+  upstream contribution the user requests.
 
 ## Development and verification
 
@@ -62,7 +64,10 @@ a clean `idf.py build` is the minimum automated check, not hardware validation.
 Record build results and on-device results separately; never present a successful
 build as successful hardware validation.
 
-## Opening a pull request
+## Opening an upstream pull request
+
+This fork normally commits directly to `main`; open a pull request only when the
+user asks to contribute a change upstream.
 
 1. Create a short-lived `feature/*` branch from `main` and keep each pull request
    focused on one clear problem.
@@ -75,8 +80,9 @@ build as successful hardware validation.
    hardware/revision tested, summarize behavior changes, list build and on-device
    results, link related issues, and record observed on-device results for pin,
    display-rotation, codec-clock, ADC, or DMA changes.
-5. Wait for CI and review; do not push directly to `main` unless you are a
-   maintainer handling an explicit exception.
+5. Wait for CI and review; upstream maintainers do not push directly to `main`
+   outside an explicit exception. This fork's own work follows the direct-to-
+   `main` rule in `AGENTS.md` instead.
 
 Small documentation fixes are welcome as pull requests. For larger changes to
 hardware, architecture, or user data, please open an issue first to discuss

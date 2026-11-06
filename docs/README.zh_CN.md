@@ -59,17 +59,17 @@
 
 1. 在 AI 编程工具中打开仓库，让它先阅读 [`AGENTS.md`](../AGENTS.md)。
 2. 由 AI 自行检查、安装[五个必需技能](../skills/README.zh_CN.md)，按当前环境要求取得必要权限。
-3. 描述你想做的应用，从 `main` 创建新的 `feature/*` 分支开始开发。
+3. 描述你想做的应用。本 fork 直接在 `main` 上开发；除非用户明确要求，不创建 `feature/*` 分支或 worktree。
 
 复制这段提示词，替换成你的创意：
 
 ```text
 请为 FoloToy AI Passport 开发一个离线习惯打卡应用。
 使用三个实体按键和 240×320 屏幕，记录保存在掉电不丢失的存储中。
-从 `main` 开始，创建 `feature/*` 分支并在该分支上开发。
+直接在 `main` 上开发，不创建 `feature/*` 分支。
 遵守 AGENTS.md 和 docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.md。
 先查找相关 demo 分支与 docs/reference/ 应用档案。
-硬件逻辑放在 components/bsp，应用逻辑放在 main。
+硬件逻辑放在 components/bsp，fork 应用逻辑放在 jerryicat/。
 完成可运行实现与测试，分别报告构建结果、未执行的真机项目和逐项验收方法。
 必须重新设计应用 UI，禁止使用当前 demo 测试菜单和页面。
 ```
@@ -122,12 +122,7 @@ git diff main...origin/demo/tetris-game -- main components tests
 git show origin/demo/tetris-game:main/demo_tetris.c
 ```
 
-开始新应用。本仓库在同一个基线上承载多个独立项目：从 `main` 开始后，应创建 `feature/*` 分支并在该分支上开发，**不要**直接在 `main` 上开发。每个项目的最终分支都是 `feature/*`（如 `feature/my-passport-app`），让 `main` 保持干净的上游基线，各项目互不纠缠。
-
-```bash
-git switch main
-git switch -c feature/my-passport-app
-```
+开始新应用。本 fork 把启动器、玩法和设备端工具编译进 `jerryicat/` 下的同一个固件，所有工作直接落在 `main` 上。除非用户明确要求，不创建 `feature/*` 分支或 worktree。
 
 示例分支之间可能改变了同一菜单、配置或驱动。应先理解差异，再提取状态模型、资源流水线或并发模式；不能因为代码曾出现在示例分支，就把它当成当前 `main` 的 BSP 保证。
 
@@ -169,7 +164,7 @@ git switch -c feature/my-passport-app
 
 ## 项目结构
 
-板级支持放在 `components/bsp`；应用页面、状态与任务放在 `main`。
+板级支持放在 `components/bsp`。上游基线 demo 放在 `main`；本 fork 的启动器、玩法、设备端工具、开发侧工具、素材与文档放在 `jerryicat/`。
 开发自定义固件时继续保持这条边界。
 
 <details>
@@ -187,7 +182,7 @@ sdkconfig.defaults       ESP32-C3、USB console、Flash、LVGL 默认配置
 partitions.csv           最简默认分区：NVS、PHY data 和单个 factory 应用
 dependencies.lock        可复现的 ESP-IDF Managed Component 解析结果
 AGENTS.md                AI agent 必读入口（与 AGENTS.zh_CN.md 配对）
-CLAUDE.md                Claude Code 指向 AGENTS.md 的入口（含中文配对）
+jerryicat/               本 fork 启动器、玩法、设备端工具、开发侧工具与文档
 LICENSE                  仓库许可证
 ```
 
@@ -201,6 +196,7 @@ LICENSE                  仓库许可证
 | --- | --- |
 | [开发指南](development/README.zh_CN.md) | AI 工作流、工程规范、CI 与发布流程 |
 | [AI 技能](../skills/README.zh_CN.md) | 开发、环境准备、构建、真机测试与故障诊断 |
+| [Fork 工作区](../jerryicat/README.zh_CN.md) | 本 fork 的启动器、玩法、设备端工具、开发侧工具与工作规则 |
 | [硬件资料](hardware-design/README.zh_CN.md) | 板卡事实、接口边界、验收清单与排障 |
 | [中文字体](development/engineering/lvgl-chinese-fonts.zh_CN.md) | 字形覆盖、控件字体选择，以及中文空白排查 |
 | [Wi-Fi 配网](development/engineering/wifi-provisioning.zh_CN.md) | 蓝牙配网实现参考与配套小程序 |

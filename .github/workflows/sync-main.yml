@@ -3,9 +3,8 @@ name: Upstream Sync
 permissions:
   contents: write
 
+# Manual only: this fork develops directly on main and does not auto-merge upstream.
 on:
-  schedule:
-    - cron: "0 0 * * *" # every day
   workflow_dispatch:
 
 jobs:

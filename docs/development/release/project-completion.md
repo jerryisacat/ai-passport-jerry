@@ -13,6 +13,10 @@ The completion flow is not a fixed pipeline and is not tied to a release. The
 developer selects any one or a combination of the six actions, in any order. Each
 action runs only after the developer confirms it.
 
+Branch note: this fork works directly on `main` and does not use `feature/*`
+branches or worktrees. Where this page describes branch-specific steps, apply
+them to `main` only, and keep fork-owned documentation under `jerryicat/`.
+
 All six actions are **optional** — none is mandatory. The README update (action
 E) is one of the six; it runs when selected, and it also accompanies archiving
 (action D) by default, so archiving a project also refreshes the README.

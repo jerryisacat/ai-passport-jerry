@@ -13,7 +13,7 @@
   [AI 硬件开发指南](/docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.zh_CN.md) 的完整硬件上下文。
 - 参与社区时请遵守 [`CODE_OF_CONDUCT.zh_CN.md`](/.github/CODE_OF_CONDUCT.zh_CN.md)；普通使用问题见 [`SUPPORT.zh_CN.md`](/.github/SUPPORT.zh_CN.md)。
 - 不要提交凭证、令牌、授权文件或个人数据。
-- 仓库的 `main` 分支始终与上游基线保持同步；fork 用户在 `feature/*` 分支开发功能（见 `docs/fork-guide.md`）。
+- 本 fork 直接在 `main` 上工作，每轮完成后提交，自研工作不使用 `feature/*` 分支或 Pull Request（见 `AGENTS.md` 与 `docs/fork-guide.zh_CN.md`）。下文的 PR 流程仅适用于用户要求的向上游贡献。
 
 ## 开发与验证
 
@@ -54,7 +54,9 @@ cc -std=c11 -Wall -Wextra -Werror -Imain \
 验证要求：干净的 `idf.py build` 是最低自动检查，不是硬件验收；构建结果与真机结果
 分开记录，禁止把编译通过描述成硬件验证通过。
 
-## 提交 Pull Request
+## 向上游提交 Pull Request
+
+本 fork 通常直接提交到 `main`；只有用户要求向上游贡献时才创建 PR。
 
 1. 从 `main` 创建短生命周期 `feature/*` 分支，保持一个 PR 只解决一个清晰的问题。
 2. PR 标题使用 `<type>(<scope>): <简短描述>`，例如 `feat(bsp): ...`、`docs: ...`。
@@ -63,7 +65,7 @@ cc -std=c11 -Wall -Wextra -Werror -Imain \
 4. 遵守 `docs/contribution/commit-and-pr.md` 的 PR 要求：说明测试的硬件/版本、
    行为变更摘要、构建与真机结果，链接相关 issue，并对引脚、显示旋转、codec 时钟、
    ADC、DMA 改动显式记录观察到的真机结果。
-5. 等待 CI 和 review；除维护者显式例外外，不要直接向 `main` 推送。
+5. 上游维护者会等待 CI 和 review，除显式例外外不直接向 `main` 推送；本 fork 自身的维护按 `AGENTS.md` 的直接推送 `main` 规则执行。
 
 小型文档修正也欢迎直接提交 PR。涉及硬件、架构或用户数据的较大改动，建议先开 issue
 讨论范围和兼容性。

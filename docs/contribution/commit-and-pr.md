@@ -11,7 +11,7 @@
 - Keep each commit independently reviewable. Describe the final diff, not the debugging journey.
 - Review the complete diff, run applicable checks, and exclude credentials, generated firmware, and unrelated files.
 - Do not edit the paired changelog files in an ordinary feature, application, or documentation commit. Describe user-visible behavior, compatibility, and release-flow impact in the pull-request body; only a release-preparation change maintained before tagging aggregates those merged changes into both files.
-- Creating a commit does not authorize pushing, opening a PR, releasing, or merging.
+- In this fork, the standing maintenance rule in `AGENTS.md` authorizes pushing each completed round to `origin/main`. Opening pull requests, releasing, and merging still require explicit approval, and nothing may be pushed to `upstream`.
 - Write durable product constraints, data formats, architecture decisions, and acceptance criteria back to their authoritative document. Do not preserve transient debugging notes.
 
 ## Pull requests

@@ -65,14 +65,14 @@ VENDORED_DOC_ROOTS: tuple[str, ...] = (
 
 - **上游基线文档**：描述 AI Passport 硬件、BSP、基线 demo、工程约束和验收方法，可以且应当进入上游。
 - **通用协作与工程规范**：描述代码风格、测试、提交、CI 和 AI 工作流，可以进入上游，但必须以本仓库真实工具和流程为准。
-- **fork 项目文档**：只描述某个 fork 的产品需求、业务逻辑或素材，放在 fork 自己的根 `README.md` 或 `docs/assets/`，不回合上游。
+- **fork 项目文档**：只描述某个 fork 的产品需求、业务逻辑、素材或文档，放在 `jerryicat/` 下（也可放在可选的 fork 根 `README.md`），不回合上游。
 
 ## 放置位置
 
-- 仓库根目录仅保留工具发现入口（`AGENTS.md`、`CLAUDE.md` 及其翻译）、可选的 fork README 配对、许可证、构建清单和 ESP-IDF 配置。
+- 仓库根目录仅保留工具发现入口（`AGENTS.md` 及其翻译）、可选的 fork README 配对、许可证、构建清单和 ESP-IDF 配置。
 - 项目说明与变更历史放入 `docs/`，按协作、开发、硬件和软件职责分类。
 - GitHub 自动识别的社区文档、模板、Issue Form 和 workflow 放入 `.github/`。
-- 可复用资源放入 `assets/`，项目 skill 放入 `skills/`，自动化脚本放入 `tools/`。
+- fork 自研的启动器、玩法和工具文档按 `jerryicat/AGENTS.zh_CN.md` 放在 `jerryicat/` 下；可复用资源放入 `assets/`，项目 skill 放入 `skills/`，自动化脚本放入 `tools/`。
 - 仓库检查会拒绝新增其它根目录 Markdown。不要为了显眼而把文档放根目录，应从 `docs/README.md` 建立入口。
 
 不要创建只有目录说明而没有实际用途的空骨架。新增文档必须在 `docs/README.md` 或所属目录索引中登记；删除或移动文档时同步更新所有链接。

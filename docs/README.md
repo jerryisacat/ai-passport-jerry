@@ -60,17 +60,17 @@ it anything—from a pocket companion to something no one has imagined yet.
 
 1. Open the repository in your AI coding tool and have it read [`AGENTS.md`](../AGENTS.md).
 2. Let it check and install the [five required skills](../skills/README.md), with any permissions your environment requires.
-3. Describe what you want to build. Start from `main` on a new `feature/*` branch.
+3. Describe what you want to build. This fork develops directly on `main`; do not create `feature/*` branches or worktrees unless the user explicitly asks.
 
 Copy this prompt and adapt it to your idea:
 
 ```text
 Build an offline habit-tracking application for FoloToy AI Passport.
 Use the three physical buttons and the 240×320 display, and preserve records across power loss.
-Start from `main`, create a `feature/*` branch, and develop the application there.
+Work directly on `main`; do not create a `feature/*` branch.
 Follow AGENTS.md and docs/hardware-design/AI_HARDWARE_DEVELOPMENT_GUIDE.md.
 Inspect relevant demo branches and docs/reference/ application archives first.
-Keep hardware logic in components/bsp and application logic in main.
+Keep hardware logic in components/bsp and fork application logic under jerryicat/.
 Deliver a runnable implementation with tests; report build results,
 unexecuted device checks, and on-device acceptance steps separately.
 Redesign the application's UI; do not use the current demo test menu or screens.
@@ -126,12 +126,10 @@ git diff main...origin/demo/tetris-game -- main components tests
 git show origin/demo/tetris-game:main/demo_tetris.c
 ```
 
-Start a new application. This repository hosts several independent projects on one baseline: after starting from `main`, create a `feature/*` branch and develop the application there — do not develop directly on `main`. Each project's final branch is `feature/*` (e.g. `feature/my-passport-app`), kept separate so `main` stays a clean upstream baseline and the projects do not entangle.
-
-```bash
-git switch main
-git switch -c feature/my-passport-app
-```
+Start a new application. This fork compiles its launcher, plays, and on-device
+tools into one firmware under `jerryicat/`, and all work lands directly on
+`main`. Do not create `feature/*` branches or worktrees unless the user
+explicitly asks.
 
 Example branches may change the same menu, configuration, or driver in incompatible ways. Understand the differences before extracting a state model, asset pipeline, or concurrency pattern. Code appearing in an example branch is not automatically part of the current `main` BSP contract.
 
@@ -174,8 +172,10 @@ The public firmware contract is limited to the interfaces listed above. Do not i
 
 ## Project structure
 
-Board support lives in `components/bsp`; application pages, state, and tasks live
-in `main`. Keep that boundary when building your own firmware.
+Board support lives in `components/bsp`. The upstream baseline demo lives in
+`main`; this fork's launcher, plays, on-device tools, host tools, assets, and
+documentation live in `jerryicat/`. Keep that boundary when building your own
+firmware.
 
 <details>
 <summary><strong>Browse the repository map</strong></summary>
@@ -191,8 +191,8 @@ docs/                    Project docs, changelog, engineering/contribution rules
 sdkconfig.defaults       ESP32-C3, USB console, Flash, and LVGL defaults
 partitions.csv           Minimal default: NVS, PHY data, and one factory application
 dependencies.lock        Reproducible ESP-IDF Managed Component resolution
-AGENTS.md                Mandatory AI-agent entry point (paired with AGENTS.zh_CN.md)
-CLAUDE.md                Claude Code pointer to AGENTS.md (paired Chinese version)
+AGENTS.md                AI-agent entry point (paired with AGENTS.zh_CN.md)
+jerryicat/               Fork launcher, plays, on-device tools, host tools, and docs
 LICENSE                  Repository license
 ```
 
@@ -207,6 +207,7 @@ provide reference material. Choose the entry that matches your task.
 | --- | --- |
 | [Development](development/README.md) | AI workflow, engineering conventions, CI, and release guidance |
 | [AI skills](../skills/README.md) | Development, environment setup, builds, device testing, and debugging |
+| [Fork workspace](../jerryicat/README.md) | This fork's launcher, plays, on-device tools, host tools, and working rules |
 | [Hardware](hardware-design/README.md) | Board facts, interface boundaries, acceptance checklists, and troubleshooting |
 | [Chinese fonts](development/engineering/lvgl-chinese-fonts.md) | Glyph coverage, widget font selection, and blank-text troubleshooting |
 | [Wi-Fi provisioning](development/engineering/wifi-provisioning.md) | Bluetooth provisioning reference and companion mini program |

@@ -4,39 +4,61 @@
 
 # Fork Workflow
 
-The upstream repository keeps `main` as the current FoloToy baseline. Fork-specific firmware belongs on `feature/*` branches so a fork can continuously synchronize its `main` without mixing product work into the baseline.
+This repository is a downstream copy of FoloToy/ai-passport. Upstream provides the
+hardware contract, BSP, baseline demo firmware, engineering references, AI skills,
+and validation tooling. That material is the foundation, not this fork's product.
+
+Fork-owned work — the launcher, plays, on-device tools, host-side tools, assets,
+and documentation — lives under `jerryicat/`. The repository-wide maintenance rules
+are in [`../AGENTS.md`](../AGENTS.md); the workspace model is in
+[`../jerryicat/AGENTS.md`](../jerryicat/AGENTS.md), with one `AGENTS.md` per folder.
 
 ## Repository roles
 
 ```text
-docs/                  product, contribution, development, and design documents
-components/bsp/        stable board APIs and hardware implementation
-main/                  LVGL menu and independent demo pages
-assets/                reusable fonts, images, music, and sound effects
-skills/                reusable AI-agent skills
-tests/                 host-runnable logic tests
+components/bsp/        upstream board APIs and hardware implementation
+main/                  firmware entry and upstream hardware-test demo
+jerryicat/             fork launcher, plays, on-device tools, host tools, assets, docs
+assets/                upstream reusable fonts, images, music, and sound effects
+skills/                upstream AI-agent skills
+tests/                 upstream host tests
+docs/                  upstream product, development, design, and reference documents
 sdkconfig.defaults     reproducible ESP32-C3 defaults
 ```
 
-The root `README.md` path is intentionally available to a fork owner. Upstream's project overview is `docs/README.md`, which GitHub displays when no root README exists. A fork may add its own root README to explain its product without replacing upstream documentation.
+## Maintenance model
 
-Root README content follows the branch model. A `feature/*` branch's root README
-describes only that branch's application: what it does, its interactions, and its
-notes. The fork `main` root README is the catalog of every hosted project and keeps
-one section per application, refreshed when an application is released or archived.
-Do not repeat the whole catalog on a feature branch, and do not reduce the `main`
-catalog to a list of links.
+- `main` is the working branch. Develop and document directly on it; do not create
+  branches, worktrees, or pull requests unless the user explicitly asks.
+- After each completed round, commit the intended changes and push to
+  `origin/main`. The standing rule in `AGENTS.md` authorizes these pushes; do not
+  wait for a separate request each round.
+- Keep upstream files usable as the baseline. Prefer adding under `jerryicat/`
+  over editing upstream code. The only expected upstream edits are the minimal
+  launcher integration in `main/main.c`, `CMakeLists.txt`, and
+  `main/CMakeLists.txt`, plus genuine upstream fixes.
+- Do not delete or repurpose upstream demo pages, documentation, or skills without
+  an explicit request. The baseline demo remains a hardware reference.
+- Automatic upstream synchronization is disabled. Fetch or merge from `upstream`
+  only when the user asks, and resolve conflicts in favor of this file and the
+  `jerryicat/` rules. Never drop fork work to take an upstream version wholesale.
+- Open an upstream pull request only when the user asks for it, and only for a
+  general fix that benefits every AI Passport user. Fork-private product content
+  stays here.
 
-## Fork rules
+## Documentation split
 
-- Keep fork `main` synchronized with `FoloToy/ai-passport:main`.
-- On fork `main`, limit fork-owned content to a root `README.md` pair and `docs/assets/`; develop firmware and other changes on `feature/*` branches and merge by pull request.
-- **Before starting a new project, create the `feature/*` branch from a base that stays aligned with `FoloToy/ai-passport:main`.** Use the latest upstream `main` as the branch-off point (e.g. fetch upstream then branch from `upstream/main`), not the fork's own `main` — the fork `main` may be stale or unable to sync. This keeps every new project on the current upstream baseline and avoids basing work on a stale or diverged fork `main`.
-- Enable GitHub Actions manually after forking. The upstream-sync workflow is disabled by GitHub until the fork owner enables it.
-- If development must happen directly on `main`, disable `.github/workflows/sync-main.yml` first to prevent automatic merge conflicts.
+- Upstream hardware, BSP, engineering, contribution, and reference documents stay
+  in `docs/` and apply to work on the baseline.
+- Fork architecture, play specifications, tool usage, and product decisions live
+  in `jerryicat/docs/` or beside the app or tool. They are not proposed upstream.
+- A general documentation improvement that helps any AI Passport user may go
+  upstream, but it must not carry fork-specific product details.
+- The root `README.md` path remains optional and fork-owned. Add one only when the
+  user asks for a human-facing landing page.
 
-Use `docs/assets/` for architecture notes, product design, and images that supplement a fork's README. Upstream keeps that directory empty except for `.gitkeep`; fork-private content must not be proposed back to upstream.
+## Language
 
-Documentation and experience follow the same split. Fork-specific product customization (architecture notes, product design, fork-only assets) stays in the fork under `docs/assets/` and is not proposed back upstream. General, upstream-benefiting documentation or experience improvements — durable facts, reusable interfaces, build or release-flow improvements that help any AI Passport user — are submitted back upstream as a pull request. Application archives under the repository-relative `docs/reference/<username>/<app-name>/` and post-release experience notes under `docs/reference/<username>/` belong upstream and are proposed back as pull requests. Use the `experience-pr` and `plays-archive` skills for post-release work; see `docs/development/release/project-completion.md`.
-
-All fork documentation follows the repository language rule: English at the default `.md` path and Simplified Chinese at `.zh_CN.md`, with reciprocal switches.
+All fork documentation follows the repository rule: English at the default `.md`
+path and Simplified Chinese at the paired `.zh_CN.md` path, with reciprocal
+language links.
