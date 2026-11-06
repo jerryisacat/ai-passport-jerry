@@ -24,11 +24,8 @@ Play-specific rules, scoring, screens, and copy do not belong here.
 
 - All LVGL work runs in the LVGL task or while holding `bsp_lvgl_lock()`. Never
   hold the lock across blocking work, audio, network calls, or waits for a task.
-- Key events arrive from `main/`; the launcher dispatches them without blocking.
-  A slow transition or app start must not stall the input path.
-- When leaving an app, stop its work first, then delete its screens, then reset
-  launcher focus and state. A failed app start returns to the launcher with a
-  readable error instead of leaving a half-built screen.
+- The firmware input task calls `jerryicat_handle_key()`; the BSP button callback only enqueues. The launcher dispatches without blocking and reserves long-press `OK` as the return gesture, so that event never reaches the app.
+- When leaving an app, stop its work first, then delete its screens, then reset launcher focus and state. A failed app start returns to the launcher with a readable error instead of leaving a half-built screen.
 - No app-specific globals. Shared state lives in module-local `s_` state with a
   documented owner and reset path.
 - Keep static RAM small: no per-app full-screen buffers, and no large registry

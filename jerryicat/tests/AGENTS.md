@@ -30,8 +30,8 @@ never on the device, and never require ESP-IDF or LVGL.
 ## Wiring and validation
 
 - Add or update tests in the same round as the code they cover.
-- Wire every test into `../tools/validate.sh` when that script exists; until then,
-  run each test file explicitly.
+- Wire every test into [`../tools/validate.sh`](../tools/validate.sh) and run that
+  script before delivery.
 - Report host-test results separately from the firmware build and from device
   results. A passing host test does not prove the screen, audio, or power
   behavior.

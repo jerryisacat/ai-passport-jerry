@@ -52,7 +52,7 @@
 - 保留用户已有修改。先执行 `git status --short --branch`，不得覆盖或清理无关文件。
 - 下载（烧录）新固件无需备份设备内原有固件，不得把读取 Flash 备份作为前置条件。这不保证保留用户数据，也不授权全片擦除；遵循[烧录与数据说明](docs/development/engineering/firmware-layout.zh_CN.md#烧录与已存数据)。
 - 硬件事实优先级：产品规格与实测结果 → `components/bsp/include/bsp_pins.h` → BSP 头文件与实现 → 硬件指南 → README/demo。任务所需硬件细节未在这些来源中定义时，直接询问用户，不得猜测。
-- 可复用板级逻辑放入 `components/bsp`。启动器、共享 UI 套件、玩法、设备端工具及其任务放入 `jerryicat/`。`main/` 保留为固件入口和上游硬件测试 demo；产品逻辑不得在其中增长。
+- 可复用板级逻辑放入 `components/bsp`。启动器、共享 UI 套件、玩法、设备端工具及其任务放入 `jerryicat/`。`main/` 保留为固件入口并保留上游 demo 源码作参考；启动界面由启动器提供，产品逻辑不得在其中增长。
 - 二次开发应用必须重新设计并实现独立 UI，禁止沿用当前 demo 测试菜单、页面或界面外壳；仅改名、换颜色或在原界面增加功能不算重新设计。BSP API 和非 UI 逻辑仍可复用。详见[二次开发 UI 强制重新设计规则](docs/development/ai-guide.zh_CN.md#二次开发-ui-强制重新设计)。
 - LVGL 非线程安全。LVGL 任务之外访问 LVGL 对象时必须持有 `bsp_lvgl_lock()`。
 - 添加中文 UI 前必须遵循[字体检查清单](docs/development/engineering/coding-conventions.zh_CN.md#中文字体与缺字排查)。默认 Montserrat 字体不含中文字形；UTF-8 正确、编译成功均不代表能够显示中文。必须核对字形覆盖、控件实际字体并完成真机显示验收。
@@ -67,7 +67,7 @@
 - 单一固件。启动器、玩法和设备端工具编译进同一个应用，fork 自研启动器是默认界面。未经用户明确决定，不得为每个玩法建立独立 ESP-IDF 工程，也不得增加第二个 `app_main`。
 - `jerryicat/` 是一个 ESP-IDF 组件。`include/` 放公开 API，`src/` 放启动器与共享 UI 套件，`plays/` 放玩法，`apps/` 放设备端工具类应用，`tools/` 放开发侧脚本，`tests/` 放 host tests，`assets/` 放 fork 二进制素材，`docs/` 放 fork 文档。
 - 启动器、玩法和设备端工具对自己的页面、布局、导航和按键交互负责。不得以基线 demo 菜单、`demo_*.c` 页面或 `ui_pixel` 外壳为起点。
-- 第一个玩法落地时，在仓库根 `CMakeLists.txt` 中通过 `EXTRA_COMPONENT_DIRS` 注册 `jerryicat/` 组件，在 `main/CMakeLists.txt` 的 `REQUIRES` 中加入 `jerryicat`，并让 `main.c` 通过一个小的 `jerryicat_*` API 把启动和按键事件交给启动器。接缝保持最小，并在交付说明中列出。不得把 BSP 或基线 demo 搬进 `jerryicat/`。
+- 仓库根 `CMakeLists.txt` 通过 `EXTRA_COMPONENT_DIRS` 注册该组件，`main/CMakeLists.txt` 在 `REQUIRES` 中列出 `jerryicat`，`main.c` 调用 `jerryicat_launcher_start()`，并把按键事件转给 `jerryicat_handle_key()`。接缝保持最小。不得把 BSP 或基线 demo 搬进 `jerryicat/`。
 - 详细工作区模型、应用生命周期契约和目录地图见 [`jerryicat/AGENTS.zh_CN.md`](jerryicat/AGENTS.zh_CN.md)。
 
 ## 按任务加载上下文
@@ -107,7 +107,7 @@
 ./tools/validate.sh             # 完整门禁
 ```
 
-完整门禁要求已激活 ESP-IDF 5.5.3 环境。上游门禁不会自动发现 fork 测试：还必须运行 `jerryicat/tests/` 下的所有 host tests，并在第一个 fork 测试落地时加入 `jerryicat/tools/validate.sh`，让一条命令覆盖 fork 检查。不得把编译成功描述成硬件验证成功。最终交付必须分别报告：
+完整门禁要求已激活 ESP-IDF 5.5.3 环境。上游门禁不会自动发现 fork 测试：还必须运行 `./jerryicat/tools/validate.sh`。不得把编译成功描述成硬件验证成功。最终交付必须分别报告：
 
 ```text
 Build: PASS / FAIL / NOT RUN

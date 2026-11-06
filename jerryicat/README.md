@@ -14,8 +14,15 @@ own `AGENTS.md` with its detailed working rules.
 
 ## Status
 
-The workspace and its rules are established. The launcher, the first play, and
-the build wiring do not exist yet; they land with the first implementation.
+The launcher and the first play, `+1`, are implemented and wired into the single
+firmware. New apps follow the same interface, registry, tests, and folder
+`AGENTS.md` pattern.
+
+## Apps
+
+| App | Folder | Behavior | Rules |
+| --- | --- | --- | --- |
+| `+1` | `plays/plus-one/` | Any button press adds one; hold `OK` returns to the launcher | [`AGENTS.md`](plays/plus-one/AGENTS.md) |
 
 ## Layout
 
@@ -46,8 +53,8 @@ the build wiring do not exist yet; they land with the first implementation.
    [`AGENTS.md`](AGENTS.md).
 2. Read the `AGENTS.md` of the folder you are about to touch.
 3. Implement the change with its tests and documentation pair.
-4. Run the upstream gate (`./tools/validate.sh`) plus the fork tests under
-   `jerryicat/tests/`.
+4. Run the upstream gate (`./tools/validate.sh`) plus the fork host tests
+   (`./jerryicat/tools/validate.sh`).
 5. Offer on-device testing for firmware changes, then commit and push on `main`
    as required by the root maintenance rule.
 

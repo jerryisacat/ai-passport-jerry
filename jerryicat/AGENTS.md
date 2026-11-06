@@ -17,7 +17,7 @@ The human-facing overview is [`README.md`](README.md).
 
 - One firmware. The launcher, plays, and on-device tools compile into the single application; the launcher is the default UI.
 - `jerryicat/` is one ESP-IDF component named `jerryicat`. There is exactly one `app_main`, in `main/main.c`; this folder never defines a second one.
-- Planned wiring, added with the first play: `jerryicat/CMakeLists.txt`, `EXTRA_COMPONENT_DIRS` in the root `CMakeLists.txt`, `jerryicat` in `main/CMakeLists.txt` `REQUIRES`, and a small `jerryicat_*` call from `main.c` for startup and key forwarding.
+- Wiring: `jerryicat/CMakeLists.txt` registers the component, the root `CMakeLists.txt` adds it through `EXTRA_COMPONENT_DIRS`, `main/CMakeLists.txt` lists it in `REQUIRES`, `main.c` calls `jerryicat_launcher_start()`, and the firmware input task forwards key events to `jerryicat_handle_key()`. Keep that seam minimal.
 - Do not create a separate ESP-IDF project, per-play `sdkconfig`, or duplicated partition table unless the user explicitly changes the one-firmware decision.
 
 ## Architecture
@@ -37,7 +37,7 @@ Plays and on-device tools share one lifecycle interface declared in `include/`; 
 
 - Each app is described by an id (unique lowercase-kebab, identical to its folder name), a launcher title, a category (`play` or `tool`), and lifecycle callbacks: `enter`, `exit`, key handling, and optional `start`/`stop` for asynchronous work.
 - `enter` builds the app's screens and resets its state; `exit` deletes those screens after all work has stopped. `start`/`stop` bracket worker tasks, audio, networking, and persistence that must not run while the app is hidden.
-- Key callbacks dispatch lightweight events only. Long-press behavior, back navigation, and menu-to-app transitions are the app's own design choice, not a copy of the demo menu.
+- Key callbacks dispatch lightweight events only. The launcher reserves a long press of `OK` as the return gesture; apps own short-press behavior and any additional gestures, not a copy of the demo menu.
 - Register the app in the launcher table. An unregistered app is dead code; the build must not silently include it.
 - Every app owns its visual language. The baseline demo menu, `demo_*.c` screens, and the `ui_pixel` shell are reference material, never a starting point.
 
@@ -74,4 +74,6 @@ Plays and on-device tools share one lifecycle interface declared in `include/`; 
 
 ## Status
 
-The workspace and its rules are established; the launcher, first play, and build wiring are not implemented yet. The first play must create `jerryicat/CMakeLists.txt`, the headers it needs, and the integration seam in the root build files, keeping that change minimal and documented in the delivery notes.
+The launcher and the first play, `+1`, are implemented and wired into the single
+firmware. New plays and on-device tools follow the same interface, registry, tests,
+and folder `AGENTS.md` pattern.

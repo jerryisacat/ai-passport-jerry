@@ -21,8 +21,9 @@ a host script.
 
 - Implement the same on-device app interface as plays, with category `tool`.
 - Register in the launcher table in `../src/`; `id` equals the folder name.
-- The app owns its navigation and key behavior. Do not inherit the baseline demo
-  contract.
+- The launcher reserves long-press `OK` as the return gesture; the app owns its
+  short-press behavior and any additional gestures. Do not inherit the baseline
+  demo contract.
 - `enter` builds and resets; `exit` deletes screens after work stops; optional
   `start`/`stop` bracket workers and I/O.
 

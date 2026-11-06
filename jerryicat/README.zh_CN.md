@@ -10,7 +10,14 @@
 
 ## 当前状态
 
-工作区与规则已经建立。启动器、第一个玩法和构建接线尚未落地，将随第一次实现一起加入。
+启动器和第一个玩法 `+1` 已实现并接入单一固件。新应用沿用同一套接口、注册表、
+测试与目录 `AGENTS.md` 规则。
+
+## 应用
+
+| 应用 | 目录 | 行为 | 规则 |
+| --- | --- | --- | --- |
+| `+1` | `plays/plus-one/` | 任意按键按下加一；长按 `OK` 返回启动器 | [`AGENTS.zh_CN.md`](plays/plus-one/AGENTS.zh_CN.md) |
 
 ## 目录
 
@@ -37,7 +44,7 @@
 1. 先读仓库根 [`AGENTS.zh_CN.md`](../AGENTS.zh_CN.md) 和本工作区的 [`AGENTS.zh_CN.md`](AGENTS.zh_CN.md)。
 2. 读将要修改的目录的 `AGENTS.zh_CN.md`。
 3. 实现改动，同时补齐测试与文档配对。
-4. 运行上游门禁（`./tools/validate.sh`）以及 `jerryicat/tests/` 下的 fork 测试。
+4. 运行上游门禁（`./tools/validate.sh`）以及 fork host tests（`./jerryicat/tools/validate.sh`）。
 5. 固件改动主动询问真机测试，然后按根目录维护规则在 `main` 上 commit 并 push。
 
 仓库模型见 [`docs/fork-guide.zh_CN.md`](../docs/fork-guide.zh_CN.md)。

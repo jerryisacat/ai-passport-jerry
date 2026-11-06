@@ -25,8 +25,9 @@ folder name per app id.
   and may be localized. Category is `play`.
 - `enter` builds the play's screens and resets state. `exit` deletes them after
   work has stopped. Optional `start`/`stop` bracket workers and I/O.
-- The play decides its own navigation and long-press behavior. It does not inherit
-  the baseline demo menu's click/long-press contract.
+- The launcher reserves long-press `OK` as the return gesture; the play decides
+  its short-press navigation and any additional gestures. It does not inherit the
+  baseline demo menu's click/long-press contract.
 
 ## UI and hardware rules
 
@@ -35,8 +36,9 @@ folder name per app id.
 - Portrait 240x320 display, three buttons (`UP`, `DOWN`, `OK`). Keep touch targets
   and labels readable, show the battery level in the top-right corner by default,
   and handle its `-1` unavailable value gracefully.
-- Hold `bsp_lvgl_lock()` outside the LVGL task. Key callbacks only enqueue or
-  dispatch; audio, storage, and networking run in workers.
+- The launcher calls `key` without the LVGL lock: take `bsp_lvgl_lock()` before
+  touching widgets, and keep the critical section short. Audio, storage, and
+  networking run in workers.
 - Stop every task, timer, callback, and event handler that can touch the play's UI
   before `exit`. Release audio, network, and storage resources.
 - Dim or switch off the backlight when the play idles, and return to light or deep

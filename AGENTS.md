@@ -60,7 +60,7 @@ defaults are overridden by the `jerryicat/` rules.
 - Preserve existing user changes. Start with `git status --short --branch`; never overwrite or clean unrelated files.
 - Flashing new firmware does not require backing up the firmware already on the device; do not make a Flash readback a prerequisite. This does not guarantee preservation of user data or authorize a full-chip erase. Follow the [flashing and data policy](docs/development/engineering/firmware-layout.md#flashing-and-stored-data).
 - Hardware facts follow this priority: product specifications and measured results → `components/bsp/include/bsp_pins.h` → BSP headers and implementation → hardware guide → README/demo code. If a task requires a hardware detail not defined by these sources, ask the user instead of guessing.
-- Reusable board logic belongs in `components/bsp`. The launcher, shared UI kit, plays, on-device tools, and their tasks belong under `jerryicat/`. `main/` remains the firmware entry and the upstream hardware-test demo; product logic must not grow there.
+- Reusable board logic belongs in `components/bsp`. The launcher, shared UI kit, plays, on-device tools, and their tasks belong under `jerryicat/`. `main/` remains the firmware entry and keeps the upstream demo sources as reference; the boot UI comes from the launcher, and product logic must not grow in `main/`.
 - Derivative applications must redesign and implement their own UI. Reusing the current demo test menu, screens, or visual shell is prohibited; renaming, recoloring, or adding a feature to that shell does not count as a redesign. BSP APIs and non-UI logic remain reusable. See the [mandatory UI redesign rule](docs/development/ai-guide.md#mandatory-ui-redesign-for-derivative-applications).
 - LVGL is not thread-safe. Code outside the LVGL task must hold `bsp_lvgl_lock()` while accessing LVGL objects.
 - Before adding Chinese UI text, follow the [font checklist](docs/development/engineering/coding-conventions.md#chinese-fonts-and-missing-glyphs). The default Montserrat fonts have no Chinese glyphs; UTF-8 and a successful build do not prove display support. Verify glyph coverage, widget font selection, and on-device rendering.
@@ -75,7 +75,7 @@ defaults are overridden by the `jerryicat/` rules.
 - One firmware. The launcher, plays, and on-device tools compile into the single application, and the fork launcher is the default user interface. Do not create a separate ESP-IDF project per play or a second `app_main` without an explicit user decision.
 - `jerryicat/` is one ESP-IDF component. `include/` holds public APIs, `src/` the launcher and shared UI kit, `plays/` gameplay apps, `apps/` on-device utility apps, `tools/` host-side development scripts, `tests/` host tests, `assets/` fork binary assets, and `docs/` fork documentation.
 - The launcher, plays, and on-device tools own every screen, layout, navigation, and button interaction they present. Never start from the baseline demo menu, `demo_*.c` screens, or the `ui_pixel` shell.
-- When the first play lands, register `jerryicat/` as a component through `EXTRA_COMPONENT_DIRS` in the root `CMakeLists.txt`, add `jerryicat` to the `REQUIRES` of `main/CMakeLists.txt`, and route startup and key events from `main.c` into the launcher through a small `jerryicat_*` API. Keep this seam minimal and report it in the delivery notes. Do not move the BSP or the baseline demo into `jerryicat/`.
+- The component is registered through `EXTRA_COMPONENT_DIRS` in the root `CMakeLists.txt`, `main/CMakeLists.txt` lists `jerryicat` in `REQUIRES`, and `main.c` calls `jerryicat_launcher_start()` and forwards key events to `jerryicat_handle_key()`. Keep that seam minimal. Do not move the BSP or the baseline demo into `jerryicat/`.
 - The detailed workspace model, app lifecycle contract, and folder map are in [`jerryicat/AGENTS.md`](jerryicat/AGENTS.md).
 
 ## Task-specific context routing
@@ -115,7 +115,7 @@ Run the smallest relevant check while iterating, then run the complete gate befo
 ./tools/validate.sh             # complete gate
 ```
 
-The complete gate requires an activated ESP-IDF 5.5.3 environment. The upstream gate does not discover fork tests: run every host test under `jerryicat/tests/` as well, and add `jerryicat/tools/validate.sh` with the first fork test so one command covers the fork checks. Do not describe a successful build as hardware validation. Final delivery must report these fields separately:
+The complete gate requires an activated ESP-IDF 5.5.3 environment. The upstream gate does not discover fork tests: run `./jerryicat/tools/validate.sh` as well. Do not describe a successful build as hardware validation. Final delivery must report these fields separately:
 
 ```text
 Build: PASS / FAIL / NOT RUN

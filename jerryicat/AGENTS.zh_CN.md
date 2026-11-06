@@ -17,7 +17,7 @@
 
 - 单一固件。启动器、玩法和设备端工具编译进同一个应用；启动器是默认界面。
 - `jerryicat/` 是一个名为 `jerryicat` 的 ESP-IDF 组件。`app_main` 只有一个，位于 `main/main.c`；本目录不得再定义第二个。
-- 随第一个玩法加入的接线：`jerryicat/CMakeLists.txt`、仓库根 `CMakeLists.txt` 中的 `EXTRA_COMPONENT_DIRS`、`main/CMakeLists.txt` 的 `REQUIRES` 中加入 `jerryicat`，以及 `main.c` 中一个小的 `jerryicat_*` 调用，用于启动和按键转发。
+- 接线：`jerryicat/CMakeLists.txt` 注册组件，仓库根 `CMakeLists.txt` 通过 `EXTRA_COMPONENT_DIRS` 加入它，`main/CMakeLists.txt` 在 `REQUIRES` 中列出 `jerryicat`，`main.c` 调用 `jerryicat_launcher_start()`，固件输入任务把按键事件转给 `jerryicat_handle_key()`。接缝保持最小。
 - 除非用户明确改变单固件决定，不得建立独立 ESP-IDF 工程、按玩法拆分的 `sdkconfig` 或重复的分区表。
 
 ## 架构
@@ -37,7 +37,7 @@
 
 - 每个应用由 id（唯一 lowercase-kebab，与目录名一致）、启动器标题、类别（`play` 或 `tool`）以及生命周期回调描述：`enter`、`exit`、按键处理，以及异步工作可选的 `start`/`stop`。
 - `enter` 建立应用页面并重置状态；`exit` 在全部工作停止后删除这些页面。`start`/`stop` 包住工作任务、音频、网络和持久化——这些不应在应用隐藏时继续运行。
-- 按键回调只派发轻量事件。长按行为、返回导航和菜单到应用的切换由应用自己设计，不照抄 demo 菜单。
+- 按键回调只派发轻量事件。启动器保留 `OK` 长按作为返回手势；应用负责短按行为和额外手势，不照抄 demo 菜单。
 - 在启动器表中注册应用。未注册的应用就是死代码；构建不得悄悄把它带进来。
 - 每个应用拥有自己的视觉语言。基线 demo 菜单、`demo_*.c` 页面和 `ui_pixel` 外壳只作参考，绝不作起点。
 
@@ -74,4 +74,5 @@
 
 ## 当前状态
 
-工作区与规则已经建立；启动器、第一个玩法和构建接线尚未实现。第一个玩法必须创建 `jerryicat/CMakeLists.txt`、所需头文件以及根构建文件中的接入点，保持改动最小并在交付说明中记录。
+启动器和第一个玩法 `+1` 已实现并接入单一固件。新玩法和设备端工具沿用同一套接口、
+注册表、测试与目录 `AGENTS.md` 规则。
