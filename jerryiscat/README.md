@@ -27,6 +27,11 @@ registry, tests, and folder `AGENTS.md` pattern.
 | Mic Level | `apps/mic-level/` | Live microphone peak level | [`AGENTS.md`](apps/mic-level/AGENTS.md) |
 | Speaker Tone | `apps/speaker-tone/` | Two-second 500 Hz speaker check | [`AGENTS.md`](apps/speaker-tone/AGENTS.md) |
 
+## Firmware index
+
+Images built or evaluated for this board, with pinned identities and tradeoffs:
+[`docs/firmware-index.md`](docs/firmware-index.md).
+
 ## Layout
 
 | Path | Purpose | Rules |

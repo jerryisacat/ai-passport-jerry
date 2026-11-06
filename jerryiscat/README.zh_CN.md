@@ -22,6 +22,11 @@
 | Mic Level | `apps/mic-level/` | 实时麦克风峰值电平 | [`AGENTS.md`](apps/mic-level/AGENTS.md) |
 | Speaker Tone | `apps/speaker-tone/` | 两秒 500 Hz 扬声器自检 | [`AGENTS.md`](apps/speaker-tone/AGENTS.md) |
 
+## 固件索引
+
+本板构建或验证过的镜像，含固定的身份与取舍：
+[`docs/firmware-index.zh_CN.md`](docs/firmware-index.zh_CN.md)。
+
 ## 目录
 
 | 路径 | 用途 | 规则 |

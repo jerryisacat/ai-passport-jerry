@@ -31,6 +31,12 @@
 - 应用注册表：[jerryiscat/src/jerryiscat_registry.c](jerryiscat/src/jerryiscat_registry.c)
 - 四个工具：[jerryiscat/apps/](jerryiscat/apps/)
 
+## 固件索引
+
+除本仓库的 `jerryiscat` 外，同一块硬件上还验证过社区固件 **DSH Passport**（BLE 任务终端，
+配套 DSH 插件）。两份镜像的来源、commit、校验值、能力与刷写/回退方式记录在
+[jerryiscat/docs/firmware-index.zh_CN.md](jerryiscat/docs/firmware-index.zh_CN.md)。
+
 ## 硬件支持
 
 | 能力 | 实现方式 | 说明 |
