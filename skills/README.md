@@ -1,71 +1,69 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 技能目录（Skills）
 
-# Skills
+这些技能把仓库工程规范整理为有明确边界的 AI 工作流。开发应用时从
+`passport-develop` 开始，单项任务直接使用对应技能。技能引用已有文档和
+验证门禁，不再维护另一套硬件规则或构建命令。
 
-These skills turn the repository's engineering guidance into focused AI workflows.
-Start with `passport-develop` for application development; use the specialized
-skills for a single task. They reference the existing documentation and validation
-gate, rather than defining another set of hardware rules or build commands.
+## 目录约定
 
-Each skill must contain at least `SKILL.md` with YAML frontmatter defining `name` and a trigger-focused `description`. Complex skills may add `references/`, `scripts/`, and `assets/`. Keep documentation as plain Markdown and register every added skill in this index.
+- 每个 skill 一个子目录，目录名即 skill 名称，命名简短、语义明确。
+- 每个 skill 目录必须包含 `SKILL.md`，顶部用 YAML frontmatter 标注 `name` 与 `description`，其中 `description` 作为触发指纹，说清「何时触发、做什么」。
+- 复杂的 skill 可在其目录下增加 `references/`（长文档）、`scripts/`（可执行脚本）、`assets/`（模板/样例），与主文件分开放。
+- 文档应为纯 markdown，不含二进制内容。
 
-## Current skills
+## 如何添加一个 skill
 
-| Skill | What it does |
+1. 在 `skills/` 下新建以 skill 名命名的目录。
+2. 目录内新建 `SKILL.md`，顶部写 `name` + `description` frontmatter。
+3. 视需要增加 `references/`、`scripts/`、`assets/` 子目录。
+4. 在本 `README.md` 的索引表中登记该 skill 的名称与一句话说明。
+
+## 现有技能索引
+
+| 技能 | 功能 |
 | --- | --- |
-| [passport-develop](passport-develop/SKILL.md) | Turn a feature request into an application, tests, and a verified delivery; coordinate the other core skills when needed. |
-| [passport-setup](passport-setup/SKILL.md) | Inspect and prepare the ESP-IDF 5.5.3 environment without replacing other installations or assuming USB access. |
-| [passport-build](passport-build/SKILL.md) | Run the shared gate and retain a verified merged image with matching ELF/MAP artifacts. |
-| [passport-device-test](passport-device-test/SKILL.md) | After authorization, identify the target, flash the chosen firmware, and distinguish logs from physical acceptance. |
-| [passport-debug](passport-debug/SKILL.md) | Diagnose crashes, memory problems, blank Chinese text, and peripheral failures using evidence and matching symbols. |
-| [issue-suggestions](issue-suggestions/SKILL.md) | After a release, collect the releasing developer's own improvement points and file them as feature request issues against the upstream project. |
-| [experience-pr](experience-pr/SKILL.md) | After a release, collect reusable development experience and submit it as a documentation pull request. |
-| [plays-archive](plays-archive/SKILL.md) | After a release, archive the published application under the repository-relative `docs/reference/<username>/<app-name>/` with an AI-generated bilingual summary; record cover metadata only, without committing the image. |
+| [passport-develop](passport-develop/SKILL.zh_CN.md) | 将需求落实为应用、测试及已验证交付，按需协调其余核心技能。 |
+| [passport-setup](passport-setup/SKILL.zh_CN.md) | 检查并准备 ESP-IDF 5.5.3 环境，不覆盖其他安装，不假定能够访问 USB。 |
+| [passport-build](passport-build/SKILL.zh_CN.md) | 运行统一门禁，保留已校验的合并固件和匹配的 ELF/MAP。 |
+| [passport-device-test](passport-device-test/SKILL.zh_CN.md) | 获得授权后识别目标、刷写指定固件，区分串口日志与实机验收。 |
+| [passport-debug](passport-debug/SKILL.zh_CN.md) | 依据日志和匹配符号，诊断崩溃、内存、中文空白及外设故障。 |
+| [issue-suggestions](issue-suggestions/SKILL.zh_CN.md) | 发布后，收集开发者的改进点，整理成提交到上游的功能建议 issue。 |
+| [experience-pr](experience-pr/SKILL.zh_CN.md) | 发布后，收集可复用的开发经验，并作为文档 PR 提交。 |
+| [plays-archive](plays-archive/SKILL.zh_CN.md) | 发布后，把已发布应用归档到相对仓库根目录的 `docs/reference/<username>/<app-name>/`，附 AI 生成的中文说明；仅记录封面元数据，不提交图片。 |
 
-## Required preparation, handled by the AI
+## 必需准备，由 AI 自行完成
 
-The five `passport-*` skills above are required, not optional recommendations.
-Follow the [required-skill policy](../AGENTS.md#required-ai-skills): the AI checks
-availability before development and installs any missing skills itself. It
-chooses the method appropriate to the active AI tool, operating system, and
-permissions; the user does not need to supply installation instructions.
+上表中的五个 `passport-*` 技能是必需项，不是可选建议。遵循
+[必需技能规范](../AGENTS.md#required-ai-skills)：AI 在开发前自行检查可用性，
+缺少时自行安装。具体方式由 AI 根据当前工具、操作系统和权限决定，用户
+无需提供安装方法或命令。
 
-Use the maintained sources in this repository's `skills/` directory. The
-repository installer is an available helper, not a mandatory installation
-method. Do not assume that every AI tool has the same discovery conventions.
-Consult the active tool's documentation when needed; for Codex, see the
-[official skills guide](https://learn.chatgpt.com/docs/build-skills).
+使用本仓库 `skills/` 中维护的源文件。仓库安装助手是可选工具，不是强制
+安装方式。不能假定所有 AI 工具都采用相同的发现规则；需要时查阅所用工具
+的文档，Codex 可参考[官方技能指南](https://learn.chatgpt.com/docs/build-skills)。
 
-Verify that the active AI environment can actually discover/read the installed
-skills; creating files alone does not prove availability. If installation or
-activation is blocked, report the cause and the minimum assistance needed.
-Reading source instructions directly may support work while resolving the
-blocker, but must not be reported as successful installation. Preserve existing
-skills/configuration and obtain any permissions required by the environment.
+安装后验证当前 AI 环境确实能够发现／读取技能，不能仅凭文件已创建就宣称
+可用。安装或启用受阻时，说明原因及所需的最小协助。解决阻碍期间可直接
+阅读源文件辅助工作，但不能将此报告为安装成功。保留已有技能／配置，并
+按环境要求取得必要权限。
 
-## Example requests
+## 使用示例
 
 ```text
-Use $passport-develop to build an offline Pomodoro app with a Chinese UI.
-Use $passport-setup to check my development environment; do not reinstall anything yet.
-Use $passport-build to package this firmware without flashing it.
-Use $passport-device-test to test the verified firmware while preserving my settings.
-Use $passport-debug to explain this crash log; do not change code yet.
+使用 $passport-develop 开发离线中文番茄钟应用。
+使用 $passport-setup 检查开发环境，先不要重新安装任何东西。
+使用 $passport-build 打包当前固件，不烧录。
+使用 $passport-device-test 测试已校验固件，保留我的设置。
+使用 $passport-debug 分析这段崩溃日志，先不要改代码。
 ```
 
-Natural-language requests can also select skills through their descriptions.
-Installing a skill does not grant USB, network, Git, or publishing permission.
-An unavailable device does not block coding or host tests. Building does not
-authorize flashing; diagnosing does not authorize changes. After a completed
-firmware implementation the AI should invite device testing, not silently run it.
+也可以用自然语言请求，由技能描述进行匹配。安装技能不等于授予 USB、联网、
+Git 或发布权限。没有设备不阻塞写代码和主机测试；构建不授权烧录，诊断不
+授权修改。完整实现固件需求后，AI 应主动邀请真机测试，而不是自行刷写。
 
-## Maintain and validate
+## 维护与验证
 
-Keep one skill per directory, paired English/Chinese instructions, precise
-trigger descriptions, and links in this index. Put deterministic operations in
-reviewable tools and leave project policy in its authoritative document.
-Follow [skill validation](validation.md) for routing and boundary scenarios.
-The shared static gate tests the installer and archive tool; the full gate also
-builds and checks a real debug archive. Neither replaces actual device testing.
+每个技能独立目录，配对维护中英文说明，明确触发描述，并在本索引登记。
+确定性操作交给可审查的工具，项目规范仍以权威文档为准。按
+[技能验证](validation.zh_CN.md)执行路由和边界场景测试。统一静态门禁测试
+安装助手及归档工具，完整门禁还会编译并校验实际调试归档；这些不代替真机测试。

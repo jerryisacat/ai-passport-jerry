@@ -64,7 +64,7 @@ defaults are overridden by the `jerryiscat/` rules.
 - Before deleting a screen, stop every task, timer, callback, and event handler that can access its UI. This applies to fork plays and on-device tools as well as the baseline demo.
 - Keep testable state machines, protocols, timing, and layout calculations independent from ESP-IDF/LVGL and cover them with host tests under `tests/` (upstream) or `jerryiscat/tests/` (fork).
 - Never commit credentials, device QR secrets, private keys, personal data, or unsanitized logs.
-- Every maintained Markdown document uses English at its default `.md` path and Simplified Chinese in a paired `.zh_CN.md` file. Keep both versions aligned and retain reciprocal language links. Exceptions: every `AGENTS.md` is English-only and has no translation; the repository-root `README.md` is the fork's Chinese-only human landing page and has no English pair.
+- Every maintained Markdown document except `README.md` uses English at its default `.md` path and Simplified Chinese in a paired `.zh_CN.md` file. Keep both versions aligned and retain reciprocal language links. Exceptions: every `AGENTS.md` is English-only and has no translation; every `README.md` is Chinese-only, has no English pair, and has no `.zh_CN.md` translation.
 
 ## Fork workspace: `jerryiscat/`
 

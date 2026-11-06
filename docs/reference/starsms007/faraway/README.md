@@ -1,109 +1,72 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 去远方（Far Away）
 
-# Faraway
+一只橘猫的旅行手账，跑在 AI Passport 的 240×320 竖屏上：挑一趟 15 秒到 12 小时的行程把猫送出门，
+时间到了它带回一张当地明信片和一件小纪念品。完全离线，不用配网。
 
-A travel journal for an orange cat, built for the AI Passport's 240×320
-portrait screen: send the cat out on a trip of 15 seconds to 12 hours, and it
-comes back with a postcard and a keepsake from wherever it landed. Fully
-offline — no network setup.
+## 发布信息
 
-## Publish information
+- **标题**：去远方
+- **简介**：上班的人，也想去看看远方。于是家中的大橘猫背上小书包，替你去远方看看。
 
-- **Title**: Far Away
-- **Description**: Some of us stay home and work. The cat goes instead.
+  在主页底部挑一趟行程：试玩 15 秒、5 分钟、1 小时、4 小时或 12 小时——走得越久，去的地方越远。
+  按 ● 送它出门，时间到了它会寄回一张当地的明信片和一件小纪念品。
 
-  Pick a trip length from the row along the bottom of the home screen — a
-  15-second test run, 5 minutes, 1 hour, 4 hours or 12 hours. The longer you
-  send it, the farther it goes. Press ● and off it walks; when the time is up
-  it mails back a postcard from wherever it landed, plus a small local
-  keepsake.
+  24 个目的地，从婺源的油菜花海、西塘的青石窄巷，一路铺到敦煌的鸣沙山和塔克拉玛干的沙脊。
+  每走完一趟还会捎回一件小纪念品，从桂花糕、竹编小篮一路到海边贝壳、一枚老铜钱。明信片一张一张翻，
+  再看看纪念品，像把去过的地方又走了一遍。
 
-  There are 24 postcards to collect — from the rapeseed fields of Wuyuan and
-  the stone alleys of Xitang all the way to Dunhuang's singing dunes and the
-  sand ridges of the Taklamakan. Each finished trip also brings back a
-  keepsake: 24 of them in all, from osmanthus cake and a woven bamboo basket
-  to a seashell and a worn old coin. Both postcards and keepsakes go into the
-  collection book — postcards one at a time, keepsakes laid out over two pages
-  of twelve. Anything you haven't found yet is only a grey silhouette with no
-  name; it reveals itself, name and all, once you've earned it. Flip through
-  and it feels like walking those roads again.
+  等不及了，长按 ● 花几个猫罐头把它叫回家；猫罐头不够，就去收藏册里玩小游戏——接猫罐头、打兔子、
+  和猫猜拳、记忆翻牌。天上有雨、雪、雾和萤火，也会飞过小飞机、热气球和肥皂泡泡。猫的嘴上也没闲着，
+  在家和在路上，它都有话对你说。
 
-  Can't wait? Hold ● to call the cat home early for a few cans of cat food.
-  Short on cans? Play the mini-games in the collection book — catch the falling
-  cans, whack-a-rabbit, rock-paper-scissors with the cat, or a memory match.
-  Rain, snow, fog and fireflies drift through, and so do a little plane, a hot-air
-  balloon and soap bubbles. The cat never stops talking either, at home or on
-  the road.
+  离线可玩，不用配网。封面与配图为示意图。
 
-  Fully offline — no network setup needed. Cover and extra images are
-  illustrations.
+## 做了什么
 
-## What it does
+- **行程时长决定距离**：主页底部五档出发时长（试玩 15 秒、5 分钟、1 小时、4 小时、12 小时）
+  决定猫能走到哪一档目的地，走得越久解锁越远的明信片。
+- **24 个目的地、24 张明信片**：每张都是手绘的 240×320 场景，收进收藏册一张一张翻；
+  收到的明信片还能长按 ● 直接设成主页背景。
+- **24 件纪念品、两页图鉴**：收藏册里独立一格，排成两页、每页 3×4。还没收到的只有灰色剪影、
+  连名字都不显示；收到之后才出现原图和名字。在这一格上下键是翻页，翻到头才会走到别的格。
+- **四个可解锁小游戏**：接猫罐头、打兔子、和猫猜拳、记忆翻牌。每收满 6 张明信片解锁一个，
+  玩小游戏赚猫罐头。
+- **猫罐头是货币**：在路上长按 ● 花掉几个罐头就能把猫提前召回，而猫罐头要靠小游戏赚。
+- **七种天气图层**：雨、雪、雾、萤火、小飞机、热气球、肥皂泡泡按各自的节奏飘过场景——
+  全局随机、每 90~240 秒出场一次、每次 25 秒，粒子画在猫之上。
+- **猫咪台词**：在家和在路上各有一套台词，用说话气泡显示。
+- **设置页**：调节屏幕亮度，上下键调整。
+- **进度持久化**：行程数、猫罐头、已得明信片与已得纪念品都能扛过断电，收藏是一趟一趟攒起来的。
 
-- **Trip lengths drive distance**: five departure slots (15-second test run,
-  5 minutes, 1 hour, 4 hours, 12 hours) select which destination band the cat
-  can reach, so a longer trip unlocks the far postcards.
-- **24 destinations, 24 postcards**: hand-drawn 240×320 scenes for each
-  destination, kept in a collection book you flip through one card at a time;
-  a received postcard can also be set as the home-screen background with an OK
-  long-press.
-- **24 keepsakes in a two-page album**: a separate collection slot laid out as
-  two pages of 3×4. An unearned keepsake shows only as a grey silhouette with
-  no name; earning it reveals the art and the name. UP/DOWN turns the pages and
-  only moves to the next slot once the pages run out.
-- **Four unlockable mini-games**: catch the falling cat-food cans, whack-a-rabbit,
-  rock-paper-scissors with the cat, and a memory match. One unlocks for every
-  six postcards collected; playing them earns cat food.
-- **Cat food as a currency**: holding OK on the road spends a few cans to
-  recall the cat early, and the mini-games are how you earn more.
-- **Seven weather layers**: rain, snow, fog, fireflies, a small plane, a hot-air
-  balloon and soap bubbles drift over the scene on their own schedule — a global
-  random draw every 90–240 seconds, each appearance lasting 25 seconds, with the
-  particles drawn above the cat.
-- **Cat dialogue**: two separate line sets, one for at home and one for on the
-  road, shown in a speech bubble.
-- **Settings page**: screen brightness, adjusted with UP/DOWN.
-- **Persistent progress**: trip count, cat food, owned postcards and owned
-  keepsakes survive a power cycle, so the collection builds up across sessions.
+画面上每个元素都是量化到同一张全局调色板的像素画；精灵图集和五支中文字库已随仓库提交，
+clone 下来直接就能编译，不需要跑素材流水线。
 
-Every on-screen element is pixel art quantized to a single shared palette; the
-sprite atlas and the five Chinese font sets are committed, so a clone builds
-without running the asset pipeline.
+## 交互
 
-## Interaction
+按键是三键布局：↑、↓、●，另有一个硬件电源键直连断电、固件读不到。
 
-Buttons are the three-key layout: UP, DOWN and OK (●), plus a hardware power
-key that cuts power directly and is not readable by the firmware.
-
-| Key | Home | On the road | Collection book | Settings |
+| 按键 | 主页 | 旅行中 | 收藏册 | 设置页 |
 |---|---|---|---|---|
-| UP / DOWN | choose trip length | switch the screen off | turn pages / move between slots | adjust brightness |
-| OK (click) | confirm departure | open the collection book | enter / accept | go back |
-| OK (long-press) | switch the screen off | recall the cat early (costs cat food) | go back | — |
+| ↑ / ↓ | 选择行程 | 关闭屏幕 | 翻页 / 换条目 | 调节屏幕亮度 |
+| ● 短按 | 确认出发 | 进入收藏册 | 进入 / 收下 | 返回 |
+| ● 长按 | 关闭屏幕 | 快速回家（花猫罐头） | 返回 | — |
 
-In the collection book, the cursor moves between the mini-game and settings
-slots first and only turns the page at the edge; the same edge-first rule
-applies to the keepsake album.
+收藏册里光标先在「小游戏」与「设置」两格之间走、到边才翻页；纪念品那格同样遵循「先翻页、到边才换条目」。
 
-## Source
+## 来源
 
-- Repository: `starsms007/ai-passport`, branch `feature/faraway`
-  (<https://github.com/starsms007/ai-passport/tree/feature/faraway>), forked from
-  upstream `main` at `1051209`.
-- Released as GitHub release
-  [`v1.0.0-faraway`](https://github.com/starsms007/ai-passport/releases/tag/v1.0.0-faraway)
-  with the merged 8 MB image `FoloToy-AI-Passport-full.bin`.
-- Published to the community as project `community-751e8cae`; cover recorded as
-  `cover_ai_1152x1536.png` (PNG, 1152×1536, 3:4) — publish metadata only, the
-  image lives with the community publication.
-- Build requirements: ESP-IDF v5.5.3, target `esp32c3`, **8 MB flash**. The
-  factory application partition is `0x7F0000` bytes (7.94 MiB) **in size**; its
-  offset is `0x10000` and its end address is `0x800000`. A 4 MB board cannot
-  hold an image of that size and will reboot forever. Offset, size, and end
-  address are listed separately on purpose — `0x7F0000` is the size, not the
-  address to flash at. `components/bsp/` is unmodified from upstream.
-- The paired experience entry
-  [`lvgl-pool-budget-without-psram.md`](../lvgl-pool-budget-without-psram.md)
-  records the LVGL memory budget this application was built against.
+- 仓库：`starsms007/ai-passport` 的 `feature/faraway` 分支
+  （<https://github.com/starsms007/ai-passport/tree/feature/faraway>），
+  fork 自上游 `main` 的 `1051209`。
+- 已发布为 GitHub release
+  [`v1.0.0-faraway`](https://github.com/starsms007/ai-passport/releases/tag/v1.0.0-faraway)，
+  附件为合并后的 8 MB 整片镜像 `FoloToy-AI-Passport-full.bin`。
+- 已发布到社区，项目 `community-751e8cae`；封面记录为
+  `cover_ai_1152x1536.png`（PNG，1152×1536，3:4）——仅记发布元数据，图片留在社区发布处。
+- 构建要求：ESP-IDF v5.5.3、目标 `esp32c3`、**8 MB Flash**。factory 应用分区的**大小**为
+  `0x7F0000` 字节（7.94 MiB），**起始偏移 `0x10000`**、**结束地址 `0x800000`**。4 MB 的板子
+  装不下这个体积的镜像，会无限重启。偏移、大小、结束地址分开写是有意的——`0x7F0000` 是**大小**，
+  不是烧录地址。`components/bsp/` 与上游一致，未作修改。
+- 配套经验条目
+  [`lvgl-pool-budget-without-psram.zh_CN.md`](../lvgl-pool-budget-without-psram.zh_CN.md)
+  记录了本应用构建时所依据的 LVGL 内存预算。

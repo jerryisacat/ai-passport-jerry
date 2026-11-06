@@ -1,105 +1,74 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
-
 # limelight lemonade jam
 
-A portrait visual novel reader for the AI Passport, ported from the Xiaomi Band
-release of the commercial title *limelight lemonade jam*. Three keys read the whole
-story offline: **230 chapter points, 68,229 dialogue lines, about 1.2 million
-characters, 991 packed images and eight choice points**.
+把小米手环上的商业作品《聚光灯柠檬果酱》(limelight lemonade jam)搬到 AI Passport 的**竖屏视觉小说阅读器**。
+三个按键就能离线读完整个故事：**230 个章节点、68,229 句对白、约 120 万字、991 张打包图像、
+8 个选项点**。
 
-The upstream release is a touch application for Xiaomi's Vela OS and declares no
-licence; this port re-implements the reading engine in C on LVGL, converts the
-artwork and script into two packed images inside the firmware, and credits the
-upstream project as their source.
+上游是 Xiaomi Vela OS 的触屏应用且未声明许可；本移植用 C + LVGL 重写阅读引擎，把美术与剧本
+转换成固件里的两张打包数据，并以上游项目作为来源标注。
 
-## Publish information
+## 发布信息
 
-- **Title**: `limelight lemonade jam — visual novel reader` (the localized title used for
-the submission is recorded in the Chinese version of this page, `README.zh_CN.md`)
-- **Description**: the submitted English copy:
+- **标题**：`limelight lemonade jam 视觉小说阅读器`
+  （英文：`limelight lemonade jam — visual novel reader`）
+- **简介**：投稿用的中文文案：
 
-  > The complete *limelight lemonade jam* visual novel, ported to AI Passport so the
-  > whole story fits in three keys.
+  > 把《limelight lemonade jam》这部视觉小说完整搬到 AI Passport 上，三个按键就能读完整个故事。
   >
-  > Yukitaka Surfnami plays bass but never joined a band of his own, and he has no
-  > other plan for his days. Then a street performance makes him stop: a girl named
-  > Nagisa Himi is singing alone, with an amateur guitar and no band behind her.
-  > From that evening on, his ordinary life starts to shine again.
+  > 冲浪雪鹰擅长贝斯，却从未加入过固定的乐队，也没有其他想做的事。某个傍晚，街头的演奏让他
+  > 停下脚步：名叫阳见惠凪的少女抱着吉他，独自唱着尚且不成形的歌。从那天起，他平淡的日常
+  > 重新亮了起来。
   >
-  > How to play: boot into the title screen and pick "Start". UP / DOWN advance a
-  > line, and pressing while a line is still typing reveals it at once; holding UP
-  > fast-forwards and stops on release, holding DOWN toggles auto-read, and the
-  > screen stays lit while it runs. OK opens the menu: five manual save slots, one
-  > automatic slot, chapter jump, a CG gallery and settings. The current chapter is
-  > shown in the top left (for example 7-2) and the battery at the top right.
+  > 怎么玩：开机进标题页，选「开始阅读」即可。上 / 下短按翻页，正在逐字显示时按一下立刻显示
+  > 整句；长按上快进、松手即停；长按下开关自动阅读，自动播放期间屏幕保持常亮。确定键打开
+  > 菜单，里面有五个手动存档槽、一个自动存档、章节跳转、CG 鉴赏和系统设置。左上角显示当前
+  > 章节（例如 7-2），右上角是电量。
   >
-  > Content: 230 chapter points, 68,229 lines of dialogue, about 1.2 million
-  > characters and eight choice points — fully offline.
+  > 内容：230 个章节点、68,229 句对白、约 120 万字、8 个选项点，完全离线，不需要联网。
 
-- **Category**: games
-- **Cover**: `comm_cover.png` (PNG, 1152 × 1536, 3:4) — the upstream key visual
-  supplied by the fork owner, cropped to the required ratio and not otherwise
-  altered. Publish metadata only; the image is not committed in this repository.
-- **Source**: <https://github.com/Shinku-Chen/ai-passport/tree/cindy/curious-babbage>
-- **Release**: tag `v0.1.0-limelight` (`dc7154d`), merged image
-  `FoloToy-AI-Passport-full.bin`, 7,897,824 bytes, built by the tag-triggered CI.
-- **Community submission**: project 680, revision 1444, slug
-  `limelight-lemonade-jam`, status `pending` when submitted.
+- **分类**：games
+- **封面**：`comm_cover.png`（PNG，1152 × 1536，3:4）—— 由 fork 所有者提供的上游主视觉，只做
+  比例裁剪、没有其他改动。仅作为发布元数据记录，图片本身不入库。
+- **来源**：<https://github.com/Shinku-Chen/ai-passport/tree/cindy/curious-babbage>
+- **发布**：tag `v0.1.0-limelight`（`dc7154d`），合并镜像
+  `FoloToy-AI-Passport-full.bin`，7,897,824 字节，由打 tag 触发的 CI 构建。
+- **社区投稿**：project 680 / revision 1444 / slug `limelight-lemonade-jam`，
+  提交时状态 `pending`。
 
-## What it does
+## 它能做什么
 
-- **Title, body, choices, chapter jump, gallery, settings**: the pages reuse the
-  ATRI reader's LVGL page system, so the three keys behave the same way across the
-  fork's visual novels.
-- **The story is read in pages**: the renderer lays a line out by character width
-  (half-width counts as one unit, full-width as two) and paginates at five lines of
-  26 units; the page indicator appears only for the 13 dialogue lines that need a
-  second page.
-- **Sprites are centred horizontally and bottom-anchored, behind the dialogue band**:
-  the art canvas covers rows 0–213, so the rows below that are drawn by a second LVGL
-  image object that points into the decode buffer and are then covered by the
-  translucent band; the sideways offset is `(canvas width - sprite width) / 2`, and a
-  width-to-height crop at 1:2.4 keeps the figure down to about the knees so the body
-  still reads through the band.
-- **Chapters are shown as `X-Y`**: the upstream script carries 230 `[CHAPTERx-y]`
-  markers; the in-game label and the chapter list both render them as `0-1`, `7-2`
-  and so on, and a marker is never shown as a speaker name.
-- **Saves and idle**: five manual slots plus one automatic slot written on every
-  scene change; 60 s dims the backlight, 3 min turns it off, 7 min enters deep
-  sleep, and auto-read and fast-forward keep the screen lit while they run.
+- **标题、正文、选项、章节跳转、鉴赏、设置**：页面沿用 ATRI 阅读器的 LVGL 页面体系，所以三个
+  按键在各作品里的行为一致。
+- **正文按页阅读**：排版按字符宽度计算（半角算 1 个单位、全角算 2 个），每页 5 行 × 26 个单位；
+  只有需要翻页的那 13 句会显示页码。
+- **立绘水平居中、底边贴屏幕底，下摆藏在对话框后面**：画面区只覆盖 0~213 行，以下的立绘行用
+  一个指向解码缓冲的 LVGL 图像对象绘制，再被半透明正文带盖住；水平偏移是
+  `(画面宽 - 立绘宽) / 2`，取景按宽高比 1:2.4 裁到膝盖附近，让身体轮廓仍能透出对话框。
+- **章节显示成 `X-Y`**：上游剧本里有 230 个 `[CHAPTERx-y]` 标记，正文页左上角与章节跳转列表都
+  渲染成 `0-1`、`7-2` 这样的形式；章节标记不会被当成说话人显示。
+- **存档与空闲**：五个手动槽 + 一个自动槽（每次换幕自动写入）；空闲 60 秒调暗、3 分钟熄屏、
+  7 分钟深睡，自动阅读与快进期间屏幕保持常亮。
 
-## Data and toolchain
+## 数据与工具链
 
-- **Artwork pack** (`main/limelight_data/limelight_pack.bin`, LLMPK001, 4.49 MiB,
-  991 entries): backgrounds and CGs as 240 × 214 JPEG, sprites as alpha-cut RGB565
-  with a 1 bpp mask, reference-counted cropping, and a name table keyed by
-  "family + basename". Sprites carry one pose per character: the extra takes in a
-  group are aliases pointing at the kept blob, and the freed space pays for JPEG
-  quality 60 instead of 35.
-- **The upstream material is committed** under `assets/gal-source/` (137 script files,
-  backgrounds, sprites, event CGs and the title images, with no quick-app code), so a
-  plain checkout rebuilds both packs byte for byte; `gallery_cgs.txt` records the 633
-  event CGs the upstream gallery page references so the packer can tell them from
-  story CGs.
-- **Script pack** (`main/limelight_data/limelight_script.bin`, LLSPK001, 1.81 MiB,
-  68,229 entries in 273 blocks): UTF-8 text compressed per 250-entry block with raw
-  deflate, which the ESP32-C3 ROM inflater expands at no firmware cost.
-- **Font**: a 16 px / 4bpp subset (3,449 glyphs) generated from Noto Sans SC
-  (SIL OFL 1.1) with the same metrics as the ATRI reader's font.
-- **Tools**: `tools/limelight_material_pack.py`, `tools/limelight_script_pack.py`
-  and `tools/limelight_lvgl_font.py`, all offline and covering pack-time text
-  cleaning (see the experience entry below).
+- **素材包**（`main/limelight_data/limelight_pack.bin`，LLMPK001，4.49 MiB，991 条）：背景与 CG
+  存 240 × 214 JPEG，立绘存 alpha 裁剪的 RGB565 + 1bpp 遮罩，按引用裁剪，名字表以「家族 + 基名」
+  为键。立绘每个角色只保留一套姿势：同组其余姿势做成指向保留 blob 的别名，省下的空间把立绘
+  JPEG 质量从 35 提到 60。
+- **上游素材已随仓库提交**在 `assets/gal-source/`（137 个剧本文件、背景、立绘、事件 CG 与标题图，
+  **不含快应用代码**），普通 checkout 即可逐字节重建两份包；`gallery_cgs.txt` 记录上游鉴赏页引用的
+  633 张事件 CG，让打包器能区分它们与剧情 CG。
+- **剧本包**（`main/limelight_data/limelight_script.bin`，LLSPK001，1.81 MiB，68,229 条 / 273 块）：
+  UTF-8 文本按每 250 条一块 raw-deflate 压缩，由 ESP32-C3 ROM 的解压器展开，不占固件空间。
+- **字体**：由 Noto Sans SC（SIL OFL 1.1）生成的 16px / 4bpp 子集（3,449 字形），度量与 ATRI
+  阅读器的字体一致。
+- **工具**：`tools/limelight_material_pack.py`、`tools/limelight_script_pack.py`、
+  `tools/limelight_lvgl_font.py`，全部离线，并在打包阶段清洗上游文本（见下方经验条目）。
 
-## What was verified
+## 验证到什么程度
 
-- **On hardware** (AI Passport, ESP32-C3, 8 MB): boot, the three keys including
-  hold-to-fast-forward and auto-read, save/load, chapter jump, the CG gallery, the
-  idle policy, and the serial capture used for publishing. Layout was checked by
-  reading frames back from the device rather than by eye.
-- **Host tests**: package headers, name/chapter/choice tables, the block cache, the
-  player model over the real 68,229-entry script (every page join reconstructs its
-  line), the image-layout math, and the packers' budgets and cleaning rules.
-- **Not measured**: peak audio draw (the reader plays no audio), battery life in
-  continuous auto-read, and read/write durability of the NVS save slots.
+- **真机**（AI Passport，ESP32-C3，8MB）：开机、三个按键（含长按快进与自动阅读）、存/读档、
+  章节跳转、CG 鉴赏、空闲策略，以及发布用的串口抓屏。版面核对是**回读设备帧**做的，不靠肉眼。
+- **宿主测试**：包格式与名字/章节/选项表、块缓存、以真实 68,229 条剧本跑的播放模型（每页拼接都能
+  还原整句）、图片排版计算、打包器的预算与清洗规则。
+- **未测量**：音频峰值功耗（阅读器不播放音频）、连续自动阅读下的续航、NVS 存档槽的读写耐久。

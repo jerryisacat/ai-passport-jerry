@@ -1,6 +1,6 @@
 ---
 name: plays-archive
-description: After a firmware release, archive the published application into the upstream FoloToy ai-passport repository's docs/reference/ directory with an AI-generated bilingual functional summary (text-only; the cover image is recorded by file name and format, not committed).
+description: After a firmware release, archive the published application into the upstream FoloToy ai-passport repository's docs/reference/ directory with an AI-generated Chinese functional summary (text-only; the cover image is recorded by file name and format, not committed).
 ---
 
 <p align="right">
@@ -69,9 +69,8 @@ actually owns one.
 
 First collect the metadata the developer filled in when publishing to the
 community (bilingual title, bilingual description, and the source address they
-submitted), then write `docs/reference/<username>/<app-name>/README.md` and its paired
-`.zh_CN.md` as an AI-generated functional summary for later querying (not a
-publishing artifact). Record:
+submitted), then write `docs/reference/<username>/<app-name>/README.md` as an AI-generated,
+Chinese-only functional summary for later querying (not a publishing artifact). Record:
 
 - **Publish title and description**: the bilingual title and description the
   developer submitted when publishing to the community.
@@ -87,9 +86,9 @@ publishing artifact). Record:
 If the root README exists, merge its content into the summary rather than
 ignoring the human-facing description.
 
-Write the default `.md` in English and the `.zh_CN.md` in Simplified Chinese,
-aligned in the same change. Register the application in both language versions
-of `docs/reference/README.md` so the archive can be discovered from the index.
+README files are Chinese-only; write the summary as `README.md`. Register the
+application in `docs/reference/README.md` so the archive can be discovered from
+the index.
 
 ## Cover image
 

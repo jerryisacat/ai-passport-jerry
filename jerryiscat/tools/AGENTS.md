@@ -36,7 +36,7 @@ Firmware sources never live here.
 - Add a host test under `../tests/` for any parsing, planning, or transformation
   logic that is not a thin wrapper around an external command.
 - Register every tool in the table in [`../README.md`](../README.md) or the
-  tool's own README pair, with a one-line purpose and an example.
+  tool's own `README.md`, with a one-line purpose and an example.
 - When a tool becomes part of the standard gate, wire it into
   `validate.sh` here and document the new command in the root `AGENTS.md`.
 

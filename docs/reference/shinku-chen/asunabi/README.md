@@ -1,90 +1,70 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 飞鸟会长不肯认输（Asunabi）
 
-# Asunabi
+AI Passport 上的竖屏视觉小说阅读器。它承载一个完整的故事 —— 原作是小米手环上的快应用：
+30 章、4,649 句对白、约 9.4 万字，从第一句读到唯一结局。固件替换掉 demo 菜单，开机直接进入
+标题画面。
 
-A portrait visual-novel reader for the AI Passport. It carries a complete story that
-was originally a Xiaomi Band quick app — 30 chapters, 4,649 dialogue lines and about
-94,000 characters, from the first line to a single ending. The firmware replaces the
-demo menu and boots straight into the title screen.
+## 故事
 
-## The story
+学生会长是狮子堂飞鸟，人称「冰之公主」：放学后的走廊上，她误以为老师叫的是自己而瞬间脸红；
+而作为普通学生的主角，因为捡到的一本笔记本，从此被她盯上了。30 章把这个误会一路写到唯一的结局，
+想直接重温某个场景也可以用选章跳过去。
 
-The student council president is Asuka Shishidou, known as the Ice Princess: in the
-after-school corridor a teacher's call catches someone else's name, her blush gives
-her away, and a notebook the protagonist happens to pick up is what puts him on her
-radar. Thirty chapters carry the two from that first meeting to a single ending,
-with chapter select for readers who want to jump straight to a favourite scene.
+## 发布信息
 
-## Publish information
+- **标题**：飞鸟会长不肯认输（Asunabi）
+- **描述**：已投稿到 AI Passport 社区市场（审核中），投稿时的描述是：
 
-- **Title**: Asunabi
-- **Description**: submitted to the AI Passport community market (under review),
-  where the listing describes it as:
+  > 从小米手环快应用移植的 30 章竖屏视觉小说阅读器：开始、继续、选章、设置；六个存档位；
+  > 文字速度与字号；自动阅读；单一结局。
 
-  > A portrait reader for a 30-chapter visual novel ported from a Xiaomi Band quick
-  > app: start, continue, chapter select and settings; six save slots; text speed and
-  > size; auto-play; one ending.
+- **分类**：游戏
+- **封面**：`comm_cover.png`（PNG，1152 × 1536，3:4）—— 仅为发布元数据，封面图**不入库**。
+  用的是上游官方主视觉，按 3:4 裁切。
+- **来源**：<https://github.com/Shinku-Chen/ai-passport>，分支 `feature/asunabi-galgame`
+- **故事与美术**：<https://github.com/liuyuze61/Asunabi-miband>
 
-- **Category**: games
-- **Cover**: `comm_cover.png` (PNG, 1152 × 1536, 3:4) — publish metadata only; the
-  image is not committed here. It is the upstream key art, fitted to 3:4.
-- **Source**: <https://github.com/Shinku-Chen/ai-passport>, branch `feature/asunabi-galgame`
-- **Story and artwork**: <https://github.com/liuyuze61/Asunabi-miband>
+## 它做什么
 
-## What it does
+- **开机直接进故事**：没有测试菜单、不联网、也没有音频 —— 这个应用不出声，所以干脆不初始化
+  codec。
+- **阅读**：确定键推进一句；正在逐字显示的句子先立即全显；超出面板的长句分页显示而不是裁掉。
+- **自动阅读**：长按下键开关，句子显示完毕后 0.9 秒自动推进，按任意键解除。
+- **快进**：按住上键持续推进，松手立即停止。
+- **存档**：六个手动存档位加一个自动续读点，都存在 NVS；在存档位上长按确定键即删除。存档位置
+  包含"该句的第几页"。
+- **设置**：文字速度（慢 / 中 / 快 / 瞬间）、文字大小（16 px 或 20 px，带实时打字预览）、
+  自动阅读。
+- **选章**：从标题画面直接跳到 30 章中的任意一章。
+- **画面之上作画**：标题背景上一层 30% 底纹、选项列表下 50% 半透明底板、对白面板 70% 半透明
+  —— 画面保持可见，近白色文字也压得住；固件不会熄灭屏幕，自动阅读可以无人值守地一直读下去。
+- **长按判定 300 ms**：由 BSP 显式下发判定时序，而不是用 button 组件默认的 1,500 ms。
 
-- **Boots straight into the story**: no test menu, no network, and no audio — nothing
-  in this application plays sound, so the codec is left uninitialised.
-- **Reading**: confirm advances a line; a line still being typed is revealed in full
-  first; a line too long for the panel is paginated rather than clipped.
-- **Auto-play**: long-pressing DOWN toggles it, a line advances 0.9 s after it
-  finishes revealing, and any key press ends the mode.
-- **Fast-forward**: holding UP advances while held and stops the moment it is
-  released.
-- **Saves**: six manual slots plus an automatic resume point, both in NVS; a slot is
-  deleted by long-pressing confirm on it. Save positions include the page within a
-  line.
-- **Settings**: text speed (slow / medium / fast / instant), text size (16 px or
-  20 px, with a live typing preview), and auto-play.
-- **Chapter select**: jump to any of the 30 chapters from the title screen.
-- **Drawn over the artwork**: a 30% tint over the title backdrop, a 50% plate behind
-  the option list, and a 70% dialogue panel — the scene stays visible while near-white
-  text stays readable, and the firmware never blanks the panel, so auto-play can run
-  unattended.
-- **Long press registers at 300 ms**: the BSP passes the press timing explicitly
-  instead of using the button component's 1,500 ms default.
+## 交互
 
-## Interaction
+三个按键。电量百分比在右上角，读不到电量计时降级显示 `--%`。
 
-Three keys. The battery percentage is at the top right and degrades to `--%` when the
-gauge cannot be read.
-
-| Key | Reading | In a menu |
+| 按键 | 阅读中 | 菜单中 |
 | --- | --- | --- |
-| UP (short) | next line, or reveal the rest of the current one | move the selection up |
-| UP (hold) | fast-forward while held | — |
-| OK (short) | open the menu | activate the selected row |
-| OK (hold) | — | leave the menu |
-| DOWN (short) | scroll a line that runs past the panel | move the selection down |
-| DOWN (hold) | toggle auto-play (0.9 s per line; any key cancels) | — |
+| UP 短按 | 下一句，或立即全显当前句 | 选中项上移 |
+| UP 长按 | 按住快进，松手即停 | — |
+| OK 短按 | 呼出菜单 | 执行选中项 |
+| OK 长按 | — | 退出菜单 |
+| DOWN 短按 | 滚动超出面板的文字 | 选中项下移 |
+| DOWN 长按 | 切换自动阅读（每句 0.9 秒，任意键解除） | — |
 
-## Assets
+## 素材
 
-The story text and artwork are third-party content from the upstream Xiaomi Band
-project, which declares no license. On this fork they are committed under
-`assets/gal-source/`, so a clone builds the complete game; the pipeline in the
-branch's `tools/gal/` packs them into a read-only 4 MiB `assets` data partition
-(3.55 MiB used) and derives the CJK font subsets from the packed scripts. A build
-without that tree still boots, with a placeholder pack instead of the story.
+故事文本与美术来自上游的小米手环项目，属于第三方内容，且该仓库未声明任何许可。在这个 fork 上
+它们提交在 `assets/gal-source/`，因此 clone 就能构建出完整作品；分支里的 `tools/gal/` 流水线把
+它们打包进一个只读的 4 MiB `assets` 数据分区（实际用 3.55 MiB），并从打包后的剧本推导出 CJK
+字体子集。没有该目录的构建依然能启动，只是换成占位包而不是故事。
 
-## Source
+## 来源
 
-- **Branch**: [`feature/asunabi-galgame`](https://github.com/Shinku-Chen/ai-passport/tree/feature/asunabi-galgame)
-- **Release**: tag `v0.1.0-asunabi` on the fork; merged image
-  `FoloToy-AI-Passport-full.bin`, 7,917,142 bytes (application at `0x10000`, assets at
-  `0x400000`)
-- **Asset pipeline**: [branch `tools/gal/`](https://github.com/Shinku-Chen/ai-passport/tree/feature/asunabi-galgame/tools/gal)
-- **Build**: `./tools/validate.sh --firmware`, after installing Pillow into the Python
-  environment the ESP-IDF build uses; flash the merged image from `0x0`
+- **分支**：[`feature/asunabi-galgame`](https://github.com/Shinku-Chen/ai-passport/tree/feature/asunabi-galgame)
+- **发布**：fork 上的 tag `v0.1.0-asunabi`；合并镜像
+  `FoloToy-AI-Passport-full.bin`，7,917,142 字节（应用在 `0x10000`，素材分区在 `0x400000`）
+- **素材工具链**：[分支里的 `tools/gal/`](https://github.com/Shinku-Chen/ai-passport/tree/feature/asunabi-galgame/tools/gal)
+- **构建**：先给 ESP-IDF 使用的 Python 环境装 Pillow，再跑 `./tools/validate.sh --firmware`；
+  从 `0x0` 烧录合并镜像

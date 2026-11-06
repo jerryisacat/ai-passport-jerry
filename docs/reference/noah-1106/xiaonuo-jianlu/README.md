@@ -1,88 +1,64 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 小诺简录（语音 AI 清单）
 
-# Xiaonuo Jianlu (Voice Notes & Lists)
+一套 AI 简录系统，把 AI Passport 变成"随时记录、随机整理"的语音清单卡片。
+按住 OK 说话——中枢把语音转成文字并用 AI 归类整理成简录卡片；清单一叠卡片的
+形式呈现，在卡片、Web 界面和 AI 助手之间实时同步。
 
-An AI note-taking list that turns the AI Passport into a "capture anytime,
-organize anytime" voice memo card. Hold OK and talk — the hub transcribes and
-organizes your words into a categorized note card; your list appears as a
-tactile stack of cards that syncs across the card, a web UI, and AI assistants.
+## 发布信息
 
-## Publish information
+- **标题**：小诺简录 · 随说随记的 AI 清单 / Xiaonuo Jianlu · Talk-to-Note AI Lists
+- **简介**：按住卡片说一句话，它就能听懂、归类、生成简录卡片；清单像一叠真实的
+  卡片一样堆在屏幕上。断网也能记（语音存本地可回放），配合开源中枢多端同步。
+- **封面**：`hero-cover.jpg`（JPEG，1152×1536）；配图 `card-recording-cover.jpg`、
+  `card-confirm-cover.jpg`（JPEG，1152×1536）。
 
-- **Title**: Xiaonuo Jianlu · Talk-to-Note AI Lists (the listing is bilingual;
-  the Chinese half of the title is recorded in the paired `README.zh_CN.md`)
-- **Description**: hold the button and talk; your words become neatly titled,
-  auto-categorized note cards in a stack you flip through. Works offline
-  (voice memos queue on-device and can be played back), syncs everywhere
-  through an open-source hub.
-- **Cover**: `hero-cover.jpg` (JPEG, 1152×1536); extra images
-  `card-recording-cover.jpg`, `card-confirm-cover.jpg` (JPEG, 1152×1536).
+## 功能
 
-## What it does
+- **按住说话记录**：长按 OK 说话松开，音频存入 SPIFFS 分区并流式上传到自托管
+  中枢；中枢经 ASR 转写、LLM function calling 建/整理简录（类型、标题、标签、
+  摘要），确认页显示新卡片。
+- **堆叠卡片清单**：清单一叠卡片呈现——顶卡大卡片（类型徽标、标题、摘要、标签、
+  日期），后卡内收渐暗；UP/DOWN 翻卡带飞出过渡，OK 完成顶卡。
+- **离线模式**：中枢/网络不可达时加载本地快照照常浏览，勾选记"待同步"排队，
+  离线录音以占位卡形式入列（"语音 · 未识别"，可本地回放）；联网后全部自动同步。
+- **配网**：BLUFI（EspBlufi App）下发 Wi-Fi 凭据（存 NVS）；中枢经 mDNS
+  （`_xiaonuo._tcp`）在局域网自动发现，零手动配置。UP 长按重配。
+- **省电**：60 秒空闲熄屏、10 分钟浅睡（light sleep），任意键唤醒且唤醒手势不触发业务。
+- **中枢**：开源 Express + SQLite 服务
+  （<https://github.com/noah-1106/xiaonuo-jianlu>），OpenAI 兼容 LLM/ASR 适配层、
+  Web 界面、MCP 端点、Agent Skill——一份数据四个入口。
 
-- **Hold-to-talk capture**: hold OK, speak, release. Audio records to a SPIFFS
-  partition and streams to the self-hosted hub; the hub transcribes (ASR) and
-  uses LLM function calling to create/organize records (type, title, tags,
-  summary). A confirmation page shows the new card.
-- **Stacked-card list**: the list is a deck of cards — top card large (type
-  badge, title, summary, tags, date), cards behind inset and dimmed. UP/DOWN
-  flips with a fly-out transition; OK checks off the top card.
-- **Offline mode**: when the hub or Wi-Fi is unreachable, a snapshot of the
-  list loads from flash and stays browsable; check-offs are queued
-  ("pending sync") and voice recordings sit in the list as a playable
-  placeholder card ("voice · unrecognized"). Everything syncs automatically
-  when connectivity returns.
-- **Provisioning**: BLUFI (EspBlufi app) for Wi-Fi credentials (stored in NVS);
-  the hub is auto-discovered on the LAN via mDNS (`_xiaonuo._tcp`) — zero
-  manual address setup. Long-press UP to re-provision.
-- **Power saving**: screen off after 60 s idle, light sleep after 10 min,
-  any-key wake with the wake gesture swallowed so it never triggers an action.
-- **Hub**: open-source Express + SQLite service
-  (<https://github.com/noah-1106/xiaonuo-jianlu>) with an OpenAI-compatible
-  LLM/ASR adapter layer, a web UI, an MCP endpoint for AI assistants, and an
-  Agent Skill — one dataset, four entry points.
+## 交互
 
-## Interaction
+三键驱动。顶栏显示标题与电量。
 
-Three keys drive the app. A top bar shows the title and battery percentage.
+- **UP / DOWN**：翻卡片堆（长文翻页）。
+- **OK**：完成顶卡 / 确认 / 回放待识别语音。
+- **OK 长按 ≥0.5s**：按住说话，松开发送。
+- **OK 双击**：手动刷新。
+- **UP 长按**：重新配网（确认后清除已存 Wi-Fi 与中枢信息）。
 
-- **UP / DOWN**: flip through the card stack (page through long text).
-- **OK**: complete the top card / confirm / play a pending voice memo.
-- **OK (hold ≥ 0.5 s)**: voice capture; release to send.
-- **OK (double)**: manual refresh.
-- **UP (hold)**: re-provision (clears saved Wi-Fi and hub info after confirm).
+## 工程要点（参考价值）
 
-## Engineering notes (reference value)
+- **配网与联网分离**：按本应用的实测内存预算，两个协议栈从不同时在线——
+  Wi-Fi 驱动常驻时堆仅剩 ~42KB，而拉起 NimBLE 需 ~58KB（ESP32-C3、
+  ESP-IDF 5.5.3、本应用配置下实测），故配网态纯 BLE 收凭据存 NVS 后重启，
+  走纯 Wi-Fi 路径。这是本应用的预算限制而非硬件限制——更精简的配置或
+  带 PSRAM 的型号可以两者同跑。
+- **严苛路由器下的 mDNS**：部分路由器不向设备转发组播应答，发现流程用手写
+  mDNS 查询强制单播直答（RFC 6762 §8.1）；中枢用系统级 responder 广播保证兼容。
+- **工作域看门狗**：任务仅在工作时注册 TWDT、空闲时注销——空闲永不误触发，
+  进出 light sleep 时同步摘挂防竞态。
+- **应用中文字体**：内置 CJK 子集仅 1187 字，远不够 ASR 任意文本；用
+  `lv_font_conv` 从 Noto Sans SC（OFL）生成 GB2312 覆盖的 16px 字体（约 7 千字）
+  并随仓库记录复现命令；emoji 在字形层静默丢弃。
+- **无 PSRAM 内存纪律**：音频 DMA 缓冲在开机堆宽裕时预分配（延迟分配正是录音
+  卡死的根因），HTTP 在独立任务用静态有界缓冲，稳态堆保持约 33KB。
 
-- **Wi-Fi/BLE separation for provisioning**: within this application's measured
-  RAM budget the two stacks are never up at the same time — with the Wi-Fi
-  driver resident only ~42 KB of heap remains, while bringing NimBLE up needs
-  ~58 KB (both measured on ESP32-C3, ESP-IDF 5.5.3, this app's config). So
-  provisioning runs BLE-only, stores credentials in NVS, and reboots into the
-  Wi-Fi-only path. This is a per-application budget limit, not a hardware
-  impossibility — a leaner config or a PSRAM variant could run both.
-- **mDNS behind restrictive routers**: some routers do not forward multicast
-  responses to the device, so discovery uses a hand-written mDNS query that
-  forces unicast legacy responses (RFC 6762 §8.1); the hub advertises via the
-  OS-level responder for full compatibility.
-- **TWDT as a work-domain watchdog**: tasks register the watchdog only while
-  working and unregister while idling — idle tasks never false-trigger, and
-  light-sleep entry/exit toggles registration to avoid wake races.
-- **Application CJK font**: the built-in 1187-glyph CJK subset is far too
-  small for arbitrary ASR text, so a GB2312-coverage 16 px font (~7 k glyphs)
-  is generated with `lv_font_conv` from Noto Sans SC (OFL) and tracked with
-  its regeneration command; emoji are silently dropped at the glyph layer.
-- **Heap discipline without PSRAM**: audio DMA buffers are pre-allocated early
-  at boot while the heap is still plentiful (late allocation was the root
-  cause of a recording freeze), HTTP runs in a dedicated task with bounded
-  static buffers, and steady-state heap stays around 33 KB.
+## 源码
 
-## Source
-
-- **Firmware**: <https://github.com/noah-1106/ai-passport/tree/feature/xiaonuo-jianlu>,
-  entry file `main/jianlu_app.c` (UI `main/jianlu_ui.c`, capture
-  `main/jianlu_capture.c`, provisioning `main/jianlu_provision.c`)
-- **Hub**: <https://github.com/noah-1106/xiaonuo-jianlu> (Express + SQLite,
-  web UI, MCP, Agent Skill)
+- **固件**：<https://github.com/noah-1106/ai-passport/tree/feature/xiaonuo-jianlu>，
+  入口 `main/jianlu_app.c`（UI `main/jianlu_ui.c`、录音 `main/jianlu_capture.c`、
+  配网 `main/jianlu_provision.c`）
+- **中枢**：<https://github.com/noah-1106/xiaonuo-jianlu>（Express + SQLite，
+  Web 界面、MCP、Agent Skill）

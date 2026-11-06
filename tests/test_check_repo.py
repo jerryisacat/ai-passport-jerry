@@ -65,12 +65,22 @@ class VendoredDocumentationTest(unittest.TestCase):
         return errors
 
     def test_empty_registry_keeps_upstream_documents_checked(self) -> None:
-        path = self.document("components/vendor_audio/README.md")
+        path = self.document("components/vendor_audio/docs/manual.md")
         with patch.object(CHECKS, "VENDORED_DOC_ROOTS", ()):
             errors = self.document_errors([path])
         self.assertEqual(len(errors), 2)
         self.assertTrue(any("missing link target" in error for error in errors))
         self.assertTrue(any("missing Simplified Chinese peer" in error for error in errors))
+
+    def test_readme_is_chinese_only_and_has_no_translation(self) -> None:
+        readme = self.document("docs/README.md", "# 说明\n")
+        self.assertEqual(self.document_errors([readme]), [])
+        english = self.document("docs/other/README.md", "# English only\n")
+        errors = self.document_errors([english])
+        self.assertTrue(any("README.md must use Chinese prose" in error for error in errors), errors)
+        translation = self.document("docs/README.zh_CN.md", "# 说明\n")
+        errors = self.document_errors([translation])
+        self.assertTrue(any("README.md is Chinese-only" in error for error in errors), errors)
 
     def test_explicit_root_exempts_nested_links_and_language_rules(self) -> None:
         files = [
@@ -82,11 +92,11 @@ class VendoredDocumentationTest(unittest.TestCase):
 
     def test_first_party_and_similar_prefixes_remain_checked(self) -> None:
         for name in (
-            "docs/README.md",
-            "components/vendor_audio_extra/README.md",
+            "docs/manual.md",
+            "components/vendor_audio_extra/manual.md",
             "components/vendor_audio.md",
-            "components/other/vendor_audio/README.md",
-            "components/vendor_audio2/README.md",
+            "components/other/vendor_audio/manual.md",
+            "components/vendor_audio2/manual.md",
         ):
             with self.subTest(name=name):
                 errors = self.document_errors([self.document(name)])
@@ -143,9 +153,9 @@ class VendoredDocumentationTest(unittest.TestCase):
             self.assertEqual(len(self.document_errors([link])), 2)
 
     def test_first_party_symlink_into_vendored_directory_remains_checked(self) -> None:
-        target = self.document("components/vendor_audio/README.md")
+        target = self.document("components/vendor_audio/manual.md")
         (self.root / "docs").mkdir(exist_ok=True)
-        link = self.root / "docs" / "README.md"
+        link = self.root / "docs" / "manual.md"
         self.symlink(link, target)
         self.assertEqual(len(self.document_errors([link])), 2)
 
@@ -318,7 +328,7 @@ class CommunityDocumentLinksTest(unittest.TestCase):
 
     def test_other_documents_and_pr_template_keep_their_own_context(self) -> None:
         files = [
-            self.document("docs/README.md", "[Language](README.zh_CN.md)\n"),
+            self.document("docs/guide.md", "[Language](guide.zh_CN.md)\n"),
             self.document(".github/PULL_REQUEST_TEMPLATE.md", "[Language](PULL_REQUEST_TEMPLATE.zh_CN.md)\n"),
         ]
         self.assertEqual(self.errors(files), [])

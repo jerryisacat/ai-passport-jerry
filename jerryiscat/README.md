@@ -1,69 +1,54 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
-
 # jerryiscat
 
-This directory is the fork's own product layer on top of the FoloToy AI Passport
-baseline. The upstream BSP, baseline demo, engineering references, and validation
-gate remain the foundation; everything this fork builds — launcher, plays,
-on-device tools, host-side tools, assets, and documentation — lives here.
+本目录是本 fork 在 FoloToy AI Passport 基线之上的自有产品层。上游 BSP、基线 demo、工程参考和验证门禁仍是基础；本 fork 自研的一切——启动器、玩法、设备端工具、开发侧工具、素材和文档——都放在这里。
 
-The agent-facing rules are in [`AGENTS.md`](AGENTS.md). Each subfolder has its
-own `AGENTS.md` with its detailed working rules.
+面向 AI agent 的规则见 [`AGENTS.md`](AGENTS.md)。每个子目录另有自己的 `AGENTS.md`，说明该目录的详细工作规则。
 
-## Status
+## 当前状态
 
-The launcher and four hardware tools are implemented and wired into the single
-firmware. There are no gameplay plays yet; new apps follow the same interface,
-registry, tests, and folder `AGENTS.md` pattern.
+启动器和四个硬件工具已实现并接入单一固件。目前还没有玩法；新应用沿用同一套接口、
+注册表、测试与目录 `AGENTS.md` 规则。
 
-## Apps
+## 应用
 
-| App | Folder | Behavior | Rules |
+| 应用 | 目录 | 行为 | 规则 |
 | --- | --- | --- | --- |
-| Wi-Fi Scan | `apps/wifi-scan/` | Scans 2.4 GHz APs; shows SSID, RSSI, channel | [`AGENTS.md`](apps/wifi-scan/AGENTS.md) |
-| BLE Beacon | `apps/ble-beacon/` | Non-connectable BLE advertising as `jerryiscat` | [`AGENTS.md`](apps/ble-beacon/AGENTS.md) |
-| Mic Level | `apps/mic-level/` | Live microphone peak level | [`AGENTS.md`](apps/mic-level/AGENTS.md) |
-| Speaker Tone | `apps/speaker-tone/` | Two-second 500 Hz speaker check | [`AGENTS.md`](apps/speaker-tone/AGENTS.md) |
+| Wi-Fi Scan | `apps/wifi-scan/` | 扫描 2.4 GHz AP，显示 SSID、RSSI、信道 | [`AGENTS.md`](apps/wifi-scan/AGENTS.md) |
+| BLE Beacon | `apps/ble-beacon/` | 以 `jerryiscat` 名称做不可连接 BLE 广播 | [`AGENTS.md`](apps/ble-beacon/AGENTS.md) |
+| Mic Level | `apps/mic-level/` | 实时麦克风峰值电平 | [`AGENTS.md`](apps/mic-level/AGENTS.md) |
+| Speaker Tone | `apps/speaker-tone/` | 两秒 500 Hz 扬声器自检 | [`AGENTS.md`](apps/speaker-tone/AGENTS.md) |
 
-## Firmware index
+## 固件索引
 
-Images built or evaluated for this board, with pinned identities and tradeoffs:
-[`docs/firmware-index.md`](docs/firmware-index.md).
+本板构建或验证过的镜像，含固定的身份与取舍：
+[`docs/firmware-index.zh_CN.md`](docs/firmware-index.zh_CN.md)。
 
-## Layout
+## 目录
 
-| Path | Purpose | Rules |
+| 路径 | 用途 | 规则 |
 | --- | --- | --- |
-| `include/` | Public launcher and on-device app interface headers | [`include/AGENTS.md`](include/AGENTS.md) |
-| `src/` | Launcher shell, app registry, shared UI kit | [`src/AGENTS.md`](src/AGENTS.md) |
-| `plays/` | Gameplay and experience apps, one folder each | [`plays/AGENTS.md`](plays/AGENTS.md) |
-| `apps/` | On-device utility apps, one folder each | [`apps/AGENTS.md`](apps/AGENTS.md) |
-| `tools/` | Host-side development scripts | [`tools/AGENTS.md`](tools/AGENTS.md) |
-| `tests/` | Host tests for fork logic | [`tests/AGENTS.md`](tests/AGENTS.md) |
-| `assets/` | Fork fonts, images, and audio with provenance | [`assets/AGENTS.md`](assets/AGENTS.md) |
-| `docs/` | Fork design notes and product documentation | [`docs/AGENTS.md`](docs/AGENTS.md) |
+| `include/` | 启动器与设备端应用接口的公开头文件 | [`include/AGENTS.md`](include/AGENTS.md) |
+| `src/` | 启动器外壳、应用注册表、共享 UI 套件 | [`src/AGENTS.md`](src/AGENTS.md) |
+| `plays/` | 玩法与体验类应用，每个玩法一个目录 | [`plays/AGENTS.md`](plays/AGENTS.md) |
+| `apps/` | 设备端工具类应用，每个工具一个目录 | [`apps/AGENTS.md`](apps/AGENTS.md) |
+| `tools/` | 开发侧脚本 | [`tools/AGENTS.md`](tools/AGENTS.md) |
+| `tests/` | fork 逻辑的 host tests | [`tests/AGENTS.md`](tests/AGENTS.md) |
+| `assets/` | fork 字体、图片与音频及来源记录 | [`assets/AGENTS.md`](assets/AGENTS.md) |
+| `docs/` | fork 设计说明与产品文档 | [`docs/AGENTS.md`](docs/AGENTS.md) |
 
-## Product model
+## 产品模型
 
-- One firmware for the device. The launcher, every play, and every on-device tool
-  compile into one application; the launcher is what the user sees first.
-- Plays and on-device tools share one lifecycle interface: enter, exit, key
-  handling, and optional start/stop for asynchronous work.
-- Applications own their screens, controls, and visual design. The upstream demo
-  menu and `ui_pixel` shell are reference only.
-- Host tools and host tests stay outside the firmware, under `tools/` and `tests/`.
+- 设备使用单一固件。启动器、所有玩法和所有设备端工具编译进同一个应用；启动器是用户首先看到的界面。
+- 玩法与设备端工具共用一套生命周期接口：enter、exit、按键处理，以及异步工作可选的 start/stop。
+- 应用拥有自己的页面、操作和视觉设计。上游 demo 菜单与 `ui_pixel` 外壳只作参考。
+- 开发侧工具和 host tests 不进入固件，分别放在 `tools/` 和 `tests/`。
 
-## Working here
+## 在这里工作
 
-1. Read the root [`AGENTS.md`](../AGENTS.md) and this workspace's
-   [`AGENTS.md`](AGENTS.md).
-2. Read the `AGENTS.md` of the folder you are about to touch.
-3. Implement the change with its tests and documentation pair.
-4. Run the upstream gate (`./tools/validate.sh`) plus the fork host tests
-   (`./jerryiscat/tools/validate.sh`).
-5. Offer on-device testing for firmware changes, then commit and push on `main`
-   as required by the root maintenance rule.
+1. 先读仓库根 [`AGENTS.md`](../AGENTS.md) 和本工作区的 [`AGENTS.md`](AGENTS.md)。
+2. 读将要修改的目录的 `AGENTS.md`。
+3. 实现改动，同时补齐测试与文档配对。
+4. 运行上游门禁（`./tools/validate.sh`）以及 fork host tests（`./jerryiscat/tools/validate.sh`）。
+5. 固件改动主动询问真机测试，然后按根目录维护规则在 `main` 上 commit 并 push。
 
-For the repository model, see [`docs/fork-guide.md`](../docs/fork-guide.md).
+仓库模型见 [`docs/fork-guide.zh_CN.md`](../docs/fork-guide.zh_CN.md)。

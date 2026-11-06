@@ -246,7 +246,7 @@ Audio demo 的工作任务在 PCM 分块之间检查取消状态，并在页面�
 
 当前配置对应万锂新能源 500 mAh 电芯，参数版本为 profile2 / XIL40X，日期为
 2026-10-20。[厂家原始 80 字节参数](../../assets/battery/wanli-500mah-profile2-xil40x-20261020.txt)
-和[来源／哈希记录](../../assets/README.zh_CN.md#电池参数battery)随固件保留。
+和[来源／哈希记录](../../assets/README.md#电池参数battery)随固件保留。
 它替换旧电芯参数；标称容量相同不意味着参数可以互换。本次修改不改变充电
 电路、电流、电压限制、引脚映射、Flash 分区或 NVS 格式。
 

@@ -52,12 +52,12 @@ The assistant fetches the official bundle from the URL in the prompt and follows
 Once the firmware is published, ask the developer whether to archive this application
 into the upstream repository's [`docs/reference/`](../../reference/README.md) application
 archive. If they agree, generate an AI-generated functional summary for the application under
-the repository-relative `docs/reference/<username>/<app-name>/` (bilingual
-`README.md` / `.zh_CN.md`). The archive is
+the repository-relative `docs/reference/<username>/<app-name>/` (Chinese
+`README.md`). The archive is
 **text-only**: record the cover image only by its file name and format as publish
 metadata, and do **not** commit the cover image into `docs/reference/` (see the convention in
 [`docs/reference/README.md`](../../reference/README.md)). Register the application
-in both language versions of that index. Do not store the firmware `.bin` here
+in that index. Do not store the firmware `.bin` here
 either. Use the `plays-archive` skill, which opens the archive PR against the
 upstream `FoloToy/ai-passport`.
 

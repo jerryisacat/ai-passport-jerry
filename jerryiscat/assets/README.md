@@ -1,23 +1,15 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# fork 素材登记
 
-# Fork Asset Ledger
+本文件记录 `assets/` 下 fork 专用二进制素材的来源。工作规则见 [`AGENTS.md`](AGENTS.md)。
 
-This file records the provenance of fork-specific binary assets under `assets/`.
-The working rules are in [`AGENTS.md`](AGENTS.md).
+目前还没有登记任何素材。
 
-No assets are recorded yet.
+## 如何添加条目
 
-## How to add an entry
+为每个素材添加一节，写明：
 
-For each asset, add a section with:
-
-- File path and purpose.
-- Source URL, author or foundry, and license, with a redistribution statement.
-- Converter or tool version and the exact command used.
-- Dimensions, character set, sample rate, channels, bit depth, or other defining
-  parameters.
-- SHA-256 checksum of the committed file.
-
-Keep the English and Chinese files aligned in the same change.
+- 文件路径与用途。
+- 来源 URL、作者或字库名、授权，以及允许再分发的说明。
+- 转换器或工具版本，以及使用的完整命令。
+- 尺寸、字符集、采样率、声道、位深等定义输出的参数。
+- 提交文件的 SHA-256 校验和。

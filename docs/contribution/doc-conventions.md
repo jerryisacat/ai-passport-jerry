@@ -8,14 +8,14 @@ These rules apply equally to human contributors and AI agents. Documentation is 
 
 ## Language and file layout
 
-- English is mandatory at every maintained default Markdown path: `name.md`.
+- English is mandatory at every maintained default Markdown path except `README.md`: `name.md`.
 - Exception: every `AGENTS.md` is English-only and has no translated peer.
-- Exception: the repository-root `README.md` is the fork's Chinese-only human landing page; it has no English pair and is excluded from the bilingual check.
-- Simplified Chinese is provided at the paired path `name.zh_CN.md`.
-- Both files begin with reciprocal language links. Keep their headings, facts, examples, safety warnings, and links aligned in the same change.
+- Exception: every `README.md` is Chinese-only. It has no English default, no `.zh_CN.md` peer, and no language switch; the bilingual check skips it.
+- Simplified Chinese is provided at the paired path `name.zh_CN.md` for every other maintained document.
+- Paired files begin with reciprocal language links. Keep their headings, facts, examples, safety warnings, and links aligned in the same change.
 - English default prose must not contain Chinese text. The `简体中文` switch label is the only allowed CJK text on an English page.
 - Code, commands, paths, URLs, identifiers, and data fields remain unchanged between translations where appropriate.
-- The repository check rejects an unpaired document, a missing language switch, or CJK prose in an English default file.
+- The repository check rejects an unpaired non-README document, a missing language switch, CJK prose in an English default file, and any `README.zh_CN.md`.
 
 ### GitHub community-document links
 
@@ -69,7 +69,7 @@ require rewriting or translating the original upstream documents.
 
 - Every task starts with root `AGENTS.md` only.
 - Follow its routing table and read only documents and source relevant to the change.
-- Use `docs/README.md` for the overview and `docs/README.md` for discovery.
+- Use `docs/README.md` for the overview and the documentation index.
 - Update the authoritative source of a changed fact and documents that directly reference it; do not create a second source of truth.
 
 ## Responsibilities
@@ -80,7 +80,7 @@ require rewriting or translating the original upstream documents.
 
 ## Placement
 
-- Keep the tracked repository root limited to tool-discovery files (`AGENTS.md` and its translation), an optional fork README pair, license/build manifests, and ESP-IDF configuration.
+- Keep the tracked repository root limited to tool-discovery files (`AGENTS.md` and its translation), an optional fork README, license/build manifests, and ESP-IDF configuration.
 - Put project documentation and history in `docs/`, grouped by contribution, development, hardware, and software responsibility.
 - Put GitHub-recognized community files, templates, issue forms, and workflows in `.github/`.
 - Put fork-owned launcher, play, and tool documentation under `jerryiscat/` following its `AGENTS.md`; put reusable binary/source assets in `assets/`, project skills in `skills/`, and automation in `tools/`.

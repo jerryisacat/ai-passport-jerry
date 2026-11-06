@@ -4,8 +4,8 @@
 [`FoloToy/ai-passport`](https://github.com/FoloToy/ai-passport) 的 BSP，采用单一固件 + 自研启动器：
 开机先看到启动器，再进入固件里的各个工具或玩法。
 
-> 这份根目录 `README.md` 是中文单语版本，专门给人看；除英文单语的 `AGENTS.md` 外，
-> 仓库内的维护文档仍保持英文 `.md` + 中文 `.zh_CN.md` 的配对规则。
+> 这份根目录 `README.md` 是中文单语版本；所有 `README.md` 都只维护中文，
+> `AGENTS.md` 只维护英文；其余文档保持英文 `.md` + 中文 `.zh_CN.md` 的配对规则。
 
 ## 固件
 

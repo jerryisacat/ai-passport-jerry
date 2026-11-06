@@ -305,10 +305,9 @@ driven by the `plays-archive` skill.
 ### Steps
 
 1. Confirm consent and a GitHub channel (GitHub MCP, a GitHub skill, or `gh`).
-2. Generate a bilingual AI-functional summary under the repository-relative
-   `docs/reference/<username>/<app-name>/` (`README.md` / `.zh_CN.md`), merging
-   the root README when one exists, and register it in both language versions
-   of `docs/reference/README.md`.
+2. Generate a Chinese AI-functional summary under the repository-relative
+   `docs/reference/<username>/<app-name>/` (`README.md`), merging the root
+   README when one exists, and register it in `docs/reference/README.md`.
 3. Record the publish metadata — the bilingual title and description and the
    source address — which include the cover image by file name and format, but
    do not commit the cover image itself. The archive is text-only.
@@ -352,7 +351,7 @@ application is registered where it is developed.
 
 ### Rules
 
-- Only touch fork-owned root READMEs (`README.md` / `README.zh_CN.md`); do not
+- Only touch the fork-owned root `README.md`; do not
   modify the upstream project overview at `docs/README.md`.
 - Check the root README on each relevant branch (`main` and the current
   `feature/*` branch), not just one branch.
@@ -367,15 +366,16 @@ application is registered where it is developed.
 - The fork root README and the hosting branch's root README are fork-owned
   content. Commit them directly (merge) rather than opening a PR; open a PR only
   when the change is meant to go upstream.
-- Follow the repository language rule: English at the default `.md` path and
-  Simplified Chinese at the paired `.zh_CN.md`, aligned in the same change.
+- Follow the repository language rule: `README.md` is Chinese-only; every other
+  document keeps the English default and Chinese `.zh_CN.md` pair, aligned in
+  the same change.
 
 ### Steps
 
 1. Confirm consent and a GitHub channel (GitHub MCP, a GitHub skill, or `gh`).
-2. On the hosting `feature/*` branch: create the bilingual README pair if it is
+2. On the hosting `feature/*` branch: create the Chinese `README.md` if it is
    missing, or update it to add or refresh the application's own description.
-3. On fork `main`: update the root README pair so the released application is
+3. On fork `main`: update the root `README.md` so the released application is
    discoverable from the repository landing page, fully including the hosting
    branch's README content.
 4. Commit the README updates directly to the branch / fork `main` (fork-owned

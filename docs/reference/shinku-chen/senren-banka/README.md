@@ -1,128 +1,77 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 千恋＊万花（Senren \* Banka）
 
-# Senren * Banka
+AI Passport 上的竖屏视觉小说阅读器，移植自《千恋＊万花》的手环同人移植版。全部剧情、背景、立绘与事件插图都装进固件，三个按键就能从序章一路读到结局。
 
-A portrait visual novel reader for the AI Passport, ported from the Mi Band fan
-port of *Senren \* Banka*. The whole story, its backgrounds, sprites and event
-illustrations live in the firmware, and three keys carry you from the prologue to
-the ending.
+## 发布信息
 
-## Publish information
+- **标题**：千恋＊万花（Senren \* Banka）
+- **简介**：提交原文：
 
-- **Title**: Senren \* Banka
-- **Description**: submitted as:
-
-  > Turn AI Passport into a pocket visual-novel reader: the whole story and cast of Senren * Banka in your hand, readable from beginning to end with just three buttons. Auto-read keeps the pages turning on their own, holding Up fast-forwards, and you can save or resume whenever you like.
+  > 把 AI Passport 变成一台随身视觉小说阅读器：《千恋＊万花》的完整故事与立绘装进口袋，三个按键就能从头读到尾。自动阅读可以自己往下走，长按上键一路快进，进度随时存档、随时接着读。
   >
-  > A taste of the story:
+  > 下面是原作的引子。
   >
-  > In a hot-spring town tucked deep in the mountains, so far from the main roads that even the buses never come, life has kept its own slow rhythm. Over the years the town grew famous for one peculiar local attraction: a sacred blade sealed in stone, never once drawn by anyone who tried.
+  > 在一座连公交都不通的深山里，有个叫做“穗织”的小镇。小镇地处偏僻，与周边来往甚少，甚至连城镇的现代化都慢了半拍。也正因如此，穗织镇渐渐发展出了独具特色的地方文化，现如今已成了别具一格的温泉旅游胜地，在全国颇具盛名。
   >
-  > Then a visiting student snaps it in half.
+  > 穗织镇最具人气的观光项目之一，是一把特殊的刀。神刀——丛雨丸。这把刀一直插在岩石之中，无人能将其拔出。然而这把拔不出的刀，却被有地将臣折断了！正当他面对如此突发事件不知所措时，一份沉重的责任压在了他的肩上。这份责任，竟是“结婚”二字！令人震惊的事态让将臣不知如何是好。然而这些，仅仅只是个开始而已。等待着将臣的，是更加奇妙而不可思议的每一天。初次见面的结婚对象。只有自己才能触碰的谜之少女。以及，残留在穗织这片土地的诅咒之谜……在这变幻莫测的新生活里，他们的邂逅与恋情最终将通往何方？一切的答案，都在紧握丛雨丸的那双手中——
   >
-  > The "compensation" demanded of him turns out to be a marriage — to the daughter of the shrine's keeper, whom he has just met. And that is only the beginning: a fiancée he barely knows, a mysterious girl only he can touch, and a curse still sleeping beneath the town.
-  >
-  > Where their meetings and romances eventually lead, only the hands that hold that blade will know.
-  >
-  > (Synopsis adapted from the Moegirlpedia article on Senren Banka, CC BY-NC-SA 4.0.)
+  > （引子文字引自萌娘百科《千恋万花》条目，遵循 CC BY-NC-SA 4.0 协议。）
 
-- **Category**: games
-- **Cover**: `senren-banka-cover.png` (PNG, 420 × 560, 3:4) — publish metadata
-  only; the cover image is not committed here.
-- **Source**: <https://github.com/Shinku-Chen/ai-passport>
+- **分类**：games
+- **封面**：`senren-banka-cover.png`（PNG，420 × 560，3:4）—— 仅记录发布元数据，封面图不进本仓库。
+- **源码**：<https://github.com/Shinku-Chen/ai-passport>
 
-## What it does
+## 功能
 
-- **A complete reading app, not a demo**: the firmware boots straight into the
-  reader's own title screen. There is no test menu and no network use; the story
-  is read entirely offline.
-- **The full game script**: every chapter and dialogue line of the source port is
-  packed into the firmware, together with 92 backgrounds, 123 character sprites in
-  several poses each, 570 event illustrations and the music-room style extras the
-  port ships.
-- **Portrait, full-screen art**: backgrounds and event illustrations fill a
-  240 × 320 portrait screen, sprites are bottom-aligned and drawn over them, and
-  the dialogue sits in a translucent band below.
-- **Typewriter text with page breaks**: each line types out at a selectable speed;
-  a tap completes the line immediately, and a line that does not fit flips to the
-  next page instead of being cut.
-- **Chapter cards**: each chapter announces itself as a card reading
-  `Chapter X-X` (chapter and section), shown over the current scene; any key, or
-  the transition timer, continues reading.
-- **Choices**: branch points show the source port's options in place of the
-  dialogue; the selection is saved as soon as it is confirmed.
-- **Skipping and jumping**: the menu can skip to the start of the next chapter,
-  and the reader reports when the last chapter has been reached.
-- **Save and resume**: one auto-save plus five manual slots. The auto-save is
-  written on every chapter change, on every choice, and before the device sleeps,
-  so the title screen's "Continue" always returns to where reading stopped.
-- **Settings**: text speed (slow / medium / fast), an about screen describing the
-  fan-port provenance, and a power-off entry.
-- **Idle handling**: after 60 seconds the picture dims, after 3 minutes the screen
-  turns off and after 7 minutes the device deep-sleeps; any key wakes it and
-  reading resumes in place. Auto-read and fast-forward are exempt, so a story left
-  running never dims or sleeps by itself.
+- **一个完整的阅读器，不是演示**：固件开机直接进入它自己的标题页，没有测试菜单、不联网，全程离线阅读。
+- **整部剧本**：源移植版的每一章、每一句对白都打进固件，连同 92 张背景、123 个可换姿势的立绘、570 张事件插图与移植版自带的附加内容。
+- **竖屏满屏画面**：背景与事件插图铺满 240 × 320 竖屏，立绘底对齐叠在画面上，正文显示在下方半透明文字带里。
+- **打字机正文与自动分页**：每句按可选速度逐字显示；按一下立刻补全整句，一句放不下会翻到下一页而不是被截断。
+- **章节卡**：进入新章节时显示写着 `第 X-X 章`（章-节）的过场卡，叠在当前画面上；按任意键或等过场计时结束继续。
+- **选项分支**：遇到分支点时用原作选项替换正文，确定后立刻写入存档。
+- **跳过章节**：菜单里可以直接跳到下一章开头，读到最后一章时会明确提示。
+- **存档与续读**：1 个自动存档加 5 个手动存档。自动存档在每次换章、每次做出选择、以及睡前写入，所以标题页的"继续阅读"永远回到上次停下的地方。
+- **系统设置**：文字速度（慢 / 中 / 快）、介绍移植来源的"关于本作"、以及关机。
+- **闲置处理**：60 秒画面变暗、3 分钟熄屏、7 分钟进入休眠；按任意键唤醒并回到原处。自动阅读与快进不受影响，放着读的故事不会自己变暗或休眠。
 
-## Interaction
+## 操作
 
-Three keys drive the whole app.
+三个按键就能完成全部操作。
 
-Title screen:
+标题页：
 
-- **Up / Down**: move through the menu (start reading, continue, load progress,
-  settings).
-- **OK**: enter the selected entry.
-- **OK (hold)**: power off.
+- **上 / 下**：在菜单项间移动（开始阅读、继续阅读、读取进度、系统设置）。
+- **确定**：进入选中的项。
+- **长按确定**：关机。
 
-While reading:
+阅读中：
 
-- **Up / Down (tap)**: read the next line; completing a line still being typed and
-  turning the page both happen here.
-- **OK (tap or hold)**: open the menu — continue, save progress, load progress,
-  skip chapter, back to title.
-- **Up (hold)**: fast-forward; the reader advances on its own until the key is
-  released.
-- **Down (hold)**: toggle auto-read, which advances at a fixed pace and keeps the
-  screen lit.
+- **上 / 下（单击）**：读下一句；补全正在打字的一句、以及翻页都走这里。
+- **确定（单击或长按）**：打开菜单——继续阅读、保存进度、读取进度、跳过章节、返回标题。
+- **长按上**：快进，自己往下推，松手即停。
+- **长按下**：开关自动阅读；开着时按固定节奏自动翻页，并且保持屏幕常亮。
 
-At a choice:
+遇到选项时：
 
-- **Up / Down**: move the highlight; **OK**: confirm.
+- **上 / 下**：移动高亮；**确定**：确认。
 
-Save screens:
+存档页：
 
-- **Up / Down / OK**: pick and open the auto-save or one of the five manual slots.
-- **OK (hold)**: delete the selected slot.
+- **上 / 下 / 确定**：选择并打开自动存档或 5 个手动存档之一。
+- **长按确定**：删除选中的存档。
 
-Press timing: a tap shorter than 180 ms is ignored as a click, and 500 ms of hold
-triggers the long-press action.
+按键时序：短于 180 毫秒的按下会被当作抖动忽略，按住 500 毫秒触发长按动作。
 
-## How it is built
+## 实现要点
 
-- The reader carries its own small inflate implementation rather than relying on
-  the ROM decompressor, so the whole output of a block is decoded into one buffer
-  instead of needing a 32 KB sliding dictionary.
-- Images are stored per device geometry in a chunked palette format (backgrounds
-  and event illustrations as 240 × 320 JPEG, sprites by pose), and event
-  illustration variants are stored as sparse mask patches against a base picture.
-- The story is packed into small blocks with a 3 KB ceiling, which keeps the
-  firmware's working buffer at 4 KB — the part has no PSRAM to spare.
+- 阅读器自带一个精简的 inflate 实现，不依赖 ROM 里的解压器：一个块的解压结果整体落在单个缓冲里，从而不需要 32 KB 滑动字典。
+- 图像按设备原生几何存储成分块调色板格式（背景与事件插图为 240 × 320 JPEG，立绘按姿势逐张存）；事件插图的变体以稀疏掩码补丁的形式叠加在底图上。
+- 剧本按小块打包（每块不超过 3 KB），固件的工作缓冲因此只要 4 KB —— 这块板没有 PSRAM 可用。
 
-## Source
+## 源码
 
-- Repository: `Shinku-Chen/ai-passport`, branch `feature/senren-banka`,
-  release `v0.1.0-senren-banka`
-  (<https://github.com/Shinku-Chen/ai-passport/tree/feature/senren-banka>).
-- Upstream work: [`hrk666666/Senren-Banka-MiBand-10`](https://github.com/hrk666666/Senren-Banka-MiBand-10)
-  — the Mi Band fan port this branch derives from. It declares no licence; its
-  script and artwork ship with the branch under `assets/senren-source/` (92
-  backgrounds, 123 sprites, 570 event illustrations and 112 script chunks, plus a
-  `MANIFEST.json` recording the upstream ref and a SHA-256 per file; `tools/senren_fetch_source.py`
-  can fetch them again), packed into the firmware, and the upstream project is
-  credited as the source. Repacking from that directory is byte-identical to the
-  committed packs. The port is shared for personal study and exchange only, and
-  the first-run notice inside the app says so.
-- Released to the community as project `community-07c775dc` (id 679); the
-  submission was pending review when this archive was written.
+- 仓库：`Shinku-Chen/ai-passport`，分支 `feature/senren-banka`，release `v0.1.0-senren-banka`
+  （<https://github.com/Shinku-Chen/ai-passport/tree/feature/senren-banka>）。
+- 上游工作：[`hrk666666/Senren-Banka-MiBand-10`](https://github.com/hrk666666/Senren-Banka-MiBand-10)
+  —— 本分支所依据的手环同人移植版。该仓库未声明许可证；其剧本与素材随本分支收录在 `assets/senren-source/`（92 张背景、123 个立绘、570 张事件插图、112 个剧本分块，另含记录上游引用与逐文件 SHA-256 的 `MANIFEST.json`，也可用 `tools/senren_fetch_source.py` 重新拉取），打包进固件并在文档中注明来源；用该目录重打包与已提交的包字节级一致。本移植仅供个人学习与交流，应用内的首次运行提示也写明了这一点。
+- 社区投稿：作品 `community-07c775dc`（id 679），写这份档案时状态为审核中。

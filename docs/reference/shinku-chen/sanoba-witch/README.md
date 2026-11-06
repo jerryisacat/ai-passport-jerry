@@ -1,101 +1,56 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 魔女的夜宴（Sanoba Witch）
 
-# Sanoba Witch
+把《魔女的夜宴》(サノバウィッチ)手环移植版搬到 AI Passport 的竖屏视觉小说阅读器:
+**101 章、53,190 句对白、约 110 万字、五条角色线五个结局**,全程离线阅读。
 
-A portrait visual novel reader ported from the Mi Band fan port of *Sanoba Witch*:
-**101 chapters, 53,190 lines of dialogue, about 1.1 million
-characters, five heroine routes and five endings**, read fully offline.
+## 发布信息
 
-## Publish information
+- **标题**:魔女的夜宴
+- **简介**:把 AI Passport 变成一台口袋视觉小说机 —— 开机就是标题页,从第一句一路读到五个结局之一;整部剧本都装在机身上,不联网、不用往设备里拷任何文件。上/下 推进对白,上 长按快进,下 长按切换自动阅读,确定 打开菜单(存档、读档、跳到下一个选项、自动播放)。每次换场景都会自动存档,标题页的"继续阅读"接着上次的位置。
+- **仓库**:<https://github.com/Shinku-Chen/ai-passport/tree/feature/sanoba-witch>
+- **发布**:`v0.1.0-sanoba-witch` —— 合并镜像 `FoloToy-AI-Passport-full.bin`,5,929,664 字节
+- **社区投稿**:`community-8e228d9f`(分类 games)
 
-- **Title**: Sanoba Witch
-- **Description**: Turn an AI Passport into a pocket visual novel. It opens on a
-  title screen and you read from the first line to one of five endings; the whole
-  script lives on the device, with no network and nothing to copy over. UP / DOWN
-  advance a line, UP (hold) fast-forwards, DOWN (hold) toggles auto-read, and OK
-  opens the menu (save, load, jump to the next choice, auto-play). Every scene
-  change is saved automatically, and "continue" on the title screen resumes it.
-- **Repository**: <https://github.com/Shinku-Chen/ai-passport/tree/feature/sanoba-witch>
-- **Release**: `v0.1.0-sanoba-witch` — merged image `FoloToy-AI-Passport-full.bin`, 5,929,664 bytes
-- **Community submission**: `community-8e228d9f` (category games)
+## 它是什么
 
-## What it does
+- **开机即阅读器**:没有演示菜单,标题页就是首页。
+- **剧本全在设备上**:101 章、53,190 句对白、约 110 万字打进固件,运行时完全不联网。
+- **五条线五个结局**:路线由前面选择累积的好感度旗标决定,与源移植版的内容包描述一致。
+- **自动阅读与快进**:下 长按进入自动阅读(期间屏幕保持常亮),上 长按按住即快进。
+- **存档**:每次换场景写一次自动存档,另有 5 个手动槽位。
+- **章节读数**:角落显示剧本自己的章节号(如 `4-7`),换章卡片显示同一个号。
+- **省电**:60 秒调暗、180 秒熄屏、420 秒休眠,任意键唤醒;自动阅读与快进不计入空闲。
 
-- **Boots into the reader**: no test menu — the title screen is the front page.
-- **The whole script on the device**: 101 chapters, 53,190 dialogue lines and about
-  1.1 million characters packed into the firmware; nothing is downloaded at runtime.
-- **Five routes, five endings**: the route is decided by affection flags set by the
-  earlier choices, exactly as the source port's content package describes it.
-- **Auto-read and fast-forward**: DOWN (hold) starts auto-read (the screen stays
-  awake while it runs) and UP (hold) fast-forwards while held.
-- **Saves**: one automatic slot written on every scene change plus five manual slots.
-- **Chapter readout**: the corner shows the script's own chapter number (for example
-  `4-7`) and the transition card shows the same number when a chapter changes.
-- **Idle behaviour**: 60 s dims the backlight, 180 s turns it off and 420 s enters
-  deep sleep; any key wakes the device. Auto-read and fast-forward do not count as
-  idle time.
+## 交互
 
-## Interaction
+三个键覆盖全部操作。
 
-Three keys drive the whole app.
+- **上/下 短按**:推进对白。打字机还在跑时按一下就显示完整;长句自动分页,下键翻页。
+- **上 长按**:快进,松手即停。
+- **下 长按**:切换自动阅读。右下角出现「自动」,每句读完停一下再推进;按其它键停止。
+- **确定 短按或长按**:菜单 —— 存档、读档、跳到下一个选项、自动播放、返回主页。
+- **遇到选项**:上/下 选择、确定 确认。**选项页不会关掉自动阅读**,答完会自己接着往下读。
+- 短按判定 180 ms、长按 500 ms,由 BSP 显式下发给按键组件。
 
-- **UP / DOWN (short)**: advance the dialogue. A press while the typewriter is still
-  running completes the sentence; long sentences paginate and DOWN turns the page.
-- **UP (hold)**: fast-forward until released.
-- **DOWN (hold)**: toggle auto-read. An `auto` marker appears bottom-right; each line
-  waits briefly after finishing and then advances. Any other key stops it.
-- **OK (short or hold)**: menu — save, load, jump to the next choice, auto-play,
-  back to title.
-- **At a choice**: UP / DOWN select and OK confirms. Auto-read is deliberately *not*
-  switched off while a choice is on screen, so answering one resumes reading.
-- Press timing is 180 ms for a short press and 500 ms for a long press, passed to the
-  button component explicitly by the BSP.
+## 演出与内容边界
 
-## Presentation and content limits
+**没有人物立绘,也没有事件 CG。** 上游手环移植版只带了背景与 Q 版 SD 演出图,所以人物说话时只显示名字牌,场面由背景 + SD 小图承担。剧情文本、分支、选项与五个结局都是完整的 —— 缺的只是这两类图,而且是上游就没有,不是本次移植删掉的。
 
-**There is no character art and no event CG.** The upstream Mi Band port ships only
-backgrounds and chibi SD illustrations, so a speaking character is shown as a name
-plate and scenes are carried by the background plus an SD window. The script, its
-branches, the choices and all five endings are complete; only those two image classes
-are missing, and they are missing upstream rather than dropped here.
+## 亮点
 
-## Highlights
+- **紧凑剧本包,不是把剧本原样塞进去**:5.06 MB 的节点 JSON 变成 1.45 MB 的包,一次只解一块(单块解压 3 KB、缓冲 4 KB)。块大小由 RAM 决定而不是口味决定(见配套经验条目);跳转目标走标签表直接定位,不扫块。
+- **启动自检**:`sanoba_app_init` 会解出第一个块的第一句并打印解压字节数与说话人;失败时打印解压器的错误串、空闲堆与最大连续块。三个互不相关的真机缺陷过去都表现为"一进阅读就全剧终",现在这类问题是一行日志就能定位。
+- **版面按面板设计**:240 × 320 竖屏,整宽背景 + 上三分之一处的 240 × 144 SD 窗 + 五行正文带。背景直接解进画布、SD 图解码进它占用的那段行,两者都不需要额外解码缓冲。
+- **文字与字库同源**:剧本包的字符表按全局词频排序,同时就是 16px 字库子集(3,458 字形)的字形顺序 —— 生成出来的字库不可能缺剧本用到的字。
+- **离线且可复现**:两个打包器与字库生成器都从入库素材 `assets/sanoba-source/` 运行;重建任一包都与固件里的逐字节一致。
+- **串口调试通道不只抓像素,还能驱动行为**:`SANOBAPAGE` 回传整帧,`SANOBASHOT` 单独渲染某个场景,`SANOBAJUMP` 拨动阅读进度,`SANOBAAUTO` 切自动阅读 —— 显示与休眠这类行为可以不动手就验完。
 
-- **A compressed script pack instead of a script dump**: the 5.06 MB node JSON
-  becomes a 1.45 MB pack whose chunks decompress one at a time (3 KB raw per chunk,
-  a 4 KB buffer). Chunk size is set by RAM, not by taste — see the linked experience
-  entry — and jump targets resolve through a label table instead of scanning chunks.
-- **The boot self-check**: `sanoba_app_init` decompresses the first chunk and decodes
-  its first line, then logs the decompressed size and the speaker, or the
-  decompressor's error string plus the free heap and the largest free block. Three
-  unrelated hardware-only defects all used to present as "the story ends
-  immediately"; this check now makes that class of failure a one-line diagnosis.
-- **Layout sized from the panel**: 240 × 320 portrait with a full-width background, a
-  240 × 144 SD window in the upper third and a five-line text band. Backgrounds decode
-  straight into the canvas, and an SD image decodes into the row range it occupies, so
-  neither needs its own decode buffer.
-- **Text and font come from one table**: the pack's character table is ordered by
-  global frequency and doubles as the glyph order of the 16 px subset (3,458 glyphs),
-  so a generated font cannot be missing a character the script uses.
-- **Offline and reproducible**: both packers and the font generator run from the
-  sources committed under `assets/sanoba-source/`; rebuilding either pack is
-  byte-identical to what the firmware carries.
-- **A serial debugging channel for behaviour, not only pixels**: `SANOBAPAGE`
-  streams a full frame back over the console, `SANOBASHOT` renders a scene
-  standalone, `SANOBAJUMP` moves the reading position, and `SANOBAAUTO` switches
-  auto-read so display and sleep behaviour can be checked without touching the
-  device.
+## 来源与致谢
 
-## Source and credits
-
-The script and art come from the Mi Band fan port
+剧本与素材来自手环移植工程
 [`hrk666666/Sanoba-Witch-MiBand-10`](https://github.com/hrk666666/Sanoba-Witch-MiBand-10)
-(a Vela quick app whose own upstream is the archived
-[`futrw4v/Sanoba-Witch-MiBand-9Pro`](https://github.com/futrw4v/Sanoba-Witch-MiBand-9Pro)).
-Its code is GPL-3.0; the artwork belongs to Yuzusoft and the Simplified-Chinese text
-belongs to its fan-translation group. This branch re-implements the reader on the
-ATRI reader's LVGL page system and packs the sources it ships with
-(`assets/sanoba-source/`), crediting the upstream project; the material is kept for
-personal study and technical exchange only.
+(小米 Vela 快应用,其上游是已存档的
+[`futrw4v/Sanoba-Witch-MiBand-9Pro`](https://github.com/futrw4v/Sanoba-Witch-MiBand-9Pro))。
+其代码为 GPL-3.0;美术版权归 Yuzusoft,简体中文文本归其汉化组所有。本分支在 ATRI 阅读器的
+LVGL 页面体系上重写了阅读器,并把打包用的素材随分支提交在 `assets/sanoba-source/`,
+注明上游出处;素材仅用于个人学习与技术交流。

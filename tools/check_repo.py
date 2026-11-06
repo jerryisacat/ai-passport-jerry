@@ -29,7 +29,6 @@ SECRET_PATTERNS = {
 ROOT_MARKDOWN_ALLOWLIST = {
     "AGENTS.md",
     "README.md",
-    "README.zh_CN.md",
 }
 # Register only concrete, vendored component directories, e.g. "components/foo".
 # These exemptions never change the input to sensitive-content/conflict checks.
@@ -208,13 +207,21 @@ def check_document_languages(
     }
 
     for path in sorted(markdown):
-        # The repository-root README is the fork's Chinese-only landing page; it is
-        # maintained outside the bilingual document rule and has no English peer.
-        if path == ROOT / "README.md":
-            continue
-
         name = path.name
         text = path.read_text(encoding="utf-8")
+
+        # README.md is Chinese-only and has no bilingual peer.
+        if name == "README.zh_CN.md":
+            errors.append(
+                f"{path.relative_to(ROOT).as_posix()}: README.md is Chinese-only; remove this translation"
+            )
+            continue
+        if name == "README.md":
+            if not CJK_RE.search(text):
+                errors.append(
+                    f"{path.relative_to(ROOT).as_posix()}: README.md must use Chinese prose"
+                )
+            continue
 
         # AGENTS.md is English-only by design and has no translated peer.
         if name == "AGENTS.zh_CN.md":

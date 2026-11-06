@@ -1,104 +1,81 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 沙耶之歌(社区版)
 
-# Saya no Uta (Community)
+AI Passport 上的横屏视觉小说阅读器。把小米手环 10 上的《沙耶之歌》同人移植搬到设备上：
+44 章、3,828 段对白、3 个结局，全程离线，用三个按键阅读。
 
-A landscape visual-novel reader for the AI Passport. It ports the Mi Band 10 fan
-port of *Saya no Uta* to the device: 44 chapters, 3,828 dialogue lines and three
-endings, fully offline, read with three keys.
+## 故事简介
 
-## Story
+医科大学生匂坂郁纪遭遇了一起严重的交通事故，双亲身亡，幸运的是他活了下来。经过脑外科手术后，郁纪苏醒了过来，但他却发现原本熟悉的世界变成了另一幅模样。他眼中的世界变成了到处都是内脏和腐肉的恐怖世界，人们看上去就是会移动的肉块状怪物，大家的话语则变成了怪兽一般的声音，连平常的食物在他眼中也变得令人作呕。
 
-Medical student Fuminori Sakisaka survives a traffic accident that kills his parents, but the
-brain surgery that saves him leaves the world around him changed: he sees organs and rotting
-flesh everywhere, people as moving lumps of meat, speech as animal noise, and even ordinary
-food as revolting.
+然而，在郁纪绝望之时，他却遇到了他的世界中唯一正常的存在——谜一样的少女“沙耶”。她是为了寻找父亲而来到这家医院。经过多次的见面和交流后，郁纪对沙耶产生了爱意，觉得她是可以让他忍受活在这个病态世界中的理由，从而邀请她到自己的家里，开始在一起生活。
 
-In his despair the only normal thing left is a mysterious girl, Saya, who came to the hospital
-looking for her father. After meeting her again and again, Fuminori falls for her, decides she
-is the reason he can bear living in this diseased world, and invites her to live with him.
+然而，这仅仅只是刚踏入通向真正到来的疯狂的门扉而已。故事主要讲述了郁纪和沙耶之间的纯粹却又另类的爱情故事。
 
-That is only the door to the madness still to come. The story is a pure, if very different,
-love story between Fuminori and Saya.
+## 发布信息
 
-## Publish information
+- **标题**：沙耶之歌(社区版)
+- **简介**（提交原文）：
 
-- **Title**: Saya no Uta (Community)
-- **Description** (submitted copy):
-
-  > Story:
-  > Medical student Fuminori Sakisaka survives a traffic accident that kills his parents, but the brain surgery that saves him leaves the world around him changed: he sees organs and rotting flesh everywhere, people as moving lumps of meat, speech as animal noise, and even ordinary food as revolting.
+  > 【故事 / Story】
+  > 医科大学生匂坂郁纪遭遇了一起严重的交通事故，双亲身亡，幸运的是他活了下来。经过脑外科手术后，郁纪苏醒了过来，但他却发现原本熟悉的世界变成了另一幅模样。他眼中的世界变成了到处都是内脏和腐肉的恐怖世界，人们看上去就是会移动的肉块状怪物，大家的话语则变成了怪兽一般的声音，连平常的食物在他眼中也变得令人作呕。
   >
-  > In his despair the only normal thing left is a mysterious girl, Saya, who came to the hospital looking for her father. After meeting her again and again, Fuminori falls for her, decides she is the reason he can bear living in this diseased world, and invites her to live with him.
+  > 然而，在郁纪绝望之时，他却遇到了他的世界中唯一正常的存在——谜一样的少女“沙耶”。她是为了寻找父亲而来到这家医院。经过多次的见面和交流后，郁纪对沙耶产生了爱意，觉得她是可以让他忍受活在这个病态世界中的理由，从而邀请她到自己的家里，开始在一起生活。
   >
-  > That is only the door to the madness still to come. The story is a pure, if very different, love story between Fuminori and Saya.
+  > 然而，这仅仅只是刚踏入通向真正到来的疯狂的门扉而已。故事主要讲述了郁纪和沙耶之间的纯粹却又另类的爱情故事。
   >
-  > What it turns your device into:
-  > Turn the AI Passport into a pocket visual-novel reader and revisit Saya no Uta: 44 chapters, 3,828 dialogue lines and three endings, fully offline and ready out of the box.
+  > 【这台设备上能做什么】
+  > 把 AI Passport 变成一台掌上视觉小说阅读器，随时重读《沙耶之歌》：44 章、3,828 段对白、3 条结局分支，全程离线、开箱即玩。
   >
-  > Three keys carry the whole story: UP advances, holding UP fast-forwards until you let go, DOWN steps back a page, and OK opens the menu. Jump straight to any chapter to re-read a favourite scene, or switch on auto-play and let the story read itself. The art fills the whole screen and the translucent dialogue panel shows the scene behind it, so you can finish the whole route without reaching for your phone.
+  > 三个按键就能推完全程：上键推进下一段，按住上键快进、松手即停，下键回看上一页，确定键打开菜单。想重温哪一段可以直接跳章，也可以开启自动播放，让它自己一句句往下读。画面铺满整块屏幕，半透明文本框直接透出场景，躺着把这一趟读完也不用碰手机。
   >
-  > This build contains the community-safe base assets only; no adult content is included. The story is graphic in places, so please read with care. It is a personal study port built from a public Mi Band port and is meant for personal devices; please support the official release if you can.
+  > 本版本只包含社区可分发的基础素材，不含成人向内容；剧情涉及血腥描写，请谨慎阅读。本固件是个人移植的学习产物，素材来自公开的小米手环移植项目，仅供个人设备试玩，有能力请支持正版。
 
-- **Instructions** (submitted separately; Chinese is required):
+- **使用说明**（随提交单独提交，中文必填）：
 
-  > First run: no network and no pairing needed. Power on and follow these steps to read the whole story.
+  > 首次使用：不需要联网、也不需要配对，开机后按下面的步骤就能读完整个故事。
   >
-  > 1. The content warning screen comes up first. Scroll it with UP / DOWN; once you reach the end the hint turns into "press OK to continue" and OK enters the game. Before that, OK only pages the text down.
-  > 2. On the title screen pick with UP / DOWN and press OK: Continue (only shown when an automatic save exists - it resumes the scene you stopped at), Start from chapter 1, Load save, Settings.
-  > 3. While reading: UP advances a segment, holding UP fast-forwards until you release it, DOWN steps back a page, and OK opens the menu. Long lines are split into pages, so DOWN also lets you re-read the previous page.
-  > 4. Auto-play: hold DOWN for about a second on the reading screen (a notice appears). Once the current segment has finished typing, a new segment is read every 0.9 seconds. Any key stops it, and choices or endings stop it automatically. The screen will not dim or sleep while auto-play runs.
-  > 5. Choices and endings: when choices appear, pick one with UP / DOWN and confirm with OK; the story branches and has three endings in total.
-  > 6. Menu (tap OK while reading): Save writes to a manual slot or the automatic slot, Load reads a save, Skip chapter jumps to the next chapter (it stops first at a choice the chapter has not reached yet), Back to title returns to the title screen, and Close menu resumes reading.
-  > 7. Saves: five manual slots plus one automatic slot written on every scene change. Holding OK on a slot in the save screen deletes that save.
-  > 8. Settings (entered from the title screen): Text speed switches between slow / medium / fast / instant (instant shows the whole page at once), Font size switches 16 px and 20 px, About is a scrollable page, and Back returns to the title screen.
-  > 9. Battery and power: the battery percentage sits in the top-right corner. After a long idle period the screen dims (about 60 s), turns off (about 180 s) and the device sleeps (about 420 s); any key wakes it and resumes from the automatic save.
+  > 1. 开机先看到内容警告页。用上/下键滚动，读到最后一行的提示会变成「按确定继续阅读」，这时按确定进入游戏；在此之前按确定只会往下翻一屏。
+  > 2. 标题页用上/下选择，按确定进入：「继续」（有自动存档时才出现，接着上次读到的场景继续）／「从第 1 章开始」／「读取存档」／「设置」。
+  > 3. 阅读中：上键短按推进下一段；按住上键快进，松手即停；下键短按回看上一页；确定键短按打开菜单。长句子会自动分页，用下键可以翻回上一页重看。
+  > 4. 自动播放：在阅读画面长按下键约 1 秒进入自动模式（屏幕会有提示），当前这段文字显示完之后每隔约 0.9 秒自动读下一段；按任意键退出，遇到选项或结局会自动停下。自动播放期间不会调暗屏幕、也不会休眠。
+  > 5. 选项与结局：画面出现选项时，用上/下选择、按确定决定，剧情会走向不同分支，共有 3 个结局。
+  > 6. 菜单（阅读中短按确定打开）：「保存」写入手动存档位或自动位；「读取」读取存档；「跳过章节」跳到下一章（本章后面还有没遇到的选项时会先停在该选项上）；「返回标题」回到标题页；「关闭菜单」继续阅读。
+  > 7. 存档：5 个手动位 + 1 个自动位，自动位在每次换场景时写入；在存档界面把光标停在某个槽位上长按确定可以删除该存档。
+  > 8. 设置（标题页进入）：「文字速度」在慢/中/快/「瞬间」之间切换（「瞬间」整页直接显示）；「字号」切换 16px 与 20px；「关于」是可上下滚动阅读的说明页；「返回」回到标题页。
+  > 9. 电量与省电：画面右上角显示电量百分比。长时间没有操作会依次调暗（约 60 秒）、熄屏（约 180 秒）、进入深睡（约 420 秒），按任意键即可唤醒并从自动存档继续阅读。
 
-- **Submission record**: project 672, revision 1413, slug `community-10803507`, status
-  `pending` (submitted for review). Two earlier submissions of the same build disappeared from
-  the creator centre shortly after submitting, so this is the third attempt.
-- **Category**: games
-- **Cover**: `saya-no-uta-cover.png` (PNG, 1152 × 1536, 3:4) — this archive stays text-only and
-  records the cover by file name and format only; it is not committed here. The release notes and
-  the community listing use the copy kept at `assets/images/saya-no-uta-cover.png` in the
-  author's fork.
-- **Source**: <https://github.com/Shinku-Chen/ai-passport>
+- **提交记录**：项目 672、修订 1413、slug `community-10803507`，状态 pending（已提交审核）。
+  同一份固件的前两次提交（669、671）在提交后几分钟内从创作中心消失，这是第三次。
+- **分类**：games
+- **封面**：`saya-no-uta-cover.png`（PNG，1152 × 1536，3:4）—— 档案区保持纯文本，只记录文件名与格式，
+  不在此提交图片本体；Release 说明与社区列表引用的是作者 fork 里 `assets/images/saya-no-uta-cover.png` 那份。
+- **源码**：<https://github.com/Shinku-Chen/ai-passport>
 
-## Cover
+## 封面
 
-`saya-no-uta-cover.png` (PNG, 1152 × 1536) uses the original key visual: Saya with
-the title lettering. The cover is recorded here as publish metadata only and is not
-committed to the repository.
+`saya-no-uta-cover.png`（PNG，1152 × 1536）使用原作的封面主视觉：沙耶与标题字样。
+本档案保持纯文本，只按文件名与格式记录；图片本体存放在作者 fork 的 `assets/images/` 下，
+用于 Release 说明与社区市场列表。
 
-## Features
+## 功能
 
-- **Three keys, 44 chapters**: OK opens the menu, UP advances (hold to fast-forward,
-  release to stop) and DOWN steps back a page; list cursors stop at the ends instead
-  of wrapping around.
-- **Paginated body text**: 19 full-width characters per line and four lines per
-  screen at 16 px (15 characters and three lines at 20 px), with a typewriter effect
-  that can also print a whole page instantly.
-- **Choices and branches**: one choice in chapter 10 and one in chapter 20, three
-  endings in total (End / BadEnd / MadEnd); a choice always stops and waits.
-- **Skip chapter**: the menu entry skips the current chapter, but stops at a choice
-  the chapter has not reached yet instead of deciding for the player.
-- **Auto-play**: hold DOWN on the reading screen to start; it advances one segment
-  every 900 ms once the current segment has finished typing. Any key stops it, choices and endings
-  stop it automatically, and the idle screen-off policy is suspended while it runs.
-- **Saves**: five manual slots plus one automatic slot written on every scene change;
-  "Continue" restores the automatic one. Holding OK on a slot in save mode deletes it.
-- **Settings**: text speed, font size, and a scrollable about page.
-- **Content warning screen**: the first screen after boot; it must be scrolled to the
-  end before OK continues.
-- **Offline resource pack**: script, backgrounds and sprites are read straight out of
-  Flash with no runtime decompression; decoding happens only when the background or
-  sprite actually changes, and sprites are composited through a 1bpp mask.
-- **Full-frame art behind the panel**: each background is stored as two 1:1 JPEGs
-  (rows 0–149 and 150–239 of one 320 × 240 frame) drawn on two stacked canvases, so the
-  whole scene stays visible and the translucent dialogue box (50 % opacity, flush with
-  the bottom edge) shows real art instead of a stretched or synthesized fallback.
-- **Chinese font subset**: a Noto Sans SC subset (4 bpp, uncompressed) built into the
-  firmware, covering both the UI strings and every character in the script.
-- **Battery and power**: battery percentage in the top-right corner; idle 60 s dims,
-  180 s turns the screen off and 420 s enters deep sleep, with any key waking it.
+- **三个按键读完 44 章**：确定打开菜单，上短按推进、长按快进、松手停，下短按回看上一页；
+  列表到顶/到底停住，不绕圈。
+- **正文分页**：按 16px 字号一行 19 个全角字、一屏 4 行分页（20px 字号为 15 字、3 行），
+  打字机效果可选中速或「瞬间」整页直出。
+- **选项与分支**：第 10 章、第 20 章各有一处选项，共 3 个结局（End / BadEnd / MadEnd）；
+  遇到选项会停下来等你选。
+- **跳过章节**：菜单里的「跳过章节」整章跳过；本章后面还有未遇到的选项时停在该选项上。
+- **自动播放**：正文页长按下键进入，当前段打完字后每 900 ms 自动推进一段；任意键退出，
+  选项与结局处自动停下；自动播放期间不调息屏策略（不调暗、不息屏、不深睡）。
+- **存档**：5 个手动存档位 + 1 个自动位（每次换场景写入）；标题页「继续」从自动位恢复；
+  保存模式下在槽位长按确定可删除该存档。
+- **设置**：文字速度、字号、关于（正文可滚动）。
+- **内容警告页**：开机首屏，滚动读到最后才能按确定继续。
+- **离线资源包**：脚本 + 背景 + 立绘直接读 Flash，无运行时解压；解码只发生在（背景, 立绘）
+  真正变化时，立绘按 1bpp 遮罩合成到画面区。
+- **整幅画面铺满全屏**：每张背景在打包时存成两张 1:1 的 JPEG（整幅 320 × 240 的第 0–149 行
+  与第 150–239 行），分别画在上下两块画布上 —— 整幅画面完整可见，半透明文本框（50% 不透明
+  度、贴屏幕底边）背后是真实画面，而不是被拉伸或替代色填充。
+- **中文字体子集**：Noto Sans SC 子集（4bpp、未压缩）随固件内置，覆盖界面文案与全部剧本字符。
+- **电量与省电**：画面右上角电量；空闲 60s 调暗、180s 熄屏、420s deep sleep，按键唤醒。

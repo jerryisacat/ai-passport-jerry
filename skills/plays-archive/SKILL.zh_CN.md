@@ -1,6 +1,6 @@
 ---
 name: plays-archive
-description: 固件发布之后，把已发布的应用归档到上游 FoloToy ai-passport 仓库的 docs/reference/ 目录，附一份 AI 生成的双语功能说明（纯文本；封面图只记录文件名与格式，不提交）。
+description: 固件发布之后，把已发布的应用归档到上游 FoloToy ai-passport 仓库的 docs/reference/ 目录，附一份 AI 生成的中文功能说明（纯文本；封面图只记录文件名与格式，不提交）。
 ---
 
 <p align="right">
@@ -29,7 +29,7 @@ description: 固件发布之后，把已发布的应用归档到上游 FoloToy a
 
 确认应用名、其所属源码（例如某个 `demo/*` 分支或 `main/`），以及贡献者的 GitHub 用户名。
 用户名和应用名用小写连字符，存放在相对仓库根目录的 `docs/reference/<username>/<app-name>/` 路径下。
-完整约定见 [`../../docs/reference/README.md`](../../docs/reference/README.zh_CN.md)。
+完整约定见 [`../../docs/reference/README.md`](../../docs/reference/README.md)。
 
 ## 检查项目 README
 
@@ -52,7 +52,7 @@ description: 固件发布之后，把已发布的应用归档到上游 FoloToy a
 ## 生成功能说明
 
 先收集开发者发布到社区时填写的元数据（双语标题、双语描述，以及他们提交的源码地址），然后写
-`docs/reference/<username>/<app-name>/README.md` 及其配对 `.zh_CN.md`，作为为后续查询而生成的 AI 功能说明
+`docs/reference/<username>/<app-name>/README.md`（README 只维护中文），作为为后续查询而生成的 AI 功能说明
 （不是发布产物）。记录：
 
 - **发布标题与描述**：发布到社区时开发者提交的双语标题、双语描述。
@@ -64,17 +64,17 @@ description: 固件发布之后，把已发布的应用归档到上游 FoloToy a
 
 若根 README 存在，把它合并进说明，而不是忽略人类可读的描述。
 
-默认 `.md` 用英文、配对 `.zh_CN.md` 用简体中文，并在同一次变更中对齐。
-同时在 `docs/reference/README.md` 的中英文版本中登记该应用，使档案可从索引中发现。
+README 只维护中文；其它文档保持英文默认页与中文 `.zh_CN.md` 配对，并在同一次变更中对齐。
+同时在 `docs/reference/README.md` 中登记该应用，使档案可从索引中发现。
 
 ## 封面图
 
 档案为**纯文本**：**不要**提交封面图，只在功能说明里记录其文件名与格式作为发布元数据。图片本身随
 社区发布留存。若需为发布（而非归档）生成封面，参考
-[`docs/brand/`](../../docs/brand/README.zh_CN.md) 下的官方产品图：生成时必须传一张参考图
+[`docs/brand/`](../../docs/brand/README.md) 下的官方产品图：生成时必须传一张参考图
 （如 `ai-passport-front.png` 或某款配色外壳渲染图）作为生成调用输入，保留其外壳、按键、接口与
 钥匙扣孔原样，只把参考图的屏幕区域**重绘**成该玩法的真实屏显内容，屏幕的尺寸、比例、圆角与外壳内
-位置与参考保持一致。完整约定见 [`docs/brand/README.md`](../../docs/brand/README.zh_CN.md)。
+位置与参考保持一致。完整约定见 [`docs/brand/README.md`](../../docs/brand/README.md)。
 
 ## 提交
 

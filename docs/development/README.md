@@ -1,34 +1,39 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 工程规范（Development）
 
-# Development Guidelines
+本目录存放 AI Passport 的工程开发规范和可复用工作流，按用途分组：AI 开发工作流（`ai-guide.md`）、工程约定（`engineering/`）、CI 文档（`ci/`）、发布/完成流程（`release/`）。
 
-This directory contains AI Passport engineering rules and reusable workflows, grouped by purpose: the AI-assisted development workflow (`ai-guide.md`), engineering conventions (`engineering/`), CI documents (`ci/`), and the release/completion flow (`release/`). Rules should identify their trigger, required action, prohibited action, validation, and exceptions. Hardware facts belong in `docs/hardware-design/`; automatable requirements must also be enforced by tooling or CI.
+## 收录标准
 
-## AI workflow
+- 收录构建验证、代码风格、注释、测试、资源约束和 AI 开发流程。
+- `ai-guide.md` 面向 AI 编程助手，允许包含本项目结构和硬件边界。
+- 每条规则应写清触发条件、必须做什么、禁止做什么、验证方法和例外条件。
+- 涉及本板具体硬件事实的结论引用 `docs/hardware-design/`，不重复。
+- 可以由 lint、测试或脚本强制的要求，应同时落实到自动化检查，不能只靠 agent 阅读文字。
+- 新增规约时在本文件更新索引。
 
-- [ai-guide.md](ai-guide.md): AI-assisted development workflow.
-- [Core AI skills](../../skills/README.md): development, setup, build, device testing, and diagnosis; installation and usage examples.
+## AI 工作流
 
-## Engineering
+- [ai-guide.zh_CN.md](ai-guide.zh_CN.md)：AI 开发工作流（面向 AI 编程助手：上下文建立、需求拆解、BSP 边界、验收交付格式）。
+- [核心 AI 技能](../../skills/README.md)：开发、环境准备、构建、真机测试及诊断，包含安装和使用示例。
 
-- [game-demo-to-device-acceptance.md](engineering/game-demo-to-device-acceptance.md): shared C/WebAssembly and H5 playtesting, then physical-device acceptance.
-- [environment-setup.md](engineering/environment-setup.md): clean-machine bootstrap for AI agents, including international and mainland China download routes.
-- [build-and-test.md](engineering/build-and-test.md): ESP-IDF build and validation.
-- [firmware-layout.md](engineering/firmware-layout.md): default and user-defined partition layouts and merged-artifact validation.
-- [coding-conventions.md](engineering/coding-conventions.md): source-code and resource conventions, including Chinese font integration, blank/boxed text troubleshooting, and display acceptance.
-- [lvgl-chinese-fonts.md](engineering/lvgl-chinese-fonts.md): step-by-step CJK configuration, font generation/linking, fallback examples, glyph checks, and troubleshooting.
-- [wifi-provisioning.md](engineering/wifi-provisioning.md): Bluetooth-based Wi-Fi setup using the BLUFI reference branch, the companion mini program, and integration checks.
+## 工程约定（engineering）
 
-## CI
+- [game-demo-to-device-acceptance.zh_CN.md](engineering/game-demo-to-device-acceptance.zh_CN.md)：共享 C/Wasm 游戏逻辑，先验收网页玩法，再验收真机表现。
+- [environment-setup.zh_CN.md](engineering/environment-setup.zh_CN.md)：AI 在全新机器上的环境引导，包含国际与中国大陆下载线路。
+- [build-and-test.zh_CN.md](engineering/build-and-test.zh_CN.md)：构建与验证（ESP-IDF 命令、逻辑测试、改动验证要求）。
+- [firmware-layout.zh_CN.md](engineering/firmware-layout.zh_CN.md)：默认/用户自定义分区布局与合并产物验证。
+- [coding-conventions.zh_CN.md](engineering/coding-conventions.zh_CN.md)：代码约定（语言风格、复用、注释、测试同步、资源约束等），包含中文字体接入、空白/方框排查与显示验收。
+- [lvgl-chinese-fonts.zh_CN.md](engineering/lvgl-chinese-fonts.zh_CN.md)：CJK 配置、字体生成/链接、fallback 示例、缺字检查和故障排查的分步指南。
+- [wifi-provisioning.zh_CN.md](engineering/wifi-provisioning.zh_CN.md)：参考 BLUFI 分支实现蓝牙 Wi-Fi 配网，包含配套小程序名称及接入检查。
 
-- [CI-validation.md](ci/CI-validation.md): pull-request and main-branch checks.
-- [CI-build-and-release.md](ci/CI-build-and-release.md): tagged firmware builds and releases.
-- [CI-sync-main.md](ci/CI-sync-main.md): upstream synchronization for forks.
+## CI（ci）
 
-## Release
+- [CI-validation.zh_CN.md](ci/CI-validation.zh_CN.md)：Pull Request 与 main 的自动仓库检查、host tests 和固件验证。
+- [CI-build-and-release.zh_CN.md](ci/CI-build-and-release.zh_CN.md)：自动构建与发布说明（tag 触发自动编译固件并发布 Release）。
+- [CI-sync-main.zh_CN.md](ci/CI-sync-main.zh_CN.md)：上游同步说明（按需把上游 `FoloToy/ai-passport` 的 `main` 同步到本 fork 的 `main`）。
 
-- [publish-to-community.md](release/publish-to-community.md): publishing firmware to the AI Passport community market.
-- [project-completion.md](release/project-completion.md): project completion flow — a menu of optional closing actions.
-- [file-issues.md](release/file-issues.md): filing a suggestion as an upstream GitHub issue.
+## 发布/完成流程（release）
+
+- [publish-to-community.zh_CN.md](release/publish-to-community.zh_CN.md)：发布到社区说明（把当前固件发布到 AI Passport 社区市场）。
+- [project-completion.zh_CN.md](release/project-completion.zh_CN.md)：项目开发完成流程说明（一组可选收尾动作）。
+- [file-issues.zh_CN.md](release/file-issues.zh_CN.md)：提交 issue 说明（把建议作为上游 GitHub issue 提交）。

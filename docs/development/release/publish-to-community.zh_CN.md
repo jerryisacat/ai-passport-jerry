@@ -51,11 +51,11 @@ skill 的 `SKILL.md` 定义了精确流程：检查项目、准备中英文标�
 
 ## 发布之后：归档到参考区
 
-固件发布后，询问开发者是否把该应用归档到上游仓库的 [`docs/reference/`](../../reference/README.zh_CN.md)
-应用档案。若同意，在相对仓库根目录的 `docs/reference/<username>/<app-name>/` 下生成该应用的 AI 功能总结（双语
-`README.md` / `.zh_CN.md`）。档案为**纯文本**：封面图只记录文件名与格式作为发布元数据，
-**不要**把封面图提交进 `docs/reference/`（约定见 [`docs/reference/README.md`](../../reference/README.zh_CN.md)），
-并在该索引的中英文版本中登记应用。
+固件发布后，询问开发者是否把该应用归档到上游仓库的 [`docs/reference/`](../../reference/README.md)
+应用档案。若同意，在相对仓库根目录的 `docs/reference/<username>/<app-name>/` 下生成该应用的 AI 功能总结（中文
+`README.md`）。档案为**纯文本**：封面图只记录文件名与格式作为发布元数据，
+**不要**把封面图提交进 `docs/reference/`（约定见 [`docs/reference/README.md`](../../reference/README.md)），
+并在该索引中登记应用。
 也不要在这里存固件 `.bin`。用 `plays-archive` skill，它会向上游
 `FoloToy/ai-passport` 开归档 PR。
 

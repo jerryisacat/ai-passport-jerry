@@ -15,7 +15,7 @@ repository-root `assets/`; these are ours.
 
 ## Provenance
 
-Every asset records, in [`README.md`](README.md) (create the pair with the first
+Every asset records, in [`README.md`](README.md) (create it with the first
 asset):
 
 - Source URL, author or foundry, and license, with a statement that the license
@@ -49,5 +49,5 @@ Do not commit an asset whose license cannot be verified.
 
 - Binary assets never mix with Markdown. This folder's README is the ledger;
   design notes live in `../docs/`.
-- The ledger is a paired English/Chinese document like every other maintained
-  Markdown file.
+- The ledger is a Chinese-only `README.md`; every other maintained Markdown file
+  keeps the English/Chinese pair.

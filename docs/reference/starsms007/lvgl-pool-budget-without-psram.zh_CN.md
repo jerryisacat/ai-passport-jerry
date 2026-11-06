@@ -88,7 +88,7 @@ W (168727) fa_wx: overlay-OFF LVGL free=8052 biggest=7576 frag=6% maxused=68492 
 
 ## 相关文档
 
-- `docs/reference/starsms007/faraway/README.zh_CN.md` —— 这些实测数据来自哪个应用。
+- `docs/reference/starsms007/faraway/README.md` —— 这些实测数据来自哪个应用。
 - `main/fa_view.c` —— `wx_mem_log()` 与 `build_scene()` 周边关于池子的推理。
 - `sdkconfig.defaults` —— `CONFIG_LV_MEM_SIZE_KILOBYTES`，以及当初为什么调大。
 - `docs/reference/y2lin/meter-ui-smoothing-and-layout.zh_CN.md` —— 同一件事的另一面：

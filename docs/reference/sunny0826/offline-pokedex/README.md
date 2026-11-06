@@ -1,59 +1,37 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 离线宝可梦图鉴
 
-# Offline Pokédex
+把 AI Passport 变成随身图鉴机的全离线宝可梦图鉴：全国图鉴 1..1025（第 I–IX
+世代）连同像素精灵、基础数据、图鉴说明与叫声全部内嵌固件，无需联网。
 
-A fully offline Pokédex that turns the AI Passport into a handheld dex: all
-1,025 national-dex Pokémon (generations I–IX) live inside the firmware with
-their pixel sprites, stats, flavor text, and cries — no network required.
+## 发布信息
 
-## Publish information
+- **标题**：离线宝可梦图鉴
+- **简介**：把 AI Passport 变成一台随身的宝可梦图鉴：第 I 至 IX 世代共 1025 只全部装进口袋，不联网也能随时翻阅。开机进入像素风主菜单，选「Pokédex」开翻：上下键逐只浏览，双击一次跳 10 只，长按直接跳到上/下一个世代；按下 OK 还能听到这只宝可梦的真实叫声。每只都有像素小画像、属性标签、身高体重和图鉴说明，复古绿的电子图鉴界面翻起来就像握着一台真正的图鉴机。看过的记录和上次翻到的那只会自动保存，断电也不丢。
 
-- **Title**: Offline Pokédex
-- **Description**: Turn your AI Passport into a pocket Pokédex. All 1,025
-  Pokémon across generations I–IX live inside the device — browse anywhere, no
-  network needed. From the pixel-art menu, pick "Pokédex" and flip through
-  entries with UP/DOWN: click to move one by one, double-click to jump ten,
-  long-press to leap between generations. Press OK to hear each Pokémon's real
-  cry. Every entry shows its pixel sprite, type badges, height, weight, and
-  flavor text on a retro green dex screen that feels like the real thing. Your
-  seen records and the last entry you viewed are saved automatically, even
-  across power loss.
+## 功能
 
-## What it does
+- **1025 只全内置**：全国图鉴 1..1025（第 I–IX 世代）的基础数据、英文图鉴说明与 48×48 像素精灵全部内嵌固件镜像；应用完全不碰 Wi-Fi 与 HTTP。
+- **叫声播放**：OK 单击播放当前宝可梦的叫声，从专用资源分区的内嵌 Opus 流解码。
+- **见过记录**：浏览即标记「见过」，页脚显示已见数量，下次开机恢复上次看到的那只。
+- **复古图鉴界面**：绿色电子图鉴屏、薄荷绿高亮、预混色精灵（无白边）、编号/名字/属性芯片、身高体重与图鉴说明面板。
+- **空闲降亮**：60 秒无按键降低背光，任意按键恢复。
+- **电量显示**：深色标题栏内实时电量百分比。
 
-- **All 1,025 Pokémon built in**: national-dex entries 1..1025 (generations
-  I–IX) with base stats, English flavor text, and 48×48 pixel sprites embedded
-  in the firmware image; the app never touches Wi-Fi or HTTP.
-- **Cry playback**: a single OK press plays the current species' cry, decoded
-  from an embedded Opus stream served out of a dedicated resource partition.
-- **Seen tracking**: browsing marks species as seen, a footer line shows the
-  running seen count, and the last viewed entry is restored on the next launch.
-- **Retro dex UI**: a green "electronic dex" screen with mint highlights,
-  pre-blended sprites (no white borders), number/name/type chips, height and
-  weight, and a flavor-text panel.
-- **Idle dim**: the backlight dims after 60 seconds without keys and returns
-  with any press.
-- **Battery readout**: the live battery percentage sits in the dark header.
+## 交互
 
-## Interaction
+在像素风主菜单选择「Pokédex」卡片进入；OK 长按从任意页面返回菜单。图鉴页内：
 
-From the pixel-art main menu, select the "Pokédex" card to enter; an OK
-long-press returns to the menu from any page. Inside the dex:
+- **UP/DOWN（单击）**：上/下一只（±1）。
+- **UP/DOWN（双击）**：跳 ±10 只。
+- **UP/DOWN（长按）**：跳到上/下一个世代的起始条目。
+- **OK（单击）**：播放当前叫声。
 
-- **UP/DOWN (click)**: previous/next entry (±1).
-- **UP/DOWN (double-click)**: jump ±10 entries.
-- **UP/DOWN (long-press)**: jump to the first entry of the previous/next
-  generation.
-- **OK (click)**: play the current species' cry.
+## 来源
 
-## Source
-
-- Repository: `sunny0826/ai-passport`, branch `feature/ble-artwork`
-  (<https://github.com/sunny0826/ai-passport/tree/feature/ble-artwork>).
-- Released to the community as project `community-ef164568`; cover recorded as
-  `offline-pokedex-cover.png` (PNG, 1152×1536, 3:4) — publish metadata only,
-  the image lives with the community publication.
-- Data, sprites, and cries from [PokeAPI](https://pokeapi.co/) (CC-BY 4.0),
-  embedded by `tools/gen_pokedex_static.py` and `tools/gen_pokedex_cries.py`.
+- 仓库：`sunny0826/ai-passport`，分支 `feature/ble-artwork`
+  （<https://github.com/sunny0826/ai-passport/tree/feature/ble-artwork>）。
+- 已发布到社区，项目 `community-ef164568`；封面记录为
+  `offline-pokedex-cover.png`（PNG，1152×1536，3:4）——仅为发布元数据，
+  图片随社区发布存放。
+- 数据、精灵与叫声来自 [PokeAPI](https://pokeapi.co/)（CC-BY 4.0），
+  由 `tools/gen_pokedex_static.py` 与 `tools/gen_pokedex_cries.py` 内嵌。

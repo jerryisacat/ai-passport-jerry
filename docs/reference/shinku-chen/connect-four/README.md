@@ -1,87 +1,64 @@
-<p align="right">
-  <a href="README.zh_CN.md">简体中文</a> · <strong>English</strong>
-</p>
+# 四子棋（Connect Four）
 
-# Connect Four
+AI Passport 上的横屏四子棋。把设备横过来，在 10 列 × 7 行的棋盘上落子：可与电脑对战（三档难度），也可以两个人轮流玩同一台设备。
 
-A landscape Connect Four for the AI Passport. Hold the device sideways and play on
-a 10 × 7 board: face the computer at three difficulty levels, or pass the device
-back and forth with a second player.
+## 发布信息
 
-## Publish information
+- **标题**：四子棋（Connect Four）
+- **简介**：提交原文：
 
-- **Title**: Connect Four
-- **Description**: submitted as:
-
-  > Turn the AI Passport into a pocket Connect Four board.
+  > 把 AI Passport 变成随身的四子棋棋盘。
   >
-  > Hold it sideways and play on a 10 x 7 grid: move the column cursor with the up and down keys, drop a disc with OK, and connect four to win.
+  > 横过来玩：棋盘 10 列 7 行，上/下键左右选列，确定键落子，谁先连成四子谁赢。
   >
-  > - Choose who starts: play first yourself, or let the computer open the game and watch it move.
-  > - Play against the computer at three difficulty levels: pick the easy one for a relaxed win, or the hard one for a real match.
-  > - Or hand the device back and forth: two players take turns on the same board.
-  > - Choose how your next move is previewed: show exactly which slot the disc will land in, or only mark the top row of that column.
-  > - Column moves, drops, wins and draws each have their own sound, and the device dims itself when idle - press any key to keep playing.
+  > · 先手可选：玩家先手，或让电脑先下（开局它就会自动落子）。
+  > · 人机对战分低、中、高三档难度：想轻松赢就选低档，想认真过招就选高档。
+  > · 也可以两个人轮流玩同一台设备，一局接一局。
+  > · 落子前可以选预览方式：显示这一子真正会落在哪一格，或者只在最上面一行提示。
+  > · 换列、落子、胜负都有音效；闲置一会儿会自动熄屏省电，按任意键继续。
   >
-  > Hold OK to return to the settings screen at any time and switch mode, difficulty or preview style.
+  > 长按确定可以随时回到设置界面，换模式、难度或预览方式。
 
-- **Category**: games
-- **Cover**: `comm_cover.png` (PNG, 1152 × 1536, 3:4) — publish metadata only; the
-  cover image is not committed here.
-- **Source**: <https://github.com/Shinku-Chen/ai-passport>
+- **分类**：games
+- **封面**：`comm_cover.png`（PNG，1152 × 1536，3:4）—— 仅记录发布元数据，封面图不进本仓库。
+- **源码**：<https://github.com/Shinku-Chen/ai-passport>
 
-## What it does
+## 功能
 
-- **Boots straight into the game**: the firmware opens its own settings screen,
-  with no test menu and no network use.
-- **10 × 7 board**: 70 slots with four-in-a-row detection horizontally, vertically
-  and on both diagonals; the winning four are ringed, and a full board is a draw.
-- **Three modes**: `HUMAN vs AI` (you move first), `AI vs HUMAN` (the computer
-  opens the game and moves immediately), or `TWO PLAYERS` taking turns on the same
-  device with a turn indicator. The two computer modes differ only in who moves
-  first.
-- **Three difficulty levels**: easy, medium and hard. Every move is capped by a
-  search time budget, so the computer answers well inside a second, and the lower
-  levels deliberately play a weak move at a fixed rate so a new player can win.
-- **Selectable drop preview**: either the slot the disc will really land in, or
-  only the top row of the selected column.
-- **Sound**: column moves, drops, wins, losses and draws each have their own cue;
-  the cues are synthesized, so no audio files are stored.
-- **Idle deep sleep**: after 60 seconds on the settings screen or 180 seconds in a
-  match, the device shows `SLEEPING`, powers down and sleeps; any key wakes it and
-  the game restarts at the settings screen.
-- **Battery readout**: live percentage in the top-right corner, turning red below
-  20% and showing `--` when no reading is available.
+- **开机直接进游戏**：固件打开自己的设置屏，没有测试菜单，也不使用网络。
+- **10 列 × 7 行棋盘**：70 个格子，横、竖、两种对角线都能四连取胜；取胜的四子会加高亮环，棋盘填满为平局。
+- **三种模式**：`HUMAN vs AI`（玩家先手）、`AI vs HUMAN`（电脑先手，开局立即落子）与 `TWO PLAYERS`（两人同机轮流，状态栏提示轮到谁）；两个电脑模式只差先后手。
+- **三档难度**：低、中、高。每步都用搜索时间预算限时，电脑总在 1 秒内落子；低/中难度带固定失误率放水，新手也打得赢。
+- **可选落子预览**：显示这一子真正的落点，或只在所选列的最上一行提示。
+- **音效**：换列、落子、胜、负、平局各有提示音；音效为实时合成，不占存储。
+- **空闲自动深睡**：设置屏闲置 60 秒、对局中闲置 180 秒后显示 `SLEEPING` 并进入深睡；按任意键唤醒，唤醒后回到设置屏。
+- **电量显示**：右上角实时显示电量百分比，低于 20% 变红，读不到时显示 `--`。
 
-## Interaction
+## 交互
 
-Three keys drive the whole app. Hold the device with its long edge horizontal; the
-"up" key is then the right-hand key.
+三个按键驱动整个应用。请把设备长边横放，「上」键此时位于右手边。
 
-Settings screen:
+设置屏：
 
-- **UP / DOWN**: pick a row (`MODE`, `LEVEL`, `PREVIEW`, `START`).
-- **OK**: change the value of the selected row, or start a match when `START` is
-  selected. The `MODE` values are `HUMAN vs AI`, `AI vs HUMAN` and `TWO PLAYERS`;
-  `LEVEL` is disabled in two-player mode.
+- **上 / 下**：选择行（`MODE`、`LEVEL`、`PREVIEW`、`START`）。
+- **确定**：切换当前行的取值；光标在 `START` 上时开始对局。`MODE` 的取值是 `HUMAN vs AI` / `AI vs HUMAN` / `TWO PLAYERS`；双人模式下 `LEVEL` 行不可用。
 
-In a match:
+对局中：
 
-- **UP / DOWN**: move the column cursor right or left.
-- **OK**: drop a disc in the selected column.
-- **OK (hold)**: return to the settings screen, discarding the current match.
+- **上 / 下**：左右移动落子列。
+- **确定**：在选中的列落子。
+- **长按确定**：回到设置屏（当前对局作废）。
 
-After a win or a draw:
+分出胜负后：
 
-- **OK**: start another match with the same settings.
-- **OK (hold)**: return to the settings screen.
+- **确定**：用同一套设置再来一局。
+- **长按确定**：回到设置屏。
 
-Press timing: a press shorter than 120 ms is ignored, and holding a key for 300 ms
-triggers the long-press action.
+按键时长：短于 120ms 的按压不生效；按住 300ms 触发长按动作。
 
-## Source
+## 源码
 
-- Repository: `Shinku-Chen/ai-passport`, branch `feature/connect-four`
-  (<https://github.com/Shinku-Chen/ai-passport/tree/feature/connect-four>),
-  release `v1.6.0-connect-four`.
-- Released to the community as project `community-7dc95814`.
+- 仓库：`Shinku-Chen/ai-passport` 分支 `feature/connect-four`
+  （<https://github.com/Shinku-Chen/ai-passport/tree/feature/connect-four>），
+  release `v1.6.0-connect-four`。
+- 已发布到社区市场，项目号 `community-7dc95814`。
